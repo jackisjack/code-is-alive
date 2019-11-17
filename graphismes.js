@@ -923,7 +923,7 @@ var ElementClass = Class.extend({
             font: '12px Arial',
             color: 'black'
         });
-        //text.lineWidth = this.bitmap.image.width;
+        
         text.lineHeight = 14;
         text.x = this.bitmap.image.width + 5;
         text.y = (this.bitmap.image.height / 2) - (text.lineHeight / 2);
