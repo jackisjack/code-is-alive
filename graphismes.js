@@ -302,7 +302,7 @@ var VueClass = Class.extend({
         this.stage.autoClear = true;
         this.stage.canvas.width = w; // essentiel pour le fullscreen : le overflow en css
         this.stage.canvas.height = h;
-        document.body.style.cursor = "url(../../Images/icone/grab.cur), auto";
+        document.body.style.cursor = "url(https://cdn.glitch.com/1f9a81fa-715f-4b6a-abac-840468608b33%2Fgrab.cur?v=1574021115660), auto";
         this.stage.enableMouseOver();
         createjs.Touch.enable(this.stage);
 
@@ -396,7 +396,7 @@ var VueClass = Class.extend({
                     this.Zoom(0.5);
 
                     // Diffusion de l'évènement
-                    MacroEventsManager.SomethingHappened("Dezoom", null);
+                    //MacroEventsManager.SomethingHappened("Dezoom", null);
 
                 }
 
@@ -405,7 +405,7 @@ var VueClass = Class.extend({
                     this.Zoom(1 / 0.5);
 
                     // Diffusion de l'évènement
-                    MacroEventsManager.SomethingHappened("Zoom", null);
+                    //MacroEventsManager.SomethingHappened("Zoom", null);
 
                 }
 
@@ -485,7 +485,7 @@ var VueClass = Class.extend({
             }
         }
 
-        document.body.style.cursor = "url(../../Images/icone/grabbing.cur), auto";
+        document.body.style.cursor = "url(https://cdn.glitch.com/1f9a81fa-715f-4b6a-abac-840468608b33%2Fgrab.cur?v=1574021115660), auto";
 
     },
 
@@ -622,11 +622,11 @@ var VueClass = Class.extend({
                 this.ActualisationRemontante(that.ObjetToMove.ReferenceToObjet);
             }
 
-            MacroEventsManager.SomethingHappened("DeplacementManuelElement", null);
+            //MacroEventsManager.SomethingHappened("DeplacementManuelElement", null);
 
         } 
         else {
-            MacroEventsManager.SomethingHappened("DeplacementGrille",
+            //MacroEventsManager.SomethingHappened("DeplacementGrille",
             { MouseX: parseInt(this.MousePosX), MouseY: parseInt(this.MousePosY) });
         }
         
@@ -634,7 +634,7 @@ var VueClass = Class.extend({
         this.lastY = -1;
         this.ObjetToMove = null;
 
-        document.body.style.cursor = "url(../../Images/icone/grab.cur), auto";
+        document.body.style.cursor = "url(https://cdn.glitch.com/1f9a81fa-715f-4b6a-abac-840468608b33%2Fgrab.cur?v=1574021115660), auto";
     },
     
     SupprimerToutesLesFormes: function () {
