@@ -1,7 +1,15 @@
+var EnumModeAction = {
+    AjoutUnitaire: 0,
+    AjoutMultiple: 1,
+    Focus: 2,
+    Lier: 3,
+    Deplacer: 4
+};
 
 var VariablesGlobales = {
     ImagesArray: [],
-    TutoEnCours: null
+    TutoEnCours: null,
+    TypeSelection: EnumModeAction.AjoutUnitaire
 };
 
 // Liste des énumérations
@@ -1005,11 +1013,7 @@ var ElementClass = Class.extend({
         this.Forme = ParametresElement.Forme;
 
         // L'image
-        var objImage = $.grep(VariablesGlobales.ImagesArray, function (e) { return e.idtypeobjet === that.IdTypeObjet; });
-        if (objImage[0].image === undefined) {
-            console.log(that.IdTypeObjet);
-        }
-        this.bitmap = new createjs.Bitmap(objImage[0].image);
+        this.bitmap = new createjs.Bitmap("https://cdn.glitch.com/1f9a81fa-715f-4b6a-abac-840468608b33%2Fhub.png?v=1574020275932");
         this.bitmap.ChildType = EnumChildType.Bitmap; // typage du child pour bien faire sa mesure
         this.bitmap.ReferenceToObjet = this; // nécessaire pour récupérer la référence du bitmap au clic
 
