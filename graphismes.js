@@ -102,7 +102,6 @@ var Graphisme = {
 
 
 
-        ElementSansParent.Selectionner();
 
         // Focus sur les coordonnées du hub
 
