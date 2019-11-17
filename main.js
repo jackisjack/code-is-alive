@@ -14,41 +14,12 @@ var MainSiManager =
             // Chargement en mémoire des îcones (pour leur ajout futur sur la scène)
 
             SetLoadingMessage("Chargement de la carte");
-            
-          // Liste des images à charger
-            var data = [
-              {IDTYPEOBJET:EnumTypeObjet.PetitCarre, LIBELLE:"Petit carré bleu",ICONE: "https://cdn.glitch.com/1f9a81fa-715f-4b6a-abac-840468608b33%2Fhub.png?v=1574020275932"}
-            ];
-            
-          var queue = new createjs.LoadQueue(true);
-          queue.addEventListener("fileload",onFileLoaded.bind(this));
-          var manifest = getManifest();
-          queue.loadManifest(manifest);
+           
+            var queue = new createjs.LoadQueue(true);
+            queue.loadFile({src:"https://cdn.glitch.com/1f9a81fa-715f-4b6a-abac-840468608b33%2Fhub.png?v=1574020275932", type:createjs.Types.IMAGE});
+            var myimage = new createjs.Bitmap(images.myimage);
 
-          onFileLoaded = function(evt)
-          {
-           var item = evt.item;
-           var type = evt.type;
-          }
-
-          getManifest = function()
-          {
-           var manifest = [
-           {src:"/images/yourimage.png", id:"myimage"}    
-           ];
-
-           return manifest;
-          }
-
-          var myimage = new createjs.Bitmap(images.myimage);
-          
-            for (var i = 0; i < data.length; i++) {
-
-                var image_temp = new Image();
-                image_temp.src = data[i].ICONE;
-                VariablesGlobales.ImagesArray.push({ idtypeobjet: data[i].IDTYPEOBJET, libelle: data[i].LIBELLE, image: new createjs.Bitmap(image_temp) });
-
-            }
+            VariablesGlobales.ImagesArray.push(myimage)
             
             // Initialisation de la vue
 

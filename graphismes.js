@@ -925,7 +925,6 @@ var ElementClass = Class.extend({
         });
         //text.lineWidth = this.bitmap.image.width;
         text.lineHeight = 14;
-        console.log(this.bitmap.image.height);
         text.x = this.bitmap.image.width + 5;
         text.y = (this.bitmap.image.height / 2) - (text.lineHeight / 2);
         text.ChildType = EnumChildType.Text; // typage du child pour bien faire sa mesure
