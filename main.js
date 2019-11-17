@@ -19,6 +19,28 @@ var MainSiManager =
             var data = [
               {IDTYPEOBJET:EnumTypeObjet.PetitCarre, LIBELLE:"Petit carré bleu",ICONE: "https://cdn.glitch.com/1f9a81fa-715f-4b6a-abac-840468608b33%2Fhub.png?v=1574020275932"}
             ];
+            
+          var queue = new createjs.LoadQueue(true);
+          queue.addEventListener("fileload",onFileLoaded.bind(this));
+          var manifest = getManifest();
+          queue.loadManifest(manifest);
+
+          onFileLoaded = function(evt)
+          {
+           var item = evt.item;
+           var type = evt.type;
+          }
+
+          getManifest = function()
+          {
+           var manifest = [
+           {src:"/images/yourimage.png", id:"myimage"}    
+           ];
+
+           return manifest;
+          }
+
+          var myimage = new createjs.Bitmap(images.myimage);
           
             for (var i = 0; i < data.length; i++) {
 
@@ -28,13 +50,12 @@ var MainSiManager =
 
             }
             
-          
             // Initialisation de la vue
 
             Graphisme.Init();
 
             var ElementSansParent = Graphisme.VueFocus.AjouterElement({
-              IdTypeObjet: EnumTypeObjet.PetitCarre, // en dur 
+              IdTypeObjet: EnumTypeObjet.PetitCarre, 
               IdVue:-1,
               Libelle: "Sujet",
               IdObjet: 1, 
