@@ -602,33 +602,6 @@ var VueClass = Class.extend({
 
         var that = this;
 
-        // actualisation du hub parent dans le cas où l'on déplaçait un objet
-
-        if (this.ObjetToMove !== null) {
-            
-            // Actualisation remontante en partant de l'élément bougé
-
-            if (that.ObjetToMove.ReferenceToObjet.Parent !== null) {
-
-                // définition du delta
-
-                // calcul de la distance entre le mouse down et le mouseup
-                var deltaX = (this.lastX - this.firstlastX) / this.mainContainer.scaleX;
-                var deltaY = (this.lastY - this.firstlastY) / this.mainContainer.scaleY;
-
-                this.ObjetToMove.ReferenceToObjet.Parent.x_delta += deltaX;
-                this.ObjetToMove.ReferenceToObjet.Parent.y_delta += deltaY;
-
-            }
-
-            //MacroEventsManager.SomethingHappened("DeplacementManuelElement", null);
-
-        } 
-        else {
-            //MacroEventsManager.SomethingHappened("DeplacementGrille",
-            //{ MouseX: parseInt(this.MousePosX), MouseY: parseInt(this.MousePosY) });
-        }
-        
         this.lastX = -1;
         this.lastY = -1;
         this.ObjetToMove = null;
