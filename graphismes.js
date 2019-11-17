@@ -619,7 +619,6 @@ var VueClass = Class.extend({
                 this.ObjetToMove.ReferenceToObjet.Parent.x_delta += deltaX;
                 this.ObjetToMove.ReferenceToObjet.Parent.y_delta += deltaY;
 
-                this.ActualisationRemontante(that.ObjetToMove.ReferenceToObjet);
             }
 
             //MacroEventsManager.SomethingHappened("DeplacementManuelElement", null);
@@ -891,72 +890,6 @@ var VueClass = Class.extend({
             MAINCONTAINERX: parseInt(this.mainContainer.x),
             MAINCONTAINERY: parseInt(this.mainContainer.y)
         };
-    },
-
-    ActualisationDescendante: function (ElementAActualiser) {
-
-        ElementAActualiser.Actualiser();
-
-        // actualisation descendante
-        
-        for (var i = 0; i < ElementAActualiser.ListeEnfants.length; i++) {
-            
-            // recursif
-            this.ActualisationDescendante(ElementAActualiser.ListeEnfants[i][0])
-
-        }
-
-    },
-    
-    ActualisationRemontante: function (ElementAActualiser) {
-
-        ElementAActualiser.Actualiser();
-
-        // Actualisation remontante
-
-        while (ElementAActualiser.Parent !== null && ElementAActualiser.Parent !== undefined) {
-
-            ElementAActualiser = ElementAActualiser.Parent;
-
-            ElementAActualiser.Actualiser();
-         
-        }
-
-    },
-
-    ResetRemontant: function (ElementAReseter) {
-
-        // Méthode technique pour ne réaliser les calculs de dimension que lorsque nécessaire
-        
-        // Actualisation remontante
-
-            do 
-            {
-
-                ElementAReseter.innerRect(null);
-                ElementAReseter.outerRect(null);
-
-                for (var i = 0; i < ElementAReseter.ListeEnfants.length; i++) {
-                    ElementAReseter.ListeEnfants[i][0].innerRect(null);
-                    ElementAReseter.ListeEnfants[i][0].outerRect(null);
-                }
-
-                ElementAReseter = ElementAReseter.Parent;
-                
-            } while (ElementAReseter !== null && ElementAReseter !== undefined)
-
-    },
-
-    TU_AfficherImageDirect: function (URL, x, y) {
-
-        var image = new Image();
-        image.src = "../../Images/blocnote.png";
-        var bitmap = new createjs.Bitmap(image);
-        bitmap.x = ArrondirAu(x - (bitmap.image.width / 2), 50);
-        bitmap.y = ArrondirAu(y - (bitmap.image.height / 2), 50);
-
-        this.mainContainer.addChild(bitmap);
-
     },
 
 });
