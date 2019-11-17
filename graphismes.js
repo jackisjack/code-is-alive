@@ -782,8 +782,8 @@ var VueClass = Class.extend({
 
 
                 // debug : visibilité des limites
-                console.log('INNER rect : ' + JSON.stringify(Element.innerRect()));
-                console.log('OUTER rect : ' + JSON.stringify(Element.outerRect()));
+                //console.log('INNER rect : ' + JSON.stringify(Element.innerRect()));
+                //console.log('OUTER rect : ' + JSON.stringify(Element.outerRect()));
                 
                 break;
                 
@@ -919,9 +919,9 @@ var ElementClass = Class.extend({
             color: 'black'
         });
         
-        text.lineHeight = 14;
+        text.lineHeight = 10;
         text.x = this.bitmap.image.width + 5;
-        text.y = (this.bitmap.image.height / 2) - (text.lineHeight / 2);
+        text.y = (this.bitmap.image.height / 2.0) - (text.lineHeight / 2.0);
         text.ChildType = EnumChildType.Text; // typage du child pour bien faire sa mesure
         this.text = text;
 
@@ -1115,8 +1115,10 @@ var ElementClass = Class.extend({
                         break;
                     case EnumChildType.SurfaceCliquable:
                         break;
+                  case undefined:
+                        break;
                     default:
-                        console.log('tu as raté un truc mon loulou');
+                        console.log('tu as raté un truc mon loulou : ' + this.Container.children[i].ChildType);
                         break;
                 }
 
