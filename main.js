@@ -6,10 +6,6 @@ var MainSiManager =
 
             ShowLoading();
 
-            // Mode 'Ajout unitaire' cliqué par défaut
-
-            document.getElementsByClassName('glyphicon glyphicon-plus')[0].click();
-
             // Pour gérer les mouvements suivants une ligne (non utilisé pour le moment)
 
             createjs.MotionGuidePlugin.install();

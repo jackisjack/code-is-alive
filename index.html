@@ -20,23 +20,27 @@
     <link href="libcss/jquery-ui.structure.min.css" rel="stylesheet" />
     <link href="libcss/jquery-ui.css" rel="stylesheet" />
     
+    <script src="graphismes.js"></script>
+    <script src="loading.js"></script>
     <script src="main.js"></script>
     
+    <link href="loading.css" rel="stylesheet" />
     
   </head>  
   <body onload="MainSiManager.Init();">
-    <h1>Hi there!</h1>
-    
-    <p>
-      I'm your cool new webpage. Made with <a href="https://glitch.com">Glitch</a>!
-    </p>
 
     <!-- include the Glitch button to show what the webpage is about and
           to make it easier for folks to view source and remix -->
     <div class="glitchButton" style="position:fixed;top:20px;right:20px;"></div>
     
+    <canvas id="MainCanvas" class="CalqueCanvas"></canvas>
+    
+        <div id="myModal" class="modal" style="font-family: Lato;color:gainsboro;font-size:40pt;">
 
+        <img src="https://cdn.glitch.com/1f9a81fa-715f-4b6a-abac-840468608b33%2Floading.gif?v=1574018941015" />
+        <p></p>
 
+    </div>
     
                                                       
   </body>
