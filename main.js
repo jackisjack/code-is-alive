@@ -15,25 +15,26 @@ var MainSiManager =
 
             SetLoadingMessage("Chargement de la carte");
            
-          
            var queue = new createjs.LoadQueue();
            queue.on("complete", handleComplete, this);
            queue.loadManifest([
                {id: "petitcarrebleu", src:"https://cdn.glitch.com/1f9a81fa-715f-4b6a-abac-840468608b33%2Fhub.png?v=1574020275932"}
            ]);
           
+           // Quand le chargement des images est fini
            function handleComplete() {
-             
-               HideLoading();
-          
-              // Initialisation de la vue
+               
+              VariablesGlobales.ImagesArray = queue;
 
+              HideLoading();
+
+              // Initialisation de la vue
               Graphisme.Init();
 
               var ElementSansParent = Graphisme.VueFocus.AjouterElement({
                 IdTypeObjet: EnumTypeObjet.PetitCarre, 
                 IdVue:-1,
-                Libelle: "Sujet",
+                Libelle: "Ceci est un exemple de truc",
                 IdObjet: 1, 
                 x: 200,
                 y: 200,
@@ -46,7 +47,6 @@ var MainSiManager =
 
               // Fin du loading;
 
-             
              }
           
         },

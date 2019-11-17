@@ -7,7 +7,7 @@ var EnumModeAction = {
 };
 
 var VariablesGlobales = {
-    ImagesArray: [],
+    ImagesArray: null,
     TutoEnCours: null,
     TypeSelection: EnumModeAction.AjoutUnitaire
 };
@@ -441,7 +441,7 @@ var VueClass = Class.extend({
                 $("#zoomratio").text('zoom: ' + (that.mainContainer.scaleX === 1 ? 1 : '1/' + (1 / that.mainContainer.scaleX))); // affichage sous forme de fraction
             });
 
-        MacroEventsManager.SomethingHappened("ZoomRatio", { Ratio: that.mainContainer.scaleX * ratiozoom });
+        //MacroEventsManager.SomethingHappened("ZoomRatio", { Ratio: that.mainContainer.scaleX * ratiozoom });
 
     },
 
@@ -906,13 +906,8 @@ var ElementClass = Class.extend({
         this.Forme = ParametresElement.Forme;
 
         // L'image
-              // L'image
-        var objImage = $.grep(VariablesGlobales.ImagesArray, function (e) { return e.idtypeobjet === that.IdTypeObjet; });
-        if (objImage[0].image === undefined) {
-            console.log(that.IdTypeObjet);
-        }
-      
-        this.bitmap = objImage[0].image;
+
+        this.bitmap =  new createjs.Bitmap(VariablesGlobales.ImagesArray.getResult("petitcarrebleu"));
         this.bitmap.ChildType = EnumChildType.Bitmap; // typage du child pour bien faire sa mesure
         this.bitmap.ReferenceToObjet = this; // nécessaire pour récupérer la référence du bitmap au clic
 
