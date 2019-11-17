@@ -485,7 +485,7 @@ var VueClass = Class.extend({
             }
         }
 
-        document.body.style.cursor = "url(https://cdn.glitch.com/1f9a81fa-715f-4b6a-abac-840468608b33%2Fgrab.cur?v=1574021115660), auto";
+        document.body.style.cursor = "url(https://cdn.glitch.com/1f9a81fa-715f-4b6a-abac-840468608b33%2Fgrabbing.cur?v=1574021115756), auto";
 
     },
 
@@ -627,7 +627,7 @@ var VueClass = Class.extend({
         } 
         else {
             //MacroEventsManager.SomethingHappened("DeplacementGrille",
-            { MouseX: parseInt(this.MousePosX), MouseY: parseInt(this.MousePosY) });
+            //{ MouseX: parseInt(this.MousePosX), MouseY: parseInt(this.MousePosY) });
         }
         
         this.lastX = -1;
