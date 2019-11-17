@@ -911,7 +911,8 @@ var ElementClass = Class.extend({
         if (objImage[0].image === undefined) {
             console.log(that.IdTypeObjet);
         }
-        this.bitmap = new createjs.Bitmap(objImage[0].image);
+      
+        this.bitmap = objImage[0].image;
         this.bitmap.ChildType = EnumChildType.Bitmap; // typage du child pour bien faire sa mesure
         this.bitmap.ReferenceToObjet = this; // nécessaire pour récupérer la référence du bitmap au clic
 
@@ -924,6 +925,7 @@ var ElementClass = Class.extend({
         });
         //text.lineWidth = this.bitmap.image.width;
         text.lineHeight = 14;
+        console.log(this.bitmap.image.height);
         text.x = this.bitmap.image.width + 5;
         text.y = (this.bitmap.image.height / 2) - (text.lineHeight / 2);
         text.ChildType = EnumChildType.Text; // typage du child pour bien faire sa mesure
@@ -970,7 +972,7 @@ var ElementClass = Class.extend({
             var x = this.x();
             var y = this.y();
 
-            this.innerRectShape.graphics.clear().setStrokeStyle(1).beginStroke("rgba(0,62,232,1)").drawRect(this.P_innerRect.x - x, this.P_innerRect.y - y, this.P_innerRect.w, this.P_innerRect.h);
+            //this.innerRectShape.graphics.clear().setStrokeStyle(1).beginStroke("rgba(0,62,232,1)").drawRect(this.P_innerRect.x - x, this.P_innerRect.y - y, this.P_innerRect.w, this.P_innerRect.h);
 
 
         } else {
@@ -984,7 +986,7 @@ var ElementClass = Class.extend({
             var x = this.x();
             var y = this.y();
 
-            this.outerRectShape.graphics.clear().setStrokeStyle(1).beginStroke("rgba(49,205,27,1)").drawRect(this.P_outerRect.x - x - 1, this.P_outerRect.y - y - 1, this.P_outerRect.w + 2, this.P_outerRect.h + 2);
+            //this.outerRectShape.graphics.clear().setStrokeStyle(1).beginStroke("rgba(49,205,27,1)").drawRect(this.P_outerRect.x - x - 1, this.P_outerRect.y - y - 1, this.P_outerRect.w + 2, this.P_outerRect.h + 2);
 
         } else {
 
