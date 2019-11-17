@@ -1,8 +1,6 @@
 
-
 var VariablesGlobales = {
     ImagesArray: [],
-    TypeSelection: EnumModeAction.AjoutUnitaire,
     TutoEnCours: null
 };
 

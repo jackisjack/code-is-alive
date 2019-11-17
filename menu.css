@@ -1,0 +1,17 @@
+html,
+body {
+    height: 100%;
+    overflow: hidden;
+}
+
+body {
+    margin: 0;
+    background-color: white; 
+}
+
+.CalqueCanvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: white;
+}
