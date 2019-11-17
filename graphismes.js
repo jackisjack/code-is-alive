@@ -40,10 +40,10 @@ var EnumTypeCoord = {
     Global:1 // MainContainer
 }
 
-var EnumTypeHub = {
-    IdTypeObjet: 25, 
-    IdObjet: 1  
+var EnumTypeObjet = {
+  PetitCarre:1
 }
+
 
 // Objet principal : Graphisme
 
@@ -100,19 +100,7 @@ var Graphisme = {
 
         // Ajout d'un premier élément sans parent
 
-        var ElementSansParent = mVue.AjouterElement({
-            IdTypeObjet: EnumTypeHub.IdTypeObjet, // en dur 
-            IdVue:-1,
-            Libelle: "Sujet",
-            IdObjet: EnumTypeHub.IdObjet, // c'est moche'
-            x: 200,
-            y: 200,
-            Forme: EnumPositionImage.EnLigneVertical,
-            x_delta: 0,
-            y_delta: 0
-        });
 
-        ElementSansParent.Visible(true);
 
         ElementSansParent.Selectionner();
 
@@ -919,7 +907,12 @@ var ElementClass = Class.extend({
         this.Forme = ParametresElement.Forme;
 
         // L'image
-        this.bitmap = new createjs.Bitmap("https://cdn.glitch.com/1f9a81fa-715f-4b6a-abac-840468608b33%2Fhub.png?v=1574020275932");
+              // L'image
+        var objImage = $.grep(VariablesGlobales.ImagesArray, function (e) { return e.idtypeobjet === that.IdTypeObjet; });
+        if (objImage[0].image === undefined) {
+            console.log(that.IdTypeObjet);
+        }
+        this.bitmap = new createjs.Bitmap(objImage[0].image);
         this.bitmap.ChildType = EnumChildType.Bitmap; // typage du child pour bien faire sa mesure
         this.bitmap.ReferenceToObjet = this; // nécessaire pour récupérer la référence du bitmap au clic
 
