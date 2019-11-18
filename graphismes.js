@@ -388,7 +388,7 @@ var VueClass = Class.extend({
                 }
 
                 // Si Wheel up (et impossibilité de zoomer davantage que le ratio initial) 
-                if (delta > 0 && this.ActualRatio < 1) {
+                if (delta > 0 && this.ActualRatio < 8) {
                     this.Zoom(1 / 0.5);
 
                     // Diffusion de l'évènement
@@ -955,7 +955,7 @@ var ElementClass = Class.extend({
         this.bitmap.hitArea = this.hit;
         
         // L'évènement clic sur la surface cliquable
-        this.hit.addEventListener("click", function (e) { that.Vue.ClicObjet(that); });
+        //this.hit.addEventListener("click", function (e) { that.Vue.ClicObjet(that); });
 
     },
     
