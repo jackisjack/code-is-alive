@@ -7,7 +7,6 @@ var EnumModeAction = {
     Deplacer: 4
 };
 
-
 function MenuGauche(e, ModeAction) {
 
     // couleur grise pour tout le monde !
