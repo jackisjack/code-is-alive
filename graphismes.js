@@ -1,7 +1,7 @@
 var VariablesGlobales = {
     ImagesArray: null,
     TutoEnCours: null,
-    TypeSelection: EnumModeAction.AjoutUnitaire
+    TypeSelection: EnumModeAction.Explorer
 };
 
 // Liste des énumérations
@@ -724,7 +724,7 @@ var VueClass = Class.extend({
         // de façon à gérer simplement ses impacts sur les enfants
         switch (VariablesGlobales.TypeSelection)
         {
-            case EnumModeAction.AjoutUnitaire:
+            case EnumModeAction.Explorer:
                 // sélectionner l'objet
                 this.Selectionner(Element);
                 break;
@@ -736,7 +736,7 @@ var VueClass = Class.extend({
 
         switch (VariablesGlobales.TypeSelection) {
 
-            case EnumModeAction.AjoutUnitaire:
+            case EnumModeAction.Explorer:
 
                 // Désélection de l'ensemble
                 
