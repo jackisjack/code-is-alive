@@ -419,17 +419,17 @@ var VueClass = Class.extend({
             },
             300,
             createjs.Ease.linear)
-            .call(function () {
+            .call(function () { // A la fin du zoom
                 // il faut dire que c'est terminé
                 that.ZoomInProgress = false;
                 // affichage du zoom
                 var zoom='1'; 
                 if (that.mainContainer.scaleX < 1)
                 {
-                zoom = '1/' + (1 / that.mainContainer.scaleX)
+                  zoom = '1/' + (1 / that.mainContainer.scaleX)
                 } else
                 {
-                zoom = that.mainContainer.scaleX
+                  zoom = that.mainContainer.scaleX
                 }  
                 $("#zoomratio").text('zoom: ' + zoom); // affichage sous forme de fraction
             });
