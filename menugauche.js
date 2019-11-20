@@ -29,13 +29,13 @@ function MenuGauche(e, ModeAction) {
     switch (VariablesGlobales.TypeSelection) {
         case EnumModeAction.Deplacer:
             // cache le menu et déplace les coordonnées en bas
-            $('#MenuDuBas').toggle();
-            $('.menu-bas-droite').css('bottom', '20px');
+            //$('#MenuDuBas').toggle();
+            //$('.menu-bas-droite').css('bottom', '20px');
             break;
         default:
             // affiche le menu et déplace les coordonnées au dessus du menu
-            $('#MenuDuBas').show();
-            $('.menu-bas-droite').css('bottom', '180px');
+            //$('#MenuDuBas').show();
+            //$('.menu-bas-droite').css('bottom', '180px');
             break;
         
     }

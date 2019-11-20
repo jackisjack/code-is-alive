@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     
     <script src="libjs/jquery-3.2.0.min.js"></script>
-
+    
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
     <script src="libjs/jquery-ui.min.js"></script>
     <script src="libjs/tweenjs-0.6.2.min.js"></script>
@@ -38,7 +38,8 @@
   
   <body onload="MainSiManager.Init();">
 
-
+    <canvas id="MainCanvas" class="CalqueCanvas"></canvas>
+    
     <div class="vertical-menu">
         <a href="#" class="glyphicon glyphicon-plus" title="Ajout unitaire" onclick="MenuGauche(this,EnumModeAction.AjoutUnitaire);"></a>
         <a href="#" class="glyphicon glyphicon-remove" title="Ajout multiple" onclick="MenuGauche(this,EnumModeAction.AjoutMultiple);"></a>
@@ -46,8 +47,6 @@
         <a href="#" class="glyphicon glyphicon-random" title="Lier" onclick="MenuGauche(this,EnumModeAction.Lier);"></a>
         <a href="#" class="glyphicon glyphicon-move" title="Déplacer" onclick="MenuGauche(this,EnumModeAction.Deplacer);"></a>
     </div>
-    
-    <canvas id="MainCanvas" class="CalqueCanvas"></canvas>
     
     <div class="menu-bas-droite MenuACacher">
         <span id="x_mouse">x:100,</span>
