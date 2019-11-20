@@ -31,7 +31,7 @@ var MainSiManager =
              
               Graphisme.Init();
               
-             for (var j = 1; j < 100 ; j++){
+             for (var j = 1; j < 200 ; j++){
                
                 var ElementSansParent = Graphisme.VueFocus.AjouterElement({
                   IdTypeObjet: EnumTypeObjet.PetitCarre, 
@@ -39,7 +39,7 @@ var MainSiManager =
                   Libelle: "Ceci est un exemple de truc",
                   IdObjet: 1, 
                   x: 200,
-                  y: 200 + j*20,
+                  y: 200 + j*50,
                   Forme: EnumPositionImage.EnLigneVertical,
                   x_delta: 0,
                   y_delta: 0

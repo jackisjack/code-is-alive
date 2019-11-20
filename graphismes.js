@@ -958,9 +958,7 @@ var ElementClass = Class.extend({
 
             var x = this.x();
             var y = this.y();
-
             //this.innerRectShape.graphics.clear().setStrokeStyle(1).beginStroke("rgba(0,62,232,1)").drawRect(this.P_innerRect.x - x, this.P_innerRect.y - y, this.P_innerRect.w, this.P_innerRect.h);
-
 
         } else {
 
@@ -972,7 +970,6 @@ var ElementClass = Class.extend({
             
             var x = this.x();
             var y = this.y();
-
             //this.outerRectShape.graphics.clear().setStrokeStyle(1).beginStroke("rgba(49,205,27,1)").drawRect(this.P_outerRect.x - x - 1, this.P_outerRect.y - y - 1, this.P_outerRect.w + 2, this.P_outerRect.h + 2);
 
         } else {
