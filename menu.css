@@ -21,7 +21,7 @@ body {
 .vertical-menu {
     position: fixed;
     left: 0;
-    top: 20%;
+    top: 30%;
     width: 40px; /* Set a width if you like */
     font-size: 15pt;
 }

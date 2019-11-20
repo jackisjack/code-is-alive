@@ -28,6 +28,7 @@ var MainSiManager =
               HideLoading();
 
               // Initialisation de la vue
+             
               Graphisme.Init();
               
              for (var j = 1; j < 100 ; j++){
