@@ -423,7 +423,15 @@ var VueClass = Class.extend({
                 // il faut dire que c'est terminé
                 that.ZoomInProgress = false;
                 // affichage du zoom
-                $("#zoomratio").text('zoom: ' + (that.mainContainer.scaleX === 1 ? 1 : '1/' + (1 / that.mainContainer.scaleX))); // affichage sous forme de fraction
+                var zoom='1'; 
+                if (that.mainContainer.scaleX < 1)
+                {
+                zoom = '1/' + (1 / that.mainContainer.scaleX)
+                } else
+                {
+                zoom = that.mainContainer.scaleX
+                }  
+                $("#zoomratio").text('zoom: ' + zoom); // affichage sous forme de fraction
             });
 
         //MacroEventsManager.SomethingHappened("ZoomRatio", { Ratio: that.mainContainer.scaleX * ratiozoom });

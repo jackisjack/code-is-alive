@@ -37,3 +37,14 @@ body {
     background-color: #ccc; /* Dark grey background on mouse-over */
     color: white;
 }
+
+/* Menu bas droite  */
+
+.menu-bas-droite {
+    /*visibility: hidden;*/
+    position: fixed;
+    right: 5px;
+    bottom: 10px; /* attention cette propriété est géré par jquery également */
+    color: #808080;
+    font-family: 'Segoe UI';
+}
