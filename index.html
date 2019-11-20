@@ -25,6 +25,7 @@
     <script src="technique/easefunctions.js"></script>
     <script src="technique/class_helper.js"></script>
     
+    <script src="menugauche.js"></script>
     <script src="graphismes.js"></script>
     <script src="loading.js"></script>
     <script src="main.js"></script>
@@ -35,17 +36,24 @@
   </head>  
   <body onload="MainSiManager.Init();">
 
-    <!-- include the Glitch button to show what the webpage is about and
-          to make it easier for folks to view source and remix -->
-    <div class="glitchButton" style="position:fixed;top:20px;right:20px;"></div>
+
+    <div class="vertical-menu MenuACacher">
+        <a href="#" class="glyphicon glyphicon-plus" title="Ajout unitaire" onclick="MenuGauche(this,EnumModeAction.AjoutUnitaire);"></a>
+        <a href="#" class="glyphicon glyphicon-remove" title="Ajout multiple" onclick="MenuGauche(this,EnumModeAction.AjoutMultiple);"></a>
+        <a href="#" class="glyphicon glyphicon-map-marker" title="Focus" onclick="MenuGauche(this,EnumModeAction.Focus);"></a>
+        <a href="#" class="glyphicon glyphicon-random" title="Lier" onclick="MenuGauche(this,EnumModeAction.Lier);"></a>
+        <a href="#" class="glyphicon glyphicon-move" title="Déplacer" onclick="MenuGauche(this,EnumModeAction.Deplacer);"></a>
+    </div>
     
     <canvas id="MainCanvas" class="CalqueCanvas"></canvas>
     
+    
+    <!-- include the Glitch button to show what the webpage is about and
+    to make it easier for folks to view source and remix -->
+    <div class="glitchButton" style="position:fixed;top:20px;right:20px;"></div>
       <div id="myModal" class="modal" style="font-family: Lato;color:gainsboro;font-size:40pt;">
-
         <img src="https://cdn.glitch.com/1f9a81fa-715f-4b6a-abac-840468608b33%2Floading.gif?v=1574018941015" />
         <p></p>
-
     </div>
     
                                                       

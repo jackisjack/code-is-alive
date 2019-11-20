@@ -1,11 +1,3 @@
-var EnumModeAction = {
-    AjoutUnitaire: 0,
-    AjoutMultiple: 1,
-    Focus: 2,
-    Lier: 3,
-    Deplacer: 4
-};
-
 var VariablesGlobales = {
     ImagesArray: null,
     TutoEnCours: null,
