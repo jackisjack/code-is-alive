@@ -16,7 +16,7 @@
     <script src="libjs/w3data.js"></script>
     <script src="https://code.createjs.com/1.0.0/preloadjs.min.js"></script>
     
-    <link href="libcss/bootstrap.min.css" rel="stylesheet" />
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" type="text/css" rel="stylesheet">
     <link href="libcss/jquery-ui.theme.min.css" rel="stylesheet" />
     <link href="libcss/jquery-ui.structure.min.css" rel="stylesheet" />
     <link href="libcss/jquery-ui.css" rel="stylesheet" />
@@ -34,10 +34,11 @@
     <link href="menu.css" rel="stylesheet" />
     
   </head>  
+  
   <body onload="MainSiManager.Init();">
 
 
-    <div class="vertical-menu MenuACacher">
+    <div class="vertical-menu">
         <a href="#" class="glyphicon glyphicon-plus" title="Ajout unitaire" onclick="MenuGauche(this,EnumModeAction.AjoutUnitaire);"></a>
         <a href="#" class="glyphicon glyphicon-remove" title="Ajout multiple" onclick="MenuGauche(this,EnumModeAction.AjoutMultiple);"></a>
         <a href="#" class="glyphicon glyphicon-map-marker" title="Focus" onclick="MenuGauche(this,EnumModeAction.Focus);"></a>
