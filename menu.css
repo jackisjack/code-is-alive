@@ -23,6 +23,7 @@ body {
     left: 0;
     top: 20%;
     width: 40px; /* Set a width if you like */
+    font-size: 15pt;
 }
 
 .vertical-menu a {
