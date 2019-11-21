@@ -44,9 +44,26 @@ var MainSiManager =
                 Libelle: "Element 2",
                 IdObjet: 2, 
                 x: -200+400,
+                y: 0
+              });
+              
+              var Element3 = Graphisme.VueFocus.AjouterElement({
+                IdTypeObjet: EnumTypeObjet.PetitCarre, 
+                Libelle: "Element 3",
+                IdObjet: 3, 
+                x: -200+400,
                 y: 200
               });
-                             
+             
+              var Element4 = Graphisme.VueFocus.AjouterElement({
+                IdTypeObjet: EnumTypeObjet.PetitCarre, 
+                Libelle: "Element 4",
+                IdObjet: 4, 
+                x: -200+400,
+                y: 400
+              });
+             
+             
               Graphisme.VueFocus.DrawLink(Element1, Element2);
              
               // Fin du loading;

@@ -671,7 +671,7 @@ var VueClass = Class.extend({
 
         this.mainContainer.addChild(line);
 
-        var tweeni = createjs.Tween
+        var tween = createjs.Tween
             .get(line)
             .to({
                 alpha: 1,
@@ -682,9 +682,11 @@ var VueClass = Class.extend({
                 alpha: 0,
             },
             500,
-            createjs.Ease.linear);
-     
-        
+            createjs.Ease.linear)
+            .call(function () { // A la fin du zoom
+              this.mainContainer.removeChild(line);
+            });
+      
     },
   
     DrawRect: function (ObjetCoordRect, color) {
