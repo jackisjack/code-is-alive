@@ -655,15 +655,18 @@ var VueClass = Class.extend({
 
     },
 
-    DrawLink: function (startX, startY, endX, endY) {
-
+    DrawLink: function (element1, element2) {
+        
+        var el1 = element1.innerRectShape();
+        var el2 = element2.innerRectShape();
+      
         var line = new createjs.Shape();
-        line.graphics.setStrokeStyle(3);
-        line.graphics.beginStroke("#DFE9F0");
-        line.graphics.moveTo(startX, startY);
+        line.graphics.setStrokeStyle(1);
+        line.graphics.beginStroke("#18ad2c");
+        line.graphics.moveTo(el1.x, startY);
         line.graphics.lineTo(endX, endY);
         line.graphics.endStroke;
-        line.graphics.shadow = new createjs.Shadow("#7b7b7b", 0, 0, 10);
+        line.shadow = new createjs.Shadow("#18ad2c", 0, 0, 10);
       
         this.mainContainer.addChild(line);
 
@@ -942,7 +945,7 @@ var ElementClass = Class.extend({
 
         // Visibilité des inner et outer Rect
         this.innerRectShape = new createjs.Shape();
-        this.outerRectShape = new createjs.Shape();
+        this.outerRectShape = new createjs.Shape(); // avec les enfants
         this.Container.addChild(this.innerRectShape);
         this.Container.addChild(this.outerRectShape);
 

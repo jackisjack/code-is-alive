@@ -52,7 +52,7 @@ var MainSiManager =
               Element2.Visible(true);
                
              
-              Graphisme.VueFocus.DrawLink(-300,200,200,300);
+              Graphisme.VueFocus.DrawLink(-150,200,180,200);
              
               // Fin du loading;
 
