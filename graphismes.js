@@ -672,7 +672,7 @@ var VueClass = Class.extend({
         this.mainContainer.addChild(line);
 
         var tween = createjs.Tween
-            .get(line, {loop:true})
+            .get(line)
             .to({
                 alpha: 1,
             },
@@ -683,9 +683,10 @@ var VueClass = Class.extend({
             },
             500,
             createjs.Ease.linear)
-            .call(function () { // A la fin du zoom
-              this.mainContainer.removeChild(line);
-            });
+            .call(function (that) { // A la fin du zoom
+              //console.log(tata);
+              
+            }, [line]);
       
     },
   
