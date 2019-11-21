@@ -63,7 +63,7 @@ var MainSiManager =
                 y: 400
               });
              
-             
+
               Graphisme.VueFocus.DrawLink(Element1, Element2);
               Graphisme.VueFocus.DrawLink(Element1, Element3);
               Graphisme.VueFocus.DrawLink(Element1, Element4);

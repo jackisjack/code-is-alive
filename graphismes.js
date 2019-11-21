@@ -672,7 +672,7 @@ var VueClass = Class.extend({
         this.mainContainer.addChild(line);
 
         var tween = createjs.Tween
-            .get(line)
+            .get(line, {loop:true})
             .to({
                 alpha: 1,
             },
