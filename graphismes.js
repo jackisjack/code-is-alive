@@ -672,8 +672,7 @@ var VueClass = Class.extend({
         this.mainContainer.addChild(line);
 
         var tween = createjs.Tween
-            .get(line, {loop:true})
-            .wait(Math.random()*1000)
+            .get(line)
             .to({
                 alpha: 1
             },
@@ -685,7 +684,7 @@ var VueClass = Class.extend({
             500,
             createjs.Ease.linear)
             .call(function (obj, that) { // A la fin
-              //that.mainContainer.removeChild(obj);
+              that.mainContainer.removeChild(obj);
             }, [line, this]);
       
     },

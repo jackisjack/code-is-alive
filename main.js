@@ -63,10 +63,27 @@ var MainSiManager =
                 y: 400
               });
              
-
-              Graphisme.VueFocus.DrawLink(Element1, Element2);
-              Graphisme.VueFocus.DrawLink(Element1, Element3);
-              Graphisme.VueFocus.DrawLink(Element1, Element4);
+              
+              var tween = createjs.Tween
+              .get(null, {loop:true})
+              .to({},1100,createjs.Ease.linear)
+              .call(function () { 
+                Graphisme.VueFocus.DrawLink(Element1, Element2);
+              });
+             
+              var tween = createjs.Tween
+              .get(null, {loop:true})
+              .to({},1100,createjs.Ease.linear)
+              .call(function () { 
+                Graphisme.VueFocus.DrawLink(Element1, Element3);
+              });
+             
+              var tween = createjs.Tween
+              .get(null, {loop:true})
+              .to({},1100,createjs.Ease.linear)
+              .call(function () { 
+                Graphisme.VueFocus.DrawLink(Element1, Element4);
+              });
              
               // Fin du loading;
 
