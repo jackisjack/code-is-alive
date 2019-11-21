@@ -57,22 +57,14 @@ var MainSiManager =
               
               }
              
-              // Tests des links
              
-             var TabTween=[];
-             
-              tween = createjs.Tween
-              .get(null, {loop:true})
-              .to({},1100,createjs.Ease.linear)
-              .call(function () { 
-                Graphisme.VueFocus.DrawLink(Element1, TabElement[0]);
-              });
+              
                
                 
 
              }
           
-        },
+        }
 
 
         
