@@ -667,12 +667,18 @@ var VueClass = Class.extend({
         line.graphics.moveTo(el1.x+el1.w+20, el1.y+el1.h/2);
         line.graphics.lineTo(el2.x, el2.y+el2.h/2);
         line.graphics.endStroke;
+        line.alpha=0;
         line.shadow = new createjs.Shadow("#18ad2c", 0, 0, 10);
 
         this.mainContainer.addChild(line);
 
         var tween = createjs.Tween
-            .get(line, {loop:true})
+            .get(line)
+            .to({
+                alpha: 1,
+            },
+            500,
+            createjs.Ease.linear)
             .to({
                 alpha: 0,
             },
@@ -889,6 +895,7 @@ var ElementClass = Class.extend({
         if (ParametresElement.x_delta === null || ParametresElement.x_delta === undefined) { console.log('PostCompilation erreur : ParametresElement.x_delta'); };
         if (ParametresElement.y_delta === null || ParametresElement.y_delta === undefined) { console.log('PostCompilation erreur : ParametresElement.y_delta'); };
         if (ParametresElement.Forme === null || ParametresElement.Forme === undefined) { console.log('PostCompilation erreur : ParametresElement.Forme'); };
+        if (ParametresElement.Visible === null || ParametresElement.Visible === undefined) {ParametresElement.Visible=true;console.log('PostCompilation erreur : ParametresElement.Visible'); };
         
         // Privatisation du this
         var that = this;
@@ -904,7 +911,7 @@ var ElementClass = Class.extend({
         this.Libelle = ParametresElement.Libelle;
 
         this.Parent = null; // le parent doit être affecté par la méthode 'ajouterEnfant' du parent
-        this.Visible(false); // c'est le hub qui rend visible l'objet
+        this.Visible(true); // c'est le hub qui rend visible l'objet
 
         // Dimension extérieure / intérieure
         this.P_innerRect = null;

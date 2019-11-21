@@ -39,8 +39,6 @@ var MainSiManager =
                 y: 200 
               });
                 
-               Element1.Visible(true);
-               
               var Element2 = Graphisme.VueFocus.AjouterElement({
                 IdTypeObjet: EnumTypeObjet.PetitCarre, 
                 Libelle: "Element 2",
@@ -48,9 +46,7 @@ var MainSiManager =
                 x: -200+400,
                 y: 200
               });
-                
-              Element2.Visible(true);
-               
+                               
               Graphisme.VueFocus.DrawLink(Element1, Element2);
              
               // Fin du loading;
