@@ -40,55 +40,35 @@ var MainSiManager =
                 x: -200,
                 y: 200 
               });
-                
-              var Element2 = Graphisme.VueFocus.AjouterElement({
-                IdTypeObjet: EnumTypeObjet.PetitCarre, 
-                Libelle: "Element 2",
-                IdObjet: 2, 
-                x: -200+400,
-                y: 0
-              });
               
-              var Element3 = Graphisme.VueFocus.AjouterElement({
-                IdTypeObjet: EnumTypeObjet.PetitCarre, 
-                Libelle: "Element 3",
-                IdObjet: 3, 
-                x: -200+400,
-                y: 200
-              });
+              var TabElement=[];
              
-              var Element4 = Graphisme.VueFocus.AjouterElement({
-                IdTypeObjet: EnumTypeObjet.PetitCarre, 
-                Libelle: "Element 4",
-                IdObjet: 4, 
-                x: -200+400,
-                y: 400
-              });
+              for(var j=0;j < 4;j++){
+                
+                var Element = Graphisme.VueFocus.AjouterElement({
+                  IdTypeObjet: EnumTypeObjet.PetitCarre, 
+                  Libelle: "Element " + (j + 2),
+                  IdObjet: j+2, 
+                  x: -200+400,
+                  y: j*100
+                });
+                
+                TabElement.push(Element);
+              
+              }
              
               // Tests des links
              
-              var tween = createjs.Tween
+             var TabTween=[];
+             
+              tween = createjs.Tween
               .get(null, {loop:true})
               .to({},1100,createjs.Ease.linear)
               .call(function () { 
-                Graphisme.VueFocus.DrawLink(Element1, Element2);
+                Graphisme.VueFocus.DrawLink(Element1, TabElement[0]);
               });
-             
-              var tween = createjs.Tween
-              .get(null, {loop:true})
-              .to({},1200,createjs.Ease.linear)
-              .call(function () { 
-                Graphisme.VueFocus.DrawLink(Element1, Element3);
-              });
-             
-              var tween = createjs.Tween
-              .get(null, {loop:true})
-              .to({},1300,createjs.Ease.linear)
-              .call(function () { 
-                Graphisme.VueFocus.DrawLink(Element1, Element4);
-              });
-             
-              // Fin du loading;
+               
+                
 
              }
           
