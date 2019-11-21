@@ -31,6 +31,8 @@ var MainSiManager =
              
               Graphisme.Init();
               
+             // Création des éléments
+             
               var Element1 = Graphisme.VueFocus.AjouterElement({
                 IdTypeObjet: EnumTypeObjet.PetitCarre, 
                 Libelle: "Element 1",
@@ -63,7 +65,8 @@ var MainSiManager =
                 y: 400
               });
              
-              
+              // Tests des links
+             
               var tween = createjs.Tween
               .get(null, {loop:true})
               .to({},1100,createjs.Ease.linear)
@@ -73,14 +76,14 @@ var MainSiManager =
              
               var tween = createjs.Tween
               .get(null, {loop:true})
-              .to({},1100,createjs.Ease.linear)
+              .to({},1200,createjs.Ease.linear)
               .call(function () { 
                 Graphisme.VueFocus.DrawLink(Element1, Element3);
               });
              
               var tween = createjs.Tween
               .get(null, {loop:true})
-              .to({},1100,createjs.Ease.linear)
+              .to({},1300,createjs.Ease.linear)
               .call(function () { 
                 Graphisme.VueFocus.DrawLink(Element1, Element4);
               });
