@@ -302,7 +302,7 @@ var VueClass = Class.extend({
 
         this.stage.addEventListener("stagemouseup", function (e) { self.handleMouseUp(e); });
         this.stage.addEventListener("stagemousedown", function (e) { self.handleMouseDown(e); });
-        this.stage.addEventListener("draw", function (e) { self.handleMouseMove(e); });
+        this.stage.addEventListener("stagemousemove", function (e) { self.handleMouseMove(e); });
 
         // Evènement pour dézoom
 
@@ -656,9 +656,7 @@ var VueClass = Class.extend({
     },
 
     DrawLink: function (element1, element2) {
-        
-      console.log('hllo');
-        
+
         var el1 = element1.innerRect();
         var el2 = element2.innerRect();
       
@@ -673,7 +671,7 @@ var VueClass = Class.extend({
 
         this.mainContainer.addChild(line);
 
-        var tween = createjs.Tween
+        var tweeni = createjs.Tween
             .get(line)
             .to({
                 alpha: 1,
@@ -685,7 +683,7 @@ var VueClass = Class.extend({
             },
             500,
             createjs.Ease.linear);
-      
+     
         
     },
   
