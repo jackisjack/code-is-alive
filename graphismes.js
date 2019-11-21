@@ -657,19 +657,29 @@ var VueClass = Class.extend({
 
     DrawLink: function (element1, element2) {
         
-        var el1 = element1.innerRectShape();
-        var el2 = element2.innerRectShape();
+        
+        var el1 = element1.innerRect();
+        var el2 = element2.innerRect();
       
         var line = new createjs.Shape();
         line.graphics.setStrokeStyle(1);
         line.graphics.beginStroke("#18ad2c");
-        line.graphics.moveTo(el1.x, startY);
-        line.graphics.lineTo(endX, endY);
+        line.graphics.moveTo(el1.x+el1.w+20, el1.y+el1.h/2);
+        line.graphics.lineTo(el2.x, el2.y+el2.h/2);
         line.graphics.endStroke;
         line.shadow = new createjs.Shadow("#18ad2c", 0, 0, 10);
-      
+
         this.mainContainer.addChild(line);
 
+        var tween = createjs.Tween
+            .get(line, {loop:true})
+            .to({
+                alpha: 0,
+            },
+            2000,
+            createjs.Ease.linear)
+      
+        
     },
   
     DrawRect: function (ObjetCoordRect, color) {
