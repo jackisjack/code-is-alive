@@ -302,7 +302,7 @@ var VueClass = Class.extend({
 
         this.stage.addEventListener("stagemouseup", function (e) { self.handleMouseUp(e); });
         this.stage.addEventListener("stagemousedown", function (e) { self.handleMouseDown(e); });
-        this.stage.addEventListener("stagemousemove", function (e) { self.handleMouseMove(e); });
+        this.stage.addEventListener("draw", function (e) { self.handleMouseMove(e); });
 
         // Evènement pour dézoom
 
@@ -676,7 +676,7 @@ var VueClass = Class.extend({
             .to({
                 alpha: 0,
             },
-            2000,
+            500,
             createjs.Ease.linear)
       
         
