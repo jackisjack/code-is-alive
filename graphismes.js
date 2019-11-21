@@ -655,6 +655,20 @@ var VueClass = Class.extend({
 
     },
 
+    DrawLink: function (startX, startY, endX, endY) {
+
+        var line = new createjs.Shape();
+        line.graphics.setStrokeStyle(3);
+        line.graphics.beginStroke("#DFE9F0");
+        line.graphics.moveTo(startX, startY);
+        line.graphics.lineTo(endX, endY);
+        line.graphics.endStroke;
+        line.graphics.shadow = new createjs.Shadow("#7b7b7b", 0, 0, 10);
+      
+        this.mainContainer.addChild(line);
+
+    },
+  
     DrawRect: function (ObjetCoordRect, color) {
 
         var rect = new createjs.Shape();

@@ -31,24 +31,28 @@ var MainSiManager =
              
               Graphisme.Init();
               
-             for (var j = 1; j < 200 ; j++){
-               
-                var ElementSansParent = Graphisme.VueFocus.AjouterElement({
-                  IdTypeObjet: EnumTypeObjet.PetitCarre, 
-                  IdVue:-1,
-                  Libelle: "Ceci est un exemple de truc",
-                  IdObjet: 1, 
-                  x: 200,
-                  y: 200 + j*50,
-                  Forme: EnumPositionImage.EnLigneVertical,
-                  x_delta: 0,
-                  y_delta: 0
-                  
-                });
+              var Element1 = Graphisme.VueFocus.AjouterElement({
+                IdTypeObjet: EnumTypeObjet.PetitCarre, 
+                Libelle: "Element 1",
+                IdObjet: 1, 
+                x: -200,
+                y: 200 
+              });
                 
-               ElementSansParent.Visible(true);
+               Element1.Visible(true);
                
-              }
+              var Element2 = Graphisme.VueFocus.AjouterElement({
+                IdTypeObjet: EnumTypeObjet.PetitCarre, 
+                Libelle: "Element 2",
+                IdObjet: 2, 
+                x: -200+400,
+                y: 200
+              });
+                
+              Element2.Visible(true);
+               
+             
+              Graphisme.VueFocus.DrawLink(-300,200,200,300);
              
               // Fin du loading;
 
