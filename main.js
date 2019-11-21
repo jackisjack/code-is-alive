@@ -46,7 +46,7 @@ var MainSiManager =
                 x: -200+400,
                 y: 200
               });
-                               
+                             
               Graphisme.VueFocus.DrawLink(Element1, Element2);
              
               // Fin du loading;

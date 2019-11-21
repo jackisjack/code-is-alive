@@ -480,7 +480,7 @@ var VueClass = Class.extend({
     },
 
     handleMouseMove: function (evt) {
-
+      
         /* coordonnées de la souris sur la map */
 
         this.MousePosX = Math.round((evt.stageX - this.mainContainer.x) / this.mainContainer.scaleX);
@@ -657,6 +657,7 @@ var VueClass = Class.extend({
 
     DrawLink: function (element1, element2) {
         
+      console.log('hllo');
         
         var el1 = element1.innerRect();
         var el2 = element2.innerRect();
@@ -683,7 +684,7 @@ var VueClass = Class.extend({
                 alpha: 0,
             },
             500,
-            createjs.Ease.linear)
+            createjs.Ease.linear);
       
         
     },
@@ -895,7 +896,7 @@ var ElementClass = Class.extend({
         if (ParametresElement.x_delta === null || ParametresElement.x_delta === undefined) { console.log('PostCompilation erreur : ParametresElement.x_delta'); };
         if (ParametresElement.y_delta === null || ParametresElement.y_delta === undefined) { console.log('PostCompilation erreur : ParametresElement.y_delta'); };
         if (ParametresElement.Forme === null || ParametresElement.Forme === undefined) { console.log('PostCompilation erreur : ParametresElement.Forme'); };
-        if (ParametresElement.Visible === null || ParametresElement.Visible === undefined) {ParametresElement.Visible=true;console.log('PostCompilation erreur : ParametresElement.Visible'); };
+        if (ParametresElement.Visible === null || ParametresElement.Visible === undefined) {ParametresElement.Visible=true};
         
         // Privatisation du this
         var that = this;
@@ -911,8 +912,7 @@ var ElementClass = Class.extend({
         this.Libelle = ParametresElement.Libelle;
 
         this.Parent = null; // le parent doit être affecté par la méthode 'ajouterEnfant' du parent
-        this.Visible(true); // c'est le hub qui rend visible l'objet
-
+ 
         // Dimension extérieure / intérieure
         this.P_innerRect = null;
         this.P_outerRect = null;
@@ -983,6 +983,8 @@ var ElementClass = Class.extend({
         
         // L'évènement clic sur la surface cliquable
         //this.hit.addEventListener("click", function (e) { that.Vue.ClicObjet(that); });
+        
+        this.Visible(ParametresElement.Visible); 
 
     },
     
