@@ -33,39 +33,48 @@ var MainSiManager =
               
              // Création des éléments
              
+             // L'élement de gauche
               var Element1 = Graphisme.VueFocus.AjouterElement({
                 IdTypeObjet: EnumTypeObjet.PetitCarre, 
                 Libelle: "Element 1",
                 IdObjet: 1, 
-                x: -200,
+                x: 500,
                 y: 200 
               });
               
+             // Element(s) de droite
               var TabElement=[];
              
-              for(var j=0;j < 4;j++){
+              for(var j=0;j < 40;j++){
                 
                 var Element = Graphisme.VueFocus.AjouterElement({
                   IdTypeObjet: EnumTypeObjet.PetitCarre, 
                   Libelle: "Element " + (j + 2),
                   IdObjet: j+2, 
-                  x: -200+400,
-                  y: j*100
+                  x: 1000,
+                  y: 200 + j*100
                 });
                 
                 TabElement.push(Element);
               
               }
              
-             
-              
+              // Création de link entre la gauche et la droite
+             TabElement.map(x => {
+                                // simple répéteur
+                                 tween = createjs.Tween
+                                .get(null)
+                                .to({},1100 + Math.random()*500,createjs.Ease.linear) // hasard de la durée
+                                .call(function () { // à la fin de la durée random
+                                  Graphisme.VueFocus.DrawLink2(Element1, x); // fonction répétée
+                                });
                
-                
+                            
+                            });
+             
 
-             }
-          
         }
+          
+    }
 
-
-        
 }

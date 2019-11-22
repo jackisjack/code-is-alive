@@ -90,15 +90,6 @@ var Graphisme = {
 
         this.ListeVue.push(mVue);
 
-        // Ajout d'un premier élément sans parent
-
-
-
-
-        // Focus sur les coordonnées du hub
-
-        mVue.Focus(200, 200);
-
         return mVue;
     },
 
@@ -693,33 +684,20 @@ var VueClass = Class.extend({
 
         var el1 = element1.innerRect();
         var el2 = element2.innerRect();
-      
+       
         var line = new createjs.Shape();
-        line.graphics.setStrokeStyle(1);
+        line.graphics.setStrokeStyle(2);
+        var cmd = line.graphics.setStrokeDash([10,10],0).command;
         line.graphics.beginStroke("#18ad2c");
         line.graphics.moveTo(el1.x+el1.w+20, el1.y+el1.h/2);
         line.graphics.lineTo(el2.x, el2.y+el2.h/2);
         line.graphics.endStroke;
-        line.shadow = new createjs.Shadow("#18ad2c", 0, 0, 10);
-
         this.mainContainer.addChild(line);
-
+       
         var tween = createjs.Tween
-            .get(line)
-            .to({
-                alpha: 1
-            },
-            500,
-            createjs.Ease.linear)
-            .to({
-                alpha: 0,
-            },
-            500,
-            createjs.Ease.linear)
-            .call(function (obj, that) { // A la fin
-              that.mainContainer.removeChild(obj);
-            }, [line, this]);
-      
+        .get(cmd, {loop:true})
+        .to({offset:-20},500, createjs.Ease.linear);
+                                    
     },
   
     DrawRect: function (ObjetCoordRect, color) {
@@ -1185,11 +1163,11 @@ var ElementClass = Class.extend({
 
             this.P_innerRect = UnionRect(TableauDeRectangles);
             
-            console.log('Objet : ' + this.Libelle + ' | Fin du calcul innerRect. résultat :' + JSON.stringify(this.P_innerRect));
+            //console.log('Objet : ' + this.Libelle + ' | Fin du calcul innerRect. résultat :' + JSON.stringify(this.P_innerRect));
 
         } else {
 
-            console.log('Objet : ' + this.Libelle + ' | Simple renvoi du innerRect précalculé. résultat :' + JSON.stringify(this.P_innerRect));
+            //console.log('Objet : ' + this.Libelle + ' | Simple renvoi du innerRect précalculé. résultat :' + JSON.stringify(this.P_innerRect));
 
         }
 
