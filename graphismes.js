@@ -36,7 +36,6 @@ var EnumTypeObjet = {
   PetitCarre:1
 }
 
-
 // Objet principal : Graphisme
 
 var Graphisme = {
@@ -645,7 +644,8 @@ var VueClass = Class.extend({
         this.mainContainer.addChild(line);
 
     },
-
+    
+    // rayon entre les deux éléments, longueur max dès le début
     DrawLink: function (element1, element2) {
 
         var el1 = element1.innerRect();
@@ -665,12 +665,12 @@ var VueClass = Class.extend({
         var tween = createjs.Tween
             .get(line)
             .to({
-                alpha: 1
+                alpha: 1 // s'affiche progressivement
             },
             500,
             createjs.Ease.linear)
             .to({
-                alpha: 0,
+                alpha: 0, // se masque progressivement
             },
             500,
             createjs.Ease.linear)
@@ -679,8 +679,9 @@ var VueClass = Class.extend({
             }, [line, this]);
       
     },
-  
-     DrawLink2: function (element1, element2) {
+    
+    // flux continu de pointillé qui bouge
+    DrawLink2: function (element1, element2) {
 
         var el1 = element1.innerRect();
         var el2 = element2.innerRect();
@@ -700,6 +701,113 @@ var VueClass = Class.extend({
                                     
     },
   
+    // Envoi d'un trait
+    DrawLink3: function (element1, element2) {
+
+        var el1 = element1.innerRect();
+        var el2 = element2.innerRect();
+        
+        var x1 = el1.x+el1.w+20;
+        var x2 = el2.x;
+        var y1 = el1.y+el1.h/2;
+        var y2 = el2.y+el2.h/2;
+             
+        var d = Math.pow(Math.pow(x2-x1,2) + Math.pow(y2-y1,2),0.5);
+        var size = 0.2*d; // la taille du trait sera 20% de la distance qui sépare les deux points
+      
+        var line = new createjs.Shape();
+        line.graphics.setStrokeStyle(5,"round");
+        var cmd = line.graphics.setStrokeDash([size,d],size).command;
+        line.graphics.beginStroke("#18ad2c");
+        line.graphics.moveTo(x1, y1);
+        line.graphics.lineTo(x2, y2);
+        line.graphics.endStroke;
+        line.shadow = new createjs.Shadow("#18ad2c", 0, 0, 10);
+        this.mainContainer.addChild(line);
+        
+        var tween = createjs.Tween
+        .get(cmd, {loop:true})
+        .to({offset:-1*d},1500, createjs.Ease.cubicOut);
+         
+    },
+    
+    // Envoi d'un flux de point et dessin d'un trait
+      DrawLink4: function (element1, element2) {
+
+        var el1 = element1.innerRect();
+        var el2 = element2.innerRect();
+        
+        var x1 = el1.x+el1.w+20;
+        var x2 = el2.x;
+        var y1 = el1.y+el1.h/2;
+        var y2 = el2.y+el2.h/2;
+        
+        // Création de la ligne continue
+        
+        var line2 = new createjs.Shape();
+        line2.graphics.setStrokeStyle(1);
+        line2.graphics.beginStroke("#18ad2c");
+        line2.graphics.moveTo(x1, y1);
+        line2.graphics.lineTo(x2, y2);
+        line2.graphics.endStroke;
+        line2.alpha = 0.5;
+        this.mainContainer.addChild(line2);
+        
+        // Création du flux de point
+        
+        var d = Math.pow(Math.pow(x2-x1,2) + Math.pow(y2-y1,2),0.5);
+        var size = 0.2*d; // la taille du trait sera 20% de la distance qui sépare les deux points
+      
+        var line = new createjs.Shape();
+        line.graphics.setStrokeStyle(5,"round");
+        var cmd = line.graphics.setStrokeDash([2,10,2,10,2,10,2,10,2,10,2,d],56).command;
+        line.graphics.beginStroke("#18ad2c");
+        line.graphics.moveTo(x1, y1);
+        line.graphics.lineTo(x2, y2);
+        line.graphics.endStroke;
+        line.shadow = new createjs.Shadow("#18ad2c", 0, 0, 10);
+        this.mainContainer.addChild(line);
+        
+        var tween = createjs.Tween
+        .get(cmd, {loop:true})
+        .to({offset:-1*d},1500, createjs.Ease.cubicOut);
+         
+    },
+    
+    // Envoi d'un flux d'image
+    DrawLink5: function (element1, element2) {
+      
+      var el1 = element1.innerRect();
+      var el2 = element2.innerRect();
+      var x1 = el1.x+el1.w+20;
+      var y1 = el1.y+el1.h/2;
+      var x2 = el2.x-20;
+      var y2 = el2.y+el2.h/2;
+
+      var line2 = new createjs.Shape();
+      line2.graphics.setStrokeStyle(1);
+      line2.graphics.beginStroke("#18ad2c");
+      line2.graphics.moveTo(x1, y1);
+      line2.graphics.lineTo(x2, y2);
+      line2.graphics.endStroke;
+      line2.alpha = 0.5;
+      this.mainContainer.addChild(line2);
+      
+      for(var i = 0; i < 2; i++){
+        
+        var bitmap =  new createjs.Bitmap(VariablesGlobales.ImagesArray.getResult("file"));
+        bitmap.x = x1 - (bitmap.image.height/2);
+        bitmap.y = y1 - (bitmap.image.height/2);
+        this.mainContainer.addChild(bitmap); 
+        var tween = createjs.Tween
+        .get(bitmap, {loop:true})
+        .wait(100*i)
+        .to({x:x2, y:y2 -(bitmap.image.height/2)},1500, createjs.Ease.cubicOut);
+      }
+      
+    },
+  
+    
     DrawRect: function (ObjetCoordRect, color) {
 
         var rect = new createjs.Shape();
