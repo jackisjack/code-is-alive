@@ -786,14 +786,14 @@ var VueClass = Class.extend({
 
       var line2 = new createjs.Shape();
       line2.graphics.setStrokeStyle(1);
-      line2.graphics.beginStroke("#18ad2c");
+      line2.graphics.beginStroke("black");
       line2.graphics.moveTo(x1, y1);
       line2.graphics.lineTo(x2, y2);
       line2.graphics.endStroke;
-      line2.alpha = 0.5;
+      line2.alpha = 0.3;
       this.mainContainer.addChild(line2);
       
-      for(var i = 0; i < 2; i++){
+      for(var i = 0; i < 5; i++){
         
         var bitmap =  new createjs.Bitmap(VariablesGlobales.ImagesArray.getResult("file"));
         bitmap.x = x1 - (bitmap.image.height/2);
@@ -807,7 +807,6 @@ var VueClass = Class.extend({
       
     },
   
-    
     DrawRect: function (ObjetCoordRect, color) {
 
         var rect = new createjs.Shape();
