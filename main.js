@@ -18,7 +18,9 @@ var MainSiManager =
            VariablesGlobales.ImagesArray = new createjs.LoadQueue();
            VariablesGlobales.ImagesArray .on("complete", handleComplete, this);
            VariablesGlobales.ImagesArray .loadManifest([
-               {id: "petitcarrebleu", src:"https://cdn.glitch.com/1f9a81fa-715f-4b6a-abac-840468608b33%2Fhub.png?v=1574020275932"}
+               {id: "petitcarrebleu", src:"https://cdn.glitch.com/1f9a81fa-715f-4b6a-abac-840468608b33%2Fhub.png?v=1574020275932"},
+               {id: "pdf", src:"https://cdn.glitch.com/1f9a81fa-715f-4b6a-abac-840468608b33%2Fpdficon.png?v=1574505654088"},
+               {id: "file", src:"https://cdn.glitch.com/1f9a81fa-715f-4b6a-abac-840468608b33%2Ffileicon.png?v=1574506930028"}
            ]);
           
            // Quand le chargement des images est terminé
@@ -33,14 +35,16 @@ var MainSiManager =
               
              // Création des éléments
              
+             // L'élement de gauche
               var Element1 = Graphisme.VueFocus.AjouterElement({
                 IdTypeObjet: EnumTypeObjet.PetitCarre, 
                 Libelle: "Element 1",
                 IdObjet: 1, 
-                x: -200,
+                x: 500,
                 y: 200 
               });
               
+             // Element(s) de droite
               var TabElement=[];
              
               for(var j=0;j < 4;j++){
@@ -49,23 +53,30 @@ var MainSiManager =
                   IdTypeObjet: EnumTypeObjet.PetitCarre, 
                   Libelle: "Element " + (j + 2),
                   IdObjet: j+2, 
-                  x: -200+400,
-                  y: j*100
+                  x: 1000,
+                  y: 150 + j*50
                 });
                 
                 TabElement.push(Element);
               
               }
              
-             
-              
+              // Création de link entre la gauche et la droite
+             TabElement.map(x => {
+                                // simple répéteur
+                                 tween = createjs.Tween
+                                .get(null)
+                                .to({},1100 + Math.random()*500,createjs.Ease.linear) // hasard de la durée
+                                .call(function () { // à la fin de la durée random
+                                  Graphisme.VueFocus.DrawLink5(Element1, x); // fonction répétée
+                                });
                
-                
+                            
+                            });
+             
 
-             }
-          
         }
+          
+    }
 
-
-        
 }

@@ -42,7 +42,7 @@ function HideLoading(message) {
 
     //var modal = document.getElementById('myModal');
     //modal.style.display = "none";
-    $("#myModal").fadeOut(2000);
+    $("#myModal").fadeOut(500);
     
     $(".MenuACacher").show();
 
