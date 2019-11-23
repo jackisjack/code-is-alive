@@ -646,7 +646,7 @@ var VueClass = Class.extend({
     },
     
     // rayon entre les deux éléments, longueur max dès le début
-    DrawLink: function (element1, element2) {
+    DrawLink1: function (element1, element2) {
 
         var el1 = element1.innerRect();
         var el2 = element2.innerRect();
@@ -663,7 +663,7 @@ var VueClass = Class.extend({
         this.mainContainer.addChild(line);
 
         var tween = createjs.Tween
-            .get(line)
+            .get(line, {loop:true})
             .to({
                 alpha: 1 // s'affiche progressivement
             },
@@ -673,11 +673,8 @@ var VueClass = Class.extend({
                 alpha: 0, // se masque progressivement
             },
             500,
-            createjs.Ease.linear)
-            .call(function (obj, that) { // A la fin
-              that.mainContainer.removeChild(obj);
-            }, [line, this]);
-      
+            createjs.Ease.linear);
+            
     },
     
     // flux continu de pointillé qui bouge
@@ -732,7 +729,7 @@ var VueClass = Class.extend({
     },
     
     // Envoi d'un flux de point et dessin d'un trait
-      DrawLink4: function (element1, element2) {
+    DrawLink4: function (element1, element2) {
 
         var el1 = element1.innerRect();
         var el2 = element2.innerRect();
@@ -743,7 +740,6 @@ var VueClass = Class.extend({
         var y2 = el2.y+el2.h/2;
         
         // Création de la ligne continue
-        
         var line2 = new createjs.Shape();
         line2.graphics.setStrokeStyle(1);
         line2.graphics.beginStroke("#18ad2c");
@@ -754,9 +750,7 @@ var VueClass = Class.extend({
         this.mainContainer.addChild(line2);
         
         // Création du flux de point
-        
         var d = Math.pow(Math.pow(x2-x1,2) + Math.pow(y2-y1,2),0.5);
-        var size = 0.2*d; // la taille du trait sera 20% de la distance qui sépare les deux points
       
         var line = new createjs.Shape();
         line.graphics.setStrokeStyle(5,"round");
@@ -775,7 +769,7 @@ var VueClass = Class.extend({
     },
     
     // Envoi d'un flux d'image
-    DrawLink5: function (element1, element2) {
+    DrawLink5: function (element1, element2, nbIcone, iconname) {
       
       var el1 = element1.innerRect();
       var el2 = element2.innerRect();
@@ -783,7 +777,8 @@ var VueClass = Class.extend({
       var y1 = el1.y+el1.h/2;
       var x2 = el2.x-20;
       var y2 = el2.y+el2.h/2;
-
+     
+      // Création d'une ligne
       var line2 = new createjs.Shape();
       line2.graphics.setStrokeStyle(1);
       line2.graphics.beginStroke("black");
@@ -793,18 +788,22 @@ var VueClass = Class.extend({
       line2.alpha = 0.3;
       this.mainContainer.addChild(line2);
       
-      for(var i = 0; i < 5; i++){
+      // Création de i icones
+      for(var i = 0; i < nbIcone; i++){
         
-        var bitmap =  new createjs.Bitmap(VariablesGlobales.ImagesArray.getResult("file"));
+        var bitmap =  new createjs.Bitmap(VariablesGlobales.ImagesArray.getResult(iconname));
         bitmap.x = x1 - (bitmap.image.height/2);
         bitmap.y = y1 - (bitmap.image.height/2);
         this.mainContainer.addChild(bitmap); 
+
+        // Mise en mouvement des icones
         var tween = createjs.Tween
         .get(bitmap, {loop:true})
         .wait(100*i)
         .to({x:x2, y:y2 -(bitmap.image.height/2)},1500, createjs.Ease.cubicOut);
+    
       }
-      
+
     },
   
     DrawRect: function (ObjetCoordRect, color) {
