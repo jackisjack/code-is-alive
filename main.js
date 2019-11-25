@@ -35,7 +35,7 @@ var MainSiManager =
               
              // Exécution des tests
              
-             tu_DrawLink1();
+             tu_DrawLink2();
              
         }
           

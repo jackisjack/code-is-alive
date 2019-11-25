@@ -1,3 +1,3 @@
 $( function() {
-    $( "#DataExplorer" ).draggable();
-  } );
+  $( "#DataExplorer" ).draggable();
+} );

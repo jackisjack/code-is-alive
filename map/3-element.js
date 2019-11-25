@@ -99,7 +99,7 @@ var ElementClass = Class.extend({
         this.bitmap.hitArea = this.hit;
         
         // L'évènement clic sur la surface cliquable
-        //this.hit.addEventListener("click", function (e) { that.Vue.ClicObjet(that); });
+        this.hit.addEventListener("click", function (e) { that.Vue.ClicObjet(that); });
         
         this.Visible(ParametresElement.Visible); 
 

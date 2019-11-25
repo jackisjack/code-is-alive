@@ -661,7 +661,34 @@ var VueClass = Class.extend({
 
                 // Visuel de la sélection
                 
-                Element.bitmap.shadow = new createjs.Shadow("#7b7b7b", 0, 0, 10);
+                var InnectRect = Element.innerRect();
+                var AngleSize = 10;
+                var RightMargin = 10;
+
+                // Encadrement
+                var line = new createjs.Shape();
+                line.graphics.setStrokeStyle(1);
+                line.graphics.beginStroke("rgba(0,0,0, 0.5)");
+
+                line.graphics.moveTo(0,0);
+                line.graphics.lineTo(AngleSize, 0);
+                line.graphics.moveTo(InnectRect.w + RightMargin - AngleSize,0);
+                line.graphics.lineTo(InnectRect.w + RightMargin, 0);
+                line.graphics.lineTo(InnectRect.w + RightMargin, AngleSize);
+                line.graphics.moveTo(InnectRect.w + RightMargin, InnectRect.h  - AngleSize);
+                line.graphics.lineTo(InnectRect.w + RightMargin, InnectRect.h);
+                line.graphics.lineTo(InnectRect.w + RightMargin - AngleSize, InnectRect.h);
+                line.graphics.moveTo(AngleSize, InnectRect.h);
+                line.graphics.lineTo(0, InnectRect.h);
+                line.graphics.lineTo(0, InnectRect.h - AngleSize);
+                line.graphics.moveTo(0, AngleSize);
+                line.graphics.lineTo(0, 0);
+
+                line.graphics.endStroke;
+
+                line.ThisShapeIsCreatedBySelection = 1; // useful to delete that shape later (unselect method)
+
+                Element.Container.addChild(line);
 
                 // Ajout de la sélection en mémoire
 
@@ -672,23 +699,10 @@ var VueClass = Class.extend({
 
                 // debug : visibilité de l'objet sauvegardé
                 
-                console.log(JSON.stringify(Element.ElementSauvegarde()));
+                //console.log(JSON.stringify(Element.ElementSauvegarde()));
                 
-                // debug : visbilité du container
-                //var line = new createjs.Shape();
-                //line.graphics.setStrokeStyle(1);
-                //line.graphics.beginStroke("#770000");
-                //line.graphics.moveTo(0, 0);
-                //line.graphics.lineTo(0, 10);
-                //line.graphics.moveTo(0, 0);
-                //line.graphics.lineTo(10, 0);
-                //line.graphics.endStroke;
-
-                //Element.Container.addChild(line);
-
-
                 // debug : visibilité des limites
-                //console.log('INNER rect : ' + JSON.stringify(Element.innerRect()));
+                //console.log('INNER rect : ' + JSON.stringify());
                 //console.log('OUTER rect : ' + JSON.stringify(Element.outerRect()));
                 
                 break;
@@ -702,7 +716,11 @@ var VueClass = Class.extend({
 
     DeSelectionner: function (Objet) {
 
-        Objet.bitmap.shadow = null;
+        for (var i = 0  ; i < Objet.Container.children.length ; i++) {
+            if (Objet.Container.children[i].ThisShapeIsCreatedBySelection !== undefined){
+                Objet.Container.removeChild(Objet.Container.children[i]);
+            }
+        }
         
     },
 
