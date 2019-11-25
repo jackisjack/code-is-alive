@@ -20,23 +20,14 @@ body {
 
 .vertical-menu {
     position: fixed;
-    left: 0;
-    top: 30%;
-    width: 40px; /* Set a width if you like */
-    font-size: 15pt;
-}
-
-.vertical-menu a {
-    background-color: rgba(0, 0, 0, 0.00); /* Grey background color */
-    color: lightgray;
-    display: block; /* Make the links appear below each other */
-    padding: 12px; /* Add some padding */
-    text-decoration: none; /* Remove underline from links */
-}
-
-.vertical-menu a:hover {
-    background-color: #ccc; /* Dark grey background on mouse-over */
-    color: white;
+    left: 20px;
+    top: 20px;
+    width:300px; 
+    height: 30%; 
+    border: 1px solid;
+    border-color:rgb(220, 220, 220);
+    background-color: white;
+    font-size: 10pt;
 }
 
 /* Menu bas droite  */
@@ -45,7 +36,28 @@ body {
     /*visibility: hidden;*/
     position: fixed;
     right: 5px;
-    bottom: 10px; /* attention cette propriété est géré par jquery également */
+    bottom: 50px; /* attention cette propriété est géré par jquery également */
     color: #808080;
     font-family: 'Segoe UI';
+}
+
+/* Menu bas */
+
+#MenuDuBas {
+    height: 10px;
+    background-color:rgb(255, 255, 255);
+    text-align: center;
+    font-size: 15pt;
+}
+
+#MenuDuBas a {
+    background-color: rgba(0, 0, 0, 0.00); /* Grey background color */
+    color: lightgray;
+    padding: 12px; /* Add some padding */
+    text-decoration: none; /* Remove underline from links */
+}
+
+#MenuDuBas a:hover {
+    background-color: #ccc; /* Dark grey background on mouse-over */
+    color: white;
 }

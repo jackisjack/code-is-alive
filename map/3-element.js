@@ -10,8 +10,8 @@ var ElementClass = Class.extend({
         if (ParametresElement.y === null || ParametresElement.y === undefined) { console.log('PostCompilation erreur : ParametresElement.y'); };
         if (ParametresElement.idObjetVue === null || ParametresElement.idObjetVue === undefined) { console.log('PostCompilation erreur : ParametresElement.idObjetVue'); };
         if (ParametresElement.IdObjet === null || ParametresElement.IdObjet === undefined) { console.log('PostCompilation erreur : ParametresElement.IdObjet'); };
-        if (ParametresElement.x_delta === null || ParametresElement.x_delta === undefined) { console.log('PostCompilation erreur : ParametresElement.x_delta'); };
-        if (ParametresElement.y_delta === null || ParametresElement.y_delta === undefined) { console.log('PostCompilation erreur : ParametresElement.y_delta'); };
+        if (ParametresElement.x_delta === null || ParametresElement.x_delta === undefined) { ParametresElement.x_delta=0 };
+        if (ParametresElement.y_delta === null || ParametresElement.y_delta === undefined) { ParametresElement.y_delta=0 };
         if (ParametresElement.Forme === null || ParametresElement.Forme === undefined) { console.log('PostCompilation erreur : ParametresElement.Forme'); };
         if (ParametresElement.Visible === null || ParametresElement.Visible === undefined) {ParametresElement.Visible=true};
         

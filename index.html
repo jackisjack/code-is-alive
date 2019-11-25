@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     
     <!-- external js lib -->
-    <script src="libjs/jquery-3.2.0.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
     <script src="libjs/jquery-ui.min.js"></script>
     <script src="libjs/tweenjs-0.6.2.min.js"></script>
@@ -22,7 +22,7 @@
     <link href="libcss/jquery-ui.theme.min.css" rel="stylesheet" />
     <link href="libcss/jquery-ui.structure.min.css" rel="stylesheet" />
     <link href="libcss/jquery-ui.css" rel="stylesheet" />
-    
+
     <!-- technical home-made js -->
     <script src="technique/geometrie.js"></script>
     <script src="technique/easefunctions.js"></script>
@@ -30,6 +30,7 @@
     
     <!-- js -->
     <script src="unittest/tu_DrawLinks.js"></script>
+    <script src="ui/menudataexplorer.js"></script>
     <script src="ui/menugauche.js"></script>
     <script src="map/0-global.js"></script>
     <script src="map/1-graphisme.js"></script>
@@ -46,22 +47,37 @@
   
   <body onload="MainSiManager.Init();">
 
+   <!-- Loading message -->
+    <div id="myModal" class="modal" style="font-family: Lato;color:gainsboro;font-size:40pt;">
+      <img src="images/loading.gif" />
+      <p></p>
+  </div>
+
+    <!-- Zone de dessin -->
     <canvas id="MainCanvas" class="CalqueCanvas"></canvas>
-    
+
+    <!-- Les coordonnées de la souris -->
     <div class="menu-bas-droite">
         <span id="x_mouse">x:100,</span>
         <span id="y_mouse">y:200,</span>
         <span id="zoomratio">zoom: 1</span>
     </div>
-    
-    <!-- include the Glitch button to show what the webpage is about and
-    to make it easier for folks to view source and remix -->
-    <div class="glitchButton" style="position:fixed;top:20px;right:20px;"></div>
-      <div id="myModal" class="modal" style="font-family: Lato;color:gainsboro;font-size:40pt;">
-        <img src="https://cdn.glitch.com/1f9a81fa-715f-4b6a-abac-840468608b33%2Floading.gif?v=1574018941015" />
-        <p></p>
-    </div>
-    
-                                                      
+
+     <!-- Fenêtre Data explorer -->
+     <div id="DataExplorer" class="vertical-menu">
+          Data Explorer
+    </div> 
+
+    <!-- Menu du bas -->
+    <nav id="MenuDuBas" class="navbar navbar-default navbar-fixed-bottom"
+    style="cursor:default;border-width:0px;border-top:solid;border-top-width:1px;border-top-color:gainsboro;">
+      
+      <a href="#" class="glyphicon glyphicon-chevron-left" title="Précédant" onclick=""></a>
+      <a href="#" class="glyphicon glyphicon-pause" title="Précédant" onclick=""></a>
+      <a href="#" class="glyphicon glyphicon-play" title="Précédant" onclick=""></a>
+      <a href="#" class="glyphicon glyphicon-chevron-right" title="Précédant" onclick=""></a>
+      
+    </nav> 
+
   </body>
 </html>
