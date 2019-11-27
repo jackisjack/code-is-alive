@@ -375,10 +375,14 @@ var VueClass = Class.extend({
 
         var that = this;
 
+        // Calcul de l'id unique du lien (pour permettre sa suppression ultérieurement)
+        var IdLien = this.ListeLien.length;
+
         // instantiation du nouvel objet
         var nouveauLien = new LienClass(
                                             {
                                                 Vue:that,
+                                                IdLien: IdLien,
                                                 ElementDepart:Args.ElementDepart,
                                                 ElementArrivee:Args.ElementArrivee,
                                                 Style: Args.Style,
@@ -388,8 +392,13 @@ var VueClass = Class.extend({
 
         this.ListeLien.push(nouveauLien);
 
-        return nouveauLien;
+        return IdLien;
 
+    },
+
+    SupprimerLien: function(IdLien){
+        var that = this;
+        this.mainContainer.removeChild(that.ListeLien[IdLien].Container);
     },
 
     ClicObjet: function (Element) {

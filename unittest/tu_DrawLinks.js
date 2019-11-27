@@ -37,19 +37,30 @@ function tu_DrawLink5(){
     var context = ctu_DrawLink();
     var Element1 = context.Element1;
     var TabElement = context.TabElement;
+    var TableauLien = []
 
-    for (var i = 0 ; i < TabElement.length ; i++)
+    // Affichage de tous les liens
+    for (let i = 0 ; i < TabElement.length ; i++)
     {
 
-        Graphisme.VueFocus.AjouterLien(
+        TableauLien.push(
+                        Graphisme.VueFocus.AjouterLien(
                                         {
                                             ElementDepart:Element1,
                                             ElementArrivee:TabElement[i],
                                             Style: EnumStyleLien.Style5,
-                                            ParamStyle: {nbIcone:3, Icone:"file"}                                            
-                                        });
+                                            ParamStyle: {nbIcone:3, Icone:"file"}
+                                        })
+                        );
             
     }
+
+    // Suppression de tous les liens
+    for (let i = 0 ; i < TableauLien.length ; i++)
+    {
+        setTimeout(() => Graphisme.VueFocus.SupprimerLien(TableauLien[i]), 3000)
+    }
+
 
 }
 
@@ -59,17 +70,27 @@ function tu_DrawLink4(){
     var context = ctu_DrawLink();
     var Element1 = context.Element1;
     var TabElement = context.TabElement;
+    var TableauLien = []
 
-    for (var i = 0 ; i < TabElement.length ; i++)
+    // Affichage de tous les liens
+    for (let i = 0 ; i < TabElement.length ; i++)
     {
 
-        Graphisme.VueFocus.AjouterLien(
+        TableauLien.push(
+                        Graphisme.VueFocus.AjouterLien(
                                         {
                                             ElementDepart:Element1,
                                             ElementArrivee:TabElement[i],
                                             Style: EnumStyleLien.Style4
-                                        });
+                                        })
+                        );
             
+    }
+
+    // Suppression de tous les liens
+    for (let i = 0 ; i < TableauLien.length ; i++)
+    {
+        setTimeout(() => Graphisme.VueFocus.SupprimerLien(TableauLien[i]), 3000)
     }
 
 }
@@ -80,17 +101,27 @@ function tu_DrawLink3(){
     var context = ctu_DrawLink();
     var Element1 = context.Element1;
     var TabElement = context.TabElement;
+    var TableauLien = []
 
-    for (var i = 0 ; i < TabElement.length ; i++)
+    // Affichage de tous les liens
+    for (let i = 0 ; i < TabElement.length ; i++)
     {
 
-        Graphisme.VueFocus.AjouterLien(
+        TableauLien.push(
+                        Graphisme.VueFocus.AjouterLien(
                                         {
                                             ElementDepart:Element1,
                                             ElementArrivee:TabElement[i],
                                             Style: EnumStyleLien.Style3
-                                        });
+                                        })
+                        );
             
+    }
+
+    // Suppression de tous les liens
+    for (let i = 0 ; i < TableauLien.length ; i++)
+    {
+        setTimeout(() => Graphisme.VueFocus.SupprimerLien(TableauLien[i]), 3000)
     }
        
 }
@@ -101,17 +132,27 @@ function tu_DrawLink2(){
     var context = ctu_DrawLink();
     var Element1 = context.Element1;
     var TabElement = context.TabElement;
+    var TableauLien = []
 
-    for (var i = 0 ; i < TabElement.length ; i++)
+    // Affichage de tous les liens
+    for (let i = 0 ; i < TabElement.length ; i++)
     {
 
-        Graphisme.VueFocus.AjouterLien(
+        TableauLien.push(
+                        Graphisme.VueFocus.AjouterLien(
                                         {
                                             ElementDepart:Element1,
                                             ElementArrivee:TabElement[i],
                                             Style: EnumStyleLien.Style2
-                                        });
+                                        })
+                        );
             
+    }
+
+    // Suppression de tous les liens
+    for (let i = 0 ; i < TableauLien.length ; i++)
+    {
+        setTimeout(() => Graphisme.VueFocus.SupprimerLien(TableauLien[i]), 3000)
     }
 
 }
@@ -122,17 +163,27 @@ function tu_DrawLink1(){
     var context = ctu_DrawLink();
     var Element1 = context.Element1;
     var TabElement = context.TabElement;
+    var TableauLien = []
 
-    for (var i = 0 ; i < TabElement.length ; i++)
+    // Affichage de tous les liens
+    for (let i = 0 ; i < TabElement.length ; i++)
     {
 
-        Graphisme.VueFocus.AjouterLien(
+        TableauLien.push(
+                        Graphisme.VueFocus.AjouterLien(
                                         {
                                             ElementDepart:Element1,
                                             ElementArrivee:TabElement[i],
                                             Style: EnumStyleLien.Style1
-                                        });
+                                        })
+                        );
             
+    }
+
+    // Suppression de tous les liens
+    for (let i = 0 ; i < TableauLien.length ; i++)
+    {
+        setTimeout(() => Graphisme.VueFocus.SupprimerLien(TableauLien[i]), 3000)
     }
 
 }

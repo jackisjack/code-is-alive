@@ -15,6 +15,9 @@ var LienClass = Class.extend({
         // La vue - une référence à la vue est stockée dans tous les objets de la vue
         this.Vue = ParametresLien.Vue; // cela permet l'appel de méthode de la vue parente depuis l'enfant
 
+        // Identifiant unique du lien attribué par la vue
+        this.IdLien = ParametresLien.IdLien;
+
         // Container principal du lien
         this.Container = new createjs.Container();
         this.Container.ChildType = EnumChildType.Lien;
