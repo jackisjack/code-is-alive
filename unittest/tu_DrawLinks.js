@@ -39,15 +39,10 @@ function tu_DrawLink5(){
     var TabElement = context.TabElement;
 
     // Création de link entre la gauche et la droite
-    TabElement.map(x => {
-                        // simple répéteur
-                        tween = createjs.Tween
-                        .get(null)
-                        .to({},1100 + Math.random()*500,createjs.Ease.linear) // hasard de la durée
-                        .call(function () { // à la fin de la durée random
-                        Graphisme.VueFocus.DrawLink5(Element1, x, 1, "pdf"); 
-                        });
-                    });
+    for (var i = 0 ; i < TabElement.length ; i++)
+    {
+        Graphisme.VueFocus.DrawLink5(Element1, TabElement[i]);
+    }
 
 }
 
@@ -59,15 +54,10 @@ function tu_DrawLink4(){
     var TabElement = context.TabElement;
 
     // Création de link entre la gauche et la droite
-    TabElement.map(x => {
-                        // simple répéteur
-                        tween = createjs.Tween
-                        .get(null)
-                        .to({},1100 + Math.random()*500,createjs.Ease.linear) // hasard de la durée
-                        .call(function () { // à la fin de la durée random
-                        Graphisme.VueFocus.DrawLink4(Element1, x); 
-                        });
-                    });
+    for (var i = 0 ; i < TabElement.length ; i++)
+    {
+        Graphisme.VueFocus.DrawLink4(Element1, TabElement[i]);
+    }
 
 }
 
@@ -79,15 +69,10 @@ function tu_DrawLink3(){
     var TabElement = context.TabElement;
 
     // Création de link entre la gauche et la droite
-    TabElement.map(x => {
-                        // simple répéteur
-                        tween = createjs.Tween
-                        .get(null)
-                        .to({},1100 + Math.random()*500,createjs.Ease.linear) // hasard de la durée
-                        .call(function () { // à la fin de la durée random
-                        Graphisme.VueFocus.DrawLink3(Element1, x); 
-                        });
-                    });
+    for (var i = 0 ; i < TabElement.length ; i++)
+    {
+        Graphisme.VueFocus.DrawLink3(Element1, TabElement[i]);
+    }
 
 
                     
@@ -100,16 +85,10 @@ function tu_DrawLink2(){
     var Element1 = context.Element1;
     var TabElement = context.TabElement;
 
-    // Création de link entre la gauche et la droite
-    TabElement.map(x => {
-                        // simple répéteur
-                        tween = createjs.Tween
-                        .get(null)
-                        .to({},1100 + Math.random()*500,createjs.Ease.linear) // hasard de la durée
-                        .call(function () { // à la fin de la durée random
-                        Graphisme.VueFocus.DrawLink2(Element1, x); 
-                        });
-                    });
+    for (var i = 0 ; i < TabElement.length ; i++)
+    {
+        Graphisme.VueFocus.DrawLink2(Element1, TabElement[i]);
+    }
 
 }
 
@@ -121,14 +100,8 @@ function tu_DrawLink1(){
     var TabElement = context.TabElement;
 
     // Création de link entre la gauche et la droite
-    TabElement.map(x => {
-                        // simple répéteur
-                        tween = createjs.Tween
-                        .get(null)
-                        .to({},1100 + Math.random()*500,createjs.Ease.linear) // hasard de la durée
-                        .call(function () { // à la fin de la durée random
-                        Graphisme.VueFocus.DrawLink1(Element1, x); 
-                        });
-                    });
-
+    for (var i = 0 ; i < TabElement.length ; i++)
+    {
+        Graphisme.VueFocus.DrawLink1(Element1, TabElement[i]);
+    }
 }

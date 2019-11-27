@@ -50,7 +50,6 @@ var ElementClass = Class.extend({
         this.Forme = ParametresElement.Forme;
 
         // L'image
-
         this.bitmap =  new createjs.Bitmap(VariablesGlobales.ImagesArray.getResult("petitcarrebleu"));
         this.bitmap.ChildType = EnumChildType.Bitmap; // typage du child pour bien faire sa mesure
         this.bitmap.ReferenceToObjet = this; // nécessaire pour récupérer la référence du bitmap au clic
@@ -101,6 +100,7 @@ var ElementClass = Class.extend({
         // L'évènement clic sur la surface cliquable
         this.hit.addEventListener("click", function (e) { that.Vue.ClicObjet(that); });
         
+        // Visible ou pas
         this.Visible(ParametresElement.Visible); 
 
     },
@@ -111,7 +111,7 @@ var ElementClass = Class.extend({
 
             var x = this.x();
             var y = this.y();
-            //this.innerRectShape.graphics.clear().setStrokeStyle(1).beginStroke("rgba(0,62,232,1)").drawRect(this.P_innerRect.x - x, this.P_innerRect.y - y, this.P_innerRect.w, this.P_innerRect.h);
+            this.innerRectShape.graphics.clear().setStrokeStyle(1).beginStroke("rgba(0,62,232,1)").drawRect(this.P_innerRect.x - x, this.P_innerRect.y - y, this.P_innerRect.w, this.P_innerRect.h);
 
         } else {
 
@@ -123,7 +123,7 @@ var ElementClass = Class.extend({
             
             var x = this.x();
             var y = this.y();
-            //this.outerRectShape.graphics.clear().setStrokeStyle(1).beginStroke("rgba(49,205,27,1)").drawRect(this.P_outerRect.x - x - 1, this.P_outerRect.y - y - 1, this.P_outerRect.w + 2, this.P_outerRect.h + 2);
+            this.outerRectShape.graphics.clear().setStrokeStyle(1).beginStroke("rgba(49,205,27,1)").drawRect(this.P_outerRect.x - x - 1, this.P_outerRect.y - y - 1, this.P_outerRect.w + 2, this.P_outerRect.h + 2);
 
         } else {
 

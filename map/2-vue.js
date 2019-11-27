@@ -195,7 +195,6 @@ var VueClass = Class.extend({
     /* Les coordonnées de la souris en référentiel graphique */
     MousePosX: 0,
     MousePosY: 0,
-
     ObjetToMove: null,
 
     handleMouseDown: function (evt) {
@@ -436,7 +435,12 @@ var VueClass = Class.extend({
             },
             500,
             createjs.Ease.linear);
-            
+        
+        // return them so we can delete them later
+        var bunchofshapes = []
+        bunchofshapes.push(line);
+        return bunchofshapes
+
     },
     
     // flux continu de pointillé qui bouge
@@ -457,7 +461,11 @@ var VueClass = Class.extend({
         var tween = createjs.Tween
         .get(cmd, {loop:true})
         .to({offset:-20},500, createjs.Ease.linear);
-                                    
+        
+        // return them so we can delete them later
+        var bunchofshapes = []
+        bunchofshapes.push(line);
+        return bunchofshapes
     },
   
     // Envoi d'un trait
@@ -775,5 +783,11 @@ var VueClass = Class.extend({
             MAINCONTAINERY: parseInt(this.mainContainer.y)
         };
     },
-
+    
+    SupprimerListeShapes:function (bunchofshapes){
+        for(var i = 0; i < bunchofshapes.length; i++){
+            this.mainContainer.removeChild(bunchofshapes[i]);
+        }
+    }
+    
 });
