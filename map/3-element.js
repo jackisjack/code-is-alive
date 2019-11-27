@@ -4,15 +4,11 @@ var ElementClass = Class.extend({
 
         // Contrôle des paramètres
         if (ParametresElement.Vue === null || ParametresElement.Vue === undefined) { console.log('PostCompilation erreur : ParametresElement.Vue'); };
-        if (ParametresElement.IdTypeObjet === undefined || ParametresElement.IdTypeObjet === undefined) { console.log('PostCompilation erreur : ParametresElement.IdTypeObjet '); };
+        if (ParametresElement.Icone === undefined || ParametresElement.Icone === undefined) { console.log('PostCompilation erreur : ParametresElement.Icone'); };
         if (ParametresElement.Libelle === null || ParametresElement.Libelle === undefined) { console.log('PostCompilation erreur : ParametresElement.Libelle'); };
         if (ParametresElement.x === null || ParametresElement.x === undefined) { console.log('PostCompilation erreur : ParametresElement.x'); };
         if (ParametresElement.y === null || ParametresElement.y === undefined) { console.log('PostCompilation erreur : ParametresElement.y'); };
-        if (ParametresElement.idObjetVue === null || ParametresElement.idObjetVue === undefined) { console.log('PostCompilation erreur : ParametresElement.idObjetVue'); };
         if (ParametresElement.IdObjet === null || ParametresElement.IdObjet === undefined) { console.log('PostCompilation erreur : ParametresElement.IdObjet'); };
-        if (ParametresElement.x_delta === null || ParametresElement.x_delta === undefined) { ParametresElement.x_delta=0 };
-        if (ParametresElement.y_delta === null || ParametresElement.y_delta === undefined) { ParametresElement.y_delta=0 };
-        if (ParametresElement.Forme === null || ParametresElement.Forme === undefined) { console.log('PostCompilation erreur : ParametresElement.Forme'); };
         if (ParametresElement.Visible === null || ParametresElement.Visible === undefined) {ParametresElement.Visible=true};
         
         // Privatisation du this
@@ -21,36 +17,22 @@ var ElementClass = Class.extend({
         // La vue - une référence à la vue est stockée dans tous les objets de la vue
         this.Vue = ParametresElement.Vue; // cela permet l'appel de méthode de la vue parente depuis l'enfant
 
-        this.idObjetVue = ParametresElement.idObjetVue; // attribué par la vue
-        this.IdObjet = ParametresElement.IdObjet; // attribué par la webapi (0 = objet inexistant en base)
+        this.IdObjet = ParametresElement.IdObjet; 
 
         // L'id du type objet et le nom
-        this.IdTypeObjet = parseInt(ParametresElement.IdTypeObjet);
+        this.Icone = ParametresElement.Icone;
         this.Libelle = ParametresElement.Libelle;
 
-        this.Parent = null; // le parent doit être affecté par la méthode 'ajouterEnfant' du parent
- 
         // Dimension extérieure / intérieure
         this.P_innerRect = null;
         this.P_outerRect = null;
 
-        // Le delta se calculera au premier besoin, au départ : c'est null
-        this.P_DeltaFromFirstElement = null;
-
         // Container principal de l'objet
         this.Container = new createjs.Container();
         this.Container.ChildType = EnumChildType.Element;
-
-        // tableau de tableau : contient les objets et ses coordonnées
-        this.ListeEnfants = []; 
-
-        // Propriétés graphiques
-        this.x_delta = ParametresElement.x_delta;
-        this.y_delta = ParametresElement.y_delta;
-        this.Forme = ParametresElement.Forme;
-
+  
         // L'image
-        this.bitmap =  new createjs.Bitmap(VariablesGlobales.ImagesArray.getResult("petitcarrebleu"));
+        this.bitmap =  new createjs.Bitmap(VariablesGlobales.ImagesArray.getResult(this.Icone));
         this.bitmap.ChildType = EnumChildType.Bitmap; // typage du child pour bien faire sa mesure
         this.bitmap.ReferenceToObjet = this; // nécessaire pour récupérer la référence du bitmap au clic
 
@@ -73,17 +55,10 @@ var ElementClass = Class.extend({
         this.Container.addChild(this.text);
 
         // Position du texte et de l'image
-        this.x(ParametresElement.x, EnumTypeCoord.Local);
-        this.y(ParametresElement.y, EnumTypeCoord.Local);
+        this.x(ParametresElement.x);
+        this.y(ParametresElement.y);
 
-        // Visibilité des inner et outer Rect
-        this.innerRectShape = new createjs.Shape();
-        this.outerRectShape = new createjs.Shape(); // avec les enfants
-        this.Container.addChild(this.innerRectShape);
-        this.Container.addChild(this.outerRectShape);
-
-        // Calcul du rectangle contenant tous les éléments
-        console.log('Objet : ' + this.Libelle + ' | Besoin du innerRect pour la surface cliquable')
+          // Calcul du rectangle contenant tous les éléments
         var minnerRect = this.innerRect();
 
         // Création de la surface cliquable
@@ -104,57 +79,6 @@ var ElementClass = Class.extend({
         this.Visible(ParametresElement.Visible); 
 
     },
-    
-    Draw_innerouterRectShape: function (ObjCoord) {
-
-        if (this.P_innerRect !== null) {
-
-            var x = this.x();
-            var y = this.y();
-            this.innerRectShape.graphics.clear().setStrokeStyle(1).beginStroke("rgba(0,62,232,1)").drawRect(this.P_innerRect.x - x, this.P_innerRect.y - y, this.P_innerRect.w, this.P_innerRect.h);
-
-        } else {
-
-            this.innerRectShape.graphics.clear();
-
-        }
-
-        if (this.P_outerRect !== null) {
-            
-            var x = this.x();
-            var y = this.y();
-            this.outerRectShape.graphics.clear().setStrokeStyle(1).beginStroke("rgba(49,205,27,1)").drawRect(this.P_outerRect.x - x - 1, this.P_outerRect.y - y - 1, this.P_outerRect.w + 2, this.P_outerRect.h + 2);
-
-        } else {
-
-            this.outerRectShape.graphics.clear();
-
-        }
-    },
-
-    ElementSauvegarde: function () {
-
-        var IdParent;
-        if (this.Parent === null) {
-            IdParent = -1
-        } else {
-            IdParent = this.Parent.idObjetVue;
-        }
-
-        return {
-            IDELEMENTVUE: this.idObjetVue,
-            IDELEMENTVUEPARENT: IdParent,
-            IDOBJET: this.IdObjet,
-            IDTYPEOBJETVUE: this.IdTypeObjet,
-            LIBELLE: this.Libelle,
-            X: this.x(),
-            Y: this.y(),
-            X_DELTA: this.x_delta,
-            Y_DELTA: this.y_delta,
-            FORME: this.Forme
-        }
-
-    },
 
     x: function (_x, _EnumTypeCoord) {
 
@@ -162,22 +86,12 @@ var ElementClass = Class.extend({
 
             _x = parseInt(_x);
 
-            if (_EnumTypeCoord === EnumTypeCoord.Global) {
-                var Delta = this.DeltaFromFirstElement()
-                this.Container.x = _x - Delta.x;
-            } else {
-                this.Container.x = _x;
-            }
-            //this.P_x = _x;
+            this.Container.x = _x;
+  
             this.P_x = this.Container.x;
+
         } else {
 
-            if (_EnumTypeCoord === EnumTypeCoord.Global) {
-                //var Delta = this.DeltaFromFirstElement()
-                //return this.P_x + Delta.x;
-            } else {
-                //return this.P_x;
-            }
             return this.Container.x;
         }
 
@@ -188,23 +102,14 @@ var ElementClass = Class.extend({
         if (_y !== undefined) {
 
             _y = parseInt(_y);
-
-            if (_EnumTypeCoord === EnumTypeCoord.Global) {
-                var Delta = this.DeltaFromFirstElement();
-                this.Container.y = _y - Delta.y;
-            } else {
-                this.Container.y = _y;
-            }
-            //this.P_y = _y;
+            
+            this.Container.y = _y;
+            
             this.P_y = this.Container.y;
-        } else {
 
-            if (_EnumTypeCoord === EnumTypeCoord.Global) {
-                var Delta = this.DeltaFromFirstElement();
-                return this.P_y + Delta.y;
-            } else {
-                return this.P_y;
-            }
+        } else {
+            
+            return this.P_y;
 
         }
 
@@ -277,8 +182,6 @@ var ElementClass = Class.extend({
 
         }
 
-        this.Draw_innerouterRectShape();
-
         return this.P_innerRect;
 
     },
@@ -338,8 +241,6 @@ var ElementClass = Class.extend({
 
         }
 
-        this.Draw_innerouterRectShape();
-        
         return this.P_outerRect;
 
     },
@@ -376,196 +277,22 @@ var ElementClass = Class.extend({
 
     Visible: function (_visible) {
 
-        if (_visible !== undefined) {
+        if (_visible === true) {
 
-            if (_visible === true) {
+            this.Vue.mainContainer.addChild(this.Container);
 
-                if (this.Parent !== null) {
-                    this.Parent.Container.addChild(this.Container);
-                }
-                else {
-                    this.Vue.mainContainer.addChild(this.Container);
-                }
-                this.P_Visible = true;
-            }
+            this.P_Visible = true;
+        }
 
-            if (_visible === false) {
+        if (_visible === false) {
 
-                if (this.Parent !== null) { // si on n'est pas le cas exceptionnel où l'objet n'est pas encore attaché à un hub
-
-                    this.Parent.Container.removeChild(this.Container);
-                }
-
-                this.P_Visible = false;
-            }
-
+            this.Vue.mainContainer.removeChild(this.Container);
+            
+            this.P_Visible = false;
         }
 
         return this.P_Visible;
 
-    },
-
-    DeltaFromFirstElement: function (Reset) {
-
-        if (Reset === undefined) { // si aucun arguement n'est passé c'est que l'on souhaite connaitre le delta existant
-
-            // ...calcul du delta
-
-            var Element = this;
-            var x = 0;
-            var y = 0;
-            while (Element.Parent !== null) {
-
-                x = x + Element.Parent.Container.x;
-                y = y + Element.Parent.Container.y;
-
-                Element = Element.Parent;
-
-            }
-
-            this.P_DeltaFromFirstElement = { x: x, y: y };
-
-            return this.P_DeltaFromFirstElement;
-
-        } else { // si un argument est passé, cela signifie que l'on reset
-
-            this.P_DeltaFromFirstHub = null; // reset du delta
-
-        }
-    },
-
-    TU_AfficherReference: function () {
-        alert('Objet cliqué est :' + this.TypeObjet + ' - ' + this.Libelle);
-    },
-
-    Actualiser: function () {
-
-        // si c'est un hub sans objet, rien à faire
-
-        if (this.ListeEnfants.length === 0) {
-            return;
-        }
-
-        // Affichage des objets non encore ajoutés (on parcours chacun des objets)
-
-        for (i = 0; i < this.ListeEnfants.length; i++) {
-
-            if (this.ListeEnfants[i][0].Visible() === false) {
-
-                this.ListeEnfants[i][0].Visible(true);
-
-            }
-
-        }
-
-        // Calcul des coordonnées des objets selon les règles du hub
-
-        this.CalculerCoordonnees();
-
-        // Déplacement des objets vers les coordonnées calculés.
-
-        for (i = 0; i < this.ListeEnfants.length; i++) {
-
-            this.ListeEnfants[i][0].DeplacerParTween(
-                this.ListeEnfants[i][1][0], // ième item, objet, coordonnées, x
-                this.ListeEnfants[i][1][1] // ième item, objet, coordonnées, y
-            );
-        }
-
-    },
-
-    CalculerCoordonnees: function () {
-
-        switch (this.Forme) {
-
-            case EnumPositionImage.EnLigneVertical:
-
-                // Définition des marges
-                var MarginH = 5;
-                var MarginW = 20;
-
-                // Calcul du nombre d'enfant de l'élément en cours d'actualisation
-                var NbEnfants = this.ListeEnfants.length;
-
-                // Dimension interne de l'élément en cours d'actualisation
-                var wParent;
-                var hParent;
-
-                console.log('Objet : ' + this.Libelle + ' | Calcul des futures coordonnées des enfants. On commence par soi-même');
-
-                var Dimension = this.innerRect(); // c'est sa dimension qui servira de marge gauche minimal
-                wParent = Dimension.w; // récupération de la largeur du parent
-                hParent = Dimension.h; // permet l'alignement vertical'
-
-                var HauteurTotal = 0;
-
-                for (i = 0; i < NbEnfants; i++) {
-
-                    // récupération des dimensions complètes uniquement pour la hauteur
-
-                    console.log('Objet : ' + this.Libelle + ' | Calcul des futures coordonnées des enfants. InnerRect de lenfant');
-
-                    var InnerObjet = this.ListeEnfants[i][0].innerRect();
-
-                    console.log('Objet : ' + this.Libelle + ' | Calcul des futures coordonnées des enfants. OuterRect de lenfant');
-
-                    var OuterObjet = this.ListeEnfants[i][0].outerRect();
-
-                    // coordonnée x
-
-                    var x = this.x_delta
-                            + wParent
-                            + (InnerObjet.x - OuterObjet.x)
-                            + MarginW;
-
-                    // coordonnée y
-
-                    var y = HauteurTotal // incrémenté ci-après
-                            + (InnerObjet.y - OuterObjet.y) // voir schéma slide 42
-                            + this.y_delta; // delta personnalisable par le mouvement
-
-                    // incrémentation de la hauteur
-
-                    HauteurTotal = HauteurTotal // 0 au début
-                                 + OuterObjet.h; // taille de l'objet que l'on vient de placer
-
-                    // affectation des coordonnées
-
-                    this.ListeEnfants[i][1] = [x, y];
-
-                }
-
-                // alignement vertical des objets (car la longueur totale est connnue à présent)
-
-                for (i = 0; i < NbEnfants; i++) {
-
-                    this.ListeEnfants[i][1][1] = this.ListeEnfants[i][1][1] - HauteurTotal / 2 + hParent / 2
-
-                }
-
-                console.log('Objet : ' + this.Libelle + ' | Fin du calcul des coordonnées des enfants');
-
-                break;
-
-
-        }
-    },
-    
-    AffecterEnfant: function (Element) {
-
-        var that = this;
-
-        // Le parent fait rentrer dans la tête de l'enfant : 
-        // 'le parent c'est moi'
-        Element.Parent = that;
-
-        // Ajout de l'objet dans la mémoire du hub
-        this.ListeEnfants.push([
-            Element,
-            [0, 0] // coordonnées affectés par le hub
-        ]);
-
-        this.Vue.ResetRemontant(Element.Parent);
     }
 
 });

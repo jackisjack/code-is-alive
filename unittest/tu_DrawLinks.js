@@ -3,7 +3,7 @@ function ctu_DrawLink(){
 
         // L'élement de gauche
         var Element1 = Graphisme.VueFocus.AjouterElement({
-            IdTypeObjet: EnumTypeObjet.PetitCarre, 
+            Icone: "petitcarrebleu", 
             Libelle: "Element 1",
             IdObjet: 1, 
             x: 500,
@@ -16,7 +16,7 @@ function ctu_DrawLink(){
         for(var j=0;j < 4;j++){
             
             var Element = Graphisme.VueFocus.AjouterElement({
-            IdTypeObjet: EnumTypeObjet.PetitCarre, 
+            Icone: "petitcarrebleu", 
             Libelle: "Element " + (j + 2),
             IdObjet: j+2, 
             x: 1000,
@@ -38,10 +38,17 @@ function tu_DrawLink5(){
     var Element1 = context.Element1;
     var TabElement = context.TabElement;
 
-    // Création de link entre la gauche et la droite
     for (var i = 0 ; i < TabElement.length ; i++)
     {
-        Graphisme.VueFocus.DrawLink5(Element1, TabElement[i]);
+
+        Graphisme.VueFocus.AjouterLien(
+                                        {
+                                            ElementDepart:Element1,
+                                            ElementArrivee:TabElement[i],
+                                            Style: EnumStyleLien.Style5,
+                                            ParamStyle: {nbIcone:3, Icone:"file"}                                            
+                                        });
+            
     }
 
 }
@@ -53,10 +60,16 @@ function tu_DrawLink4(){
     var Element1 = context.Element1;
     var TabElement = context.TabElement;
 
-    // Création de link entre la gauche et la droite
     for (var i = 0 ; i < TabElement.length ; i++)
     {
-        Graphisme.VueFocus.DrawLink4(Element1, TabElement[i]);
+
+        Graphisme.VueFocus.AjouterLien(
+                                        {
+                                            ElementDepart:Element1,
+                                            ElementArrivee:TabElement[i],
+                                            Style: EnumStyleLien.Style4
+                                        });
+            
     }
 
 }
@@ -68,14 +81,18 @@ function tu_DrawLink3(){
     var Element1 = context.Element1;
     var TabElement = context.TabElement;
 
-    // Création de link entre la gauche et la droite
     for (var i = 0 ; i < TabElement.length ; i++)
     {
-        Graphisme.VueFocus.DrawLink3(Element1, TabElement[i]);
+
+        Graphisme.VueFocus.AjouterLien(
+                                        {
+                                            ElementDepart:Element1,
+                                            ElementArrivee:TabElement[i],
+                                            Style: EnumStyleLien.Style3
+                                        });
+            
     }
-
-
-                    
+       
 }
 
 function tu_DrawLink2(){
@@ -87,7 +104,14 @@ function tu_DrawLink2(){
 
     for (var i = 0 ; i < TabElement.length ; i++)
     {
-        Graphisme.VueFocus.DrawLink2(Element1, TabElement[i]);
+
+        Graphisme.VueFocus.AjouterLien(
+                                        {
+                                            ElementDepart:Element1,
+                                            ElementArrivee:TabElement[i],
+                                            Style: EnumStyleLien.Style2
+                                        });
+            
     }
 
 }
@@ -99,9 +123,16 @@ function tu_DrawLink1(){
     var Element1 = context.Element1;
     var TabElement = context.TabElement;
 
-    // Création de link entre la gauche et la droite
     for (var i = 0 ; i < TabElement.length ; i++)
     {
-        Graphisme.VueFocus.DrawLink1(Element1, TabElement[i]);
+
+        Graphisme.VueFocus.AjouterLien(
+                                        {
+                                            ElementDepart:Element1,
+                                            ElementArrivee:TabElement[i],
+                                            Style: EnumStyleLien.Style1
+                                        });
+            
     }
+
 }

@@ -1,6 +1,5 @@
 var VariablesGlobales = {
     ImagesArray: null,
-    TutoEnCours: null,
     TypeSelection: EnumModeAction.Explorer
 };
 
@@ -22,7 +21,8 @@ var EnumChildType = {
     Bitmap: 0,
     Text: 1,
     Element: 2, // container principal de l'élément
-    SurfaceCliquable:3 
+    SurfaceCliquable:3,
+    Lien:4
 }
 
 var EnumTypeCoord = {
@@ -30,6 +30,10 @@ var EnumTypeCoord = {
     Global:1 // MainContainer
 }
 
-var EnumTypeObjet = {
-  PetitCarre:1
-}
+var EnumStyleLien = {
+    Style1: 1,
+    Style2: 2,
+    Style3: 3,
+    Style4: 4,
+    Style5: 5
+};

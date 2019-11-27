@@ -6,6 +6,7 @@ var VueClass = Class.extend({
 
         this.ListeElement = [];
         this.ListeSelection = [];
+        this.ListeLien = [];
 
         // Variable pseudo-globale pour les composants essentiels de la scène
         
@@ -67,10 +68,6 @@ var VueClass = Class.extend({
         // Evènement pour ajustement du ratio si redimensionnement de la fenêtre
 
         window.addEventListener("resize", function (e) { self.handleResize(e); });
-
-        // Initialisation de variable nécessaire au mode 'ModeMouseOnly'
-
-        this.ModeMouseMoveOnly_InitialiserVariables();
 
         // Dessin de la grille
 
@@ -195,7 +192,6 @@ var VueClass = Class.extend({
     /* Les coordonnées de la souris en référentiel graphique */
     MousePosX: 0,
     MousePosY: 0,
-    ObjetToMove: null,
 
     handleMouseDown: function (evt) {
         
@@ -204,30 +200,8 @@ var VueClass = Class.extend({
         this.firstlastX = evt.stageX;
         this.firstlastY = evt.stageY;
 
-        if (VariablesGlobales.TypeSelection === EnumModeAction.Deplacer) {
-
-            // On récupère la surface cliquable ci-dessous (si clic sur un élément, ou null si le clic s'effectue sur le MainContainer)
-            this.ObjetToMove = this.stage.getObjectUnderPoint(evt.stageX, evt.stageY, 2);
-
-            if (this.ObjetToMove !== null) {
-                // On utilise la référence vers le bitmap
-                this.ObjetToMove = this.ObjetToMove.ReferenceToBitmap;
-
-            }
-        }
-
         document.body.style.cursor = "url(https://cdn.glitch.com/1f9a81fa-715f-4b6a-abac-840468608b33%2Fgrabbing.cur?v=1574021115756), auto";
 
-    },
-
-    ModeMouseMoveOnly_InitialiserVariables: function () {
-        this.ModeMouseMoveOnly = false; 
-        this.MouvementEnCours_Droite = -1;
-        this.MouvementEnCours_Gauche = -1;
-        this.MouvementEnCours_Haute = -1;
-        this.MouvementEnCours_Basse= -1;
-        this.MouvementDelta = 50;
-        this.MouvementFrequence =100;
     },
 
     handleMouseMove: function (evt) {
@@ -244,7 +218,7 @@ var VueClass = Class.extend({
         
         /* déclenché en cas de drag drop du main container ou d'un objet/hub */
 
-        if (this.lastX !== -1 && this.lastY !== -1 && this.ModeMouseMoveOnly === false) {
+        if (this.lastX !== -1 && this.lastY !== -1) {
 
             var stageX = evt.stageX;
             var stageY = evt.stageY;
@@ -255,87 +229,17 @@ var VueClass = Class.extend({
             this.lastX = stageX;
             this.lastY = stageY;
 
-            if (this.ObjetToMove===null)
-            {
-                this.mainContainer.x += diffX;
-                this.mainContainer.y += diffY;
-            }
-            else
-            {   
-
-                var posX = this.MousePosX - this.ObjetToMove.image.width / 2;
-                var posY = this.MousePosY - this.ObjetToMove.image.height / 2;
-
-                // Déplacement de l'objet/hub
-
-                this.ObjetToMove.ReferenceToObjet.x(posX, EnumTypeCoord.Global); // 'ObjetToMove' n'est que le bitmap... ReferenceToObjet permet de remonter à l'objet/hub surjacent
-                this.ObjetToMove.ReferenceToObjet.y(posY, EnumTypeCoord.Global); 
-
-            }
-        }
-
-        /* déclenché en cas de MouseMoveOnly */
-
-        if (this.ModeMouseMoveOnly === true) {
-
-            var bordure_gauche = 0.25 * this.stage.canvas.width;
-            var bordure_droite = 0.75 * this.stage.canvas.width;
-            var bordure_haute = 0.25 * this.stage.canvas.height;
-            var bordure_basse = 0.75 * this.stage.canvas.height;
-
-            // si la souris est dans la zone gauche
-
-            var that = this;
-
-            if (evt.stageX < bordure_gauche && this.MouvementEnCours_Gauche === -1) {
-                this.MouvementEnCours_Gauche = setInterval(function () { that.mainContainer.x += that.MouvementDelta; }, this.MouvementFrequence);
-            }
-            else if (this.MouvementEnCours_Gauche !== -1 && evt.stageX > bordure_gauche) {
-                clearInterval(this.MouvementEnCours_Gauche);
-                this.MouvementEnCours_Gauche = -1;
-            }
-
-            // si la souris est dans la zone droite
-
-            if (evt.stageX > bordure_droite && this.MouvementEnCours_Droite === -1) {
-                this.MouvementEnCours_Droite = setInterval(function () { that.mainContainer.x -= that.MouvementDelta; }, this.MouvementFrequence);
-            }
-            else if (this.MouvementEnCours_Droite !== -1 && evt.stageX < bordure_droite) {
-                clearInterval(this.MouvementEnCours_Droite);
-                this.MouvementEnCours_Droite = -1;
-            }
-
-            // si la souris est dans la zone haute
-
-            if (evt.stageY < bordure_haute && this.MouvementEnCours_Haute === -1) {
-                this.MouvementEnCours_Haute = setInterval(function () { that.mainContainer.y += that.MouvementDelta; }, this.MouvementFrequence);
-            }
-            else if (this.MouvementEnCours_Haute !== -1 && evt.stageY > bordure_haute) {
-                clearInterval(this.MouvementEnCours_Haute);
-                this.MouvementEnCours_Haute = -1;
-            }
-
-            // si la souris est dans la zone basse
-
-            if (evt.stageY > bordure_basse && this.MouvementEnCours_Basse === -1) {
-                this.MouvementEnCours_Basse = setInterval(function () { that.mainContainer.y -= that.MouvementDelta; }, this.MouvementFrequence);
-            }
-            else if (this.MouvementEnCours_Basse !== -1 && evt.stageY < bordure_basse) {
-                clearInterval(this.MouvementEnCours_Basse);
-                this.MouvementEnCours_Basse = -1;
-            }
-
+            this.mainContainer.x += diffX;
+            this.mainContainer.y += diffY;
+           
         }
 
     },
 
     handleMouseUp: function (evt) {
 
-        var that = this;
-
         this.lastX = -1;
         this.lastY = -1;
-        this.ObjetToMove = null;
 
         document.body.style.cursor = "url(https://cdn.glitch.com/1f9a81fa-715f-4b6a-abac-840468608b33%2Fgrab.cur?v=1574021115660), auto";
     },
@@ -405,177 +309,7 @@ var VueClass = Class.extend({
         this.mainContainer.addChild(line);
 
     },
-    
-    // rayon entre les deux éléments, longueur max dès le début
-    DrawLink1: function (element1, element2) {
-
-        var el1 = element1.innerRect();
-        var el2 = element2.innerRect();
-      
-        var line = new createjs.Shape();
-        line.graphics.setStrokeStyle(1);
-        line.graphics.beginStroke("#18ad2c");
-        line.graphics.moveTo(el1.x+el1.w+20, el1.y+el1.h/2);
-        line.graphics.lineTo(el2.x, el2.y+el2.h/2);
-        line.graphics.endStroke;
-        line.alpha=0;
-        line.shadow = new createjs.Shadow("#18ad2c", 0, 0, 10);
-
-        this.mainContainer.addChild(line);
-
-        var tween = createjs.Tween
-            .get(line, {loop:true})
-            .to({
-                alpha: 1 // s'affiche progressivement
-            },
-            500,
-            createjs.Ease.linear)
-            .to({
-                alpha: 0, // se masque progressivement
-            },
-            500,
-            createjs.Ease.linear);
-        
-        // return them so we can delete them later
-        var bunchofshapes = []
-        bunchofshapes.push(line);
-        return bunchofshapes
-
-    },
-    
-    // flux continu de pointillé qui bouge
-    DrawLink2: function (element1, element2) {
-
-        var el1 = element1.innerRect();
-        var el2 = element2.innerRect();
-       
-        var line = new createjs.Shape();
-        line.graphics.setStrokeStyle(2);
-        var cmd = line.graphics.setStrokeDash([10,10],0).command;
-        line.graphics.beginStroke("#18ad2c");
-        line.graphics.moveTo(el1.x+el1.w+20, el1.y+el1.h/2);
-        line.graphics.lineTo(el2.x, el2.y+el2.h/2);
-        line.graphics.endStroke;
-        this.mainContainer.addChild(line);
-       
-        var tween = createjs.Tween
-        .get(cmd, {loop:true})
-        .to({offset:-20},500, createjs.Ease.linear);
-        
-        // return them so we can delete them later
-        var bunchofshapes = []
-        bunchofshapes.push(line);
-        return bunchofshapes
-    },
-  
-    // Envoi d'un trait
-    DrawLink3: function (element1, element2) {
-
-        var el1 = element1.innerRect();
-        var el2 = element2.innerRect();
-        
-        var x1 = el1.x+el1.w+20;
-        var x2 = el2.x;
-        var y1 = el1.y+el1.h/2;
-        var y2 = el2.y+el2.h/2;
-             
-        var d = Math.pow(Math.pow(x2-x1,2) + Math.pow(y2-y1,2),0.5);
-        var size = 0.2*d; // la taille du trait sera 20% de la distance qui sépare les deux points
-      
-        var line = new createjs.Shape();
-        line.graphics.setStrokeStyle(5,"round");
-        var cmd = line.graphics.setStrokeDash([size,d],size).command;
-        line.graphics.beginStroke("#18ad2c");
-        line.graphics.moveTo(x1, y1);
-        line.graphics.lineTo(x2, y2);
-        line.graphics.endStroke;
-        line.shadow = new createjs.Shadow("#18ad2c", 0, 0, 10);
-        this.mainContainer.addChild(line);
-        
-        var tween = createjs.Tween
-        .get(cmd, {loop:true})
-        .to({offset:-1*d},1500, createjs.Ease.cubicOut);
-         
-    },
-    
-    // Envoi d'un flux de point et dessin d'un trait
-    DrawLink4: function (element1, element2) {
-
-        var el1 = element1.innerRect();
-        var el2 = element2.innerRect();
-        
-        var x1 = el1.x+el1.w+20;
-        var x2 = el2.x;
-        var y1 = el1.y+el1.h/2;
-        var y2 = el2.y+el2.h/2;
-        
-        // Création de la ligne continue
-        var line2 = new createjs.Shape();
-        line2.graphics.setStrokeStyle(1);
-        line2.graphics.beginStroke("#18ad2c");
-        line2.graphics.moveTo(x1, y1);
-        line2.graphics.lineTo(x2, y2);
-        line2.graphics.endStroke;
-        line2.alpha = 0.5;
-        this.mainContainer.addChild(line2);
-        
-        // Création du flux de point
-        var d = Math.pow(Math.pow(x2-x1,2) + Math.pow(y2-y1,2),0.5);
-      
-        var line = new createjs.Shape();
-        line.graphics.setStrokeStyle(5,"round");
-        var cmd = line.graphics.setStrokeDash([2,10,2,10,2,10,2,10,2,10,2,d],56).command;
-        line.graphics.beginStroke("#18ad2c");
-        line.graphics.moveTo(x1, y1);
-        line.graphics.lineTo(x2, y2);
-        line.graphics.endStroke;
-        line.shadow = new createjs.Shadow("#18ad2c", 0, 0, 10);
-        this.mainContainer.addChild(line);
-        
-        var tween = createjs.Tween
-        .get(cmd, {loop:true})
-        .to({offset:-1*d},1500, createjs.Ease.cubicOut);
-         
-    },
-    
-    // Envoi d'un flux d'image
-    DrawLink5: function (element1, element2, nbIcone, iconname) {
-      
-      var el1 = element1.innerRect();
-      var el2 = element2.innerRect();
-      var x1 = el1.x+el1.w+20;
-      var y1 = el1.y+el1.h/2;
-      var x2 = el2.x-20;
-      var y2 = el2.y+el2.h/2;
-     
-      // Création d'une ligne
-      var line2 = new createjs.Shape();
-      line2.graphics.setStrokeStyle(1);
-      line2.graphics.beginStroke("black");
-      line2.graphics.moveTo(x1, y1);
-      line2.graphics.lineTo(x2, y2);
-      line2.graphics.endStroke;
-      line2.alpha = 0.3;
-      this.mainContainer.addChild(line2);
-      
-      // Création de i icones
-      for(var i = 0; i < nbIcone; i++){
-        
-        var bitmap =  new createjs.Bitmap(VariablesGlobales.ImagesArray.getResult(iconname));
-        bitmap.x = x1 - (bitmap.image.height/2);
-        bitmap.y = y1 - (bitmap.image.height/2);
-        this.mainContainer.addChild(bitmap); 
-
-        // Mise en mouvement des icones
-        var tween = createjs.Tween
-        .get(bitmap, {loop:true})
-        .wait(100*i)
-        .to({x:x2, y:y2 -(bitmap.image.height/2)},1500, createjs.Ease.cubicOut);
-    
-      }
-
-    },
-  
+ 
     DrawRect: function (ObjetCoordRect, color) {
 
         var rect = new createjs.Shape();
@@ -611,7 +345,7 @@ var VueClass = Class.extend({
         this.mainContainer.addChild(text);
     },
 
-    // Gestion des objets de la vue
+    // Gestion des éléments de la vue
 
     AjouterElement: function (Args) {
 
@@ -621,15 +355,11 @@ var VueClass = Class.extend({
         var nouvelElement = new ElementClass(
                                             {
                                                 Vue:that,
-                                                IdTypeObjet: Args.IdTypeObjet,
-                                                idObjetVue: this.ListeElement.length,
+                                                Icone: Args.Icone,
                                                 IdObjet: Args.IdObjet,
                                                 Libelle: Args.Libelle,
                                                 x: Args.x,
-                                                y: Args.y,
-                                                Forme: Args.Forme,
-                                                x_delta: Args.x_delta,
-                                                y_delta: Args.y_delta
+                                                y: Args.y
                                             }
                                         );                                 
 
@@ -638,7 +368,30 @@ var VueClass = Class.extend({
         return nouvelElement;
 
     },
-    
+
+    // Gestion des objets de la vue
+
+    AjouterLien: function (Args) {
+
+        var that = this;
+
+        // instantiation du nouvel objet
+        var nouveauLien = new LienClass(
+                                            {
+                                                Vue:that,
+                                                ElementDepart:Args.ElementDepart,
+                                                ElementArrivee:Args.ElementArrivee,
+                                                Style: Args.Style,
+                                                ParamStyle: Args.ParamStyle
+                                            }
+                                        );                                 
+
+        this.ListeLien.push(nouveauLien);
+
+        return nouveauLien;
+
+    },
+
     ClicObjet: function (Element) {
         
         // centralisation de la gestion de l'évènement clic au niveau de la vue, 
@@ -702,17 +455,6 @@ var VueClass = Class.extend({
 
                 this.ListeSelection.push(Element);
 
-                //*****************************************************
-                //********************** DEBUG ************************
-
-                // debug : visibilité de l'objet sauvegardé
-                
-                //console.log(JSON.stringify(Element.ElementSauvegarde()));
-                
-                // debug : visibilité des limites
-                //console.log('INNER rect : ' + JSON.stringify());
-                //console.log('OUTER rect : ' + JSON.stringify(Element.outerRect()));
-                
                 break;
                 
             default:
@@ -757,37 +499,6 @@ var VueClass = Class.extend({
             createjs.Ease.cubicOut)
             .call(function () { that.ZoomInProgress = false; });
 
-    },
-
-    ActualiserTout: function () {
-
-        // pour chacun des éléments sans parent..
-
-        for (var k = 0; k < this.ListeElement.length; k++) {
-
-            if (this.ListeElement[k].Parent === null) {
-
-                this.ActualisationDescendante(this.ListeElement[k]);
-
-            }
-
-        }
-
-    },
-
-    VueSauvegarde: function () {
-        return {
-            IDVUE: this.IdVue,
-            LIBELLE: this.NomVue,
-            MAINCONTAINERX: parseInt(this.mainContainer.x),
-            MAINCONTAINERY: parseInt(this.mainContainer.y)
-        };
-    },
-    
-    SupprimerListeShapes:function (bunchofshapes){
-        for(var i = 0; i < bunchofshapes.length; i++){
-            this.mainContainer.removeChild(bunchofshapes[i]);
-        }
     }
     
 });
