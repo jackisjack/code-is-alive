@@ -194,7 +194,7 @@ var LienClass = Class.extend({
         // Création de i icones
         for(let i = 0; i < nbIcone; i++){
           
-          let bitmap =  new createjs.Bitmap(VariablesGlobales.ImagesArray.getResult(Icone));
+          let bitmap =  new createjs.Bitmap(ImageManager.IconeLien.getResult(Icone));
           bitmap.x = x1 - (bitmap.image.height/2);
           bitmap.y = y1 - (bitmap.image.height/2);
           this.Container.addChild(bitmap); 

@@ -13,7 +13,7 @@ function ctu_DrawLink(){
         // Element(s) de droite
         var TabElement=[];
         
-        for(var j=0;j < 30;j++){
+        for(var j=0;j < 4;j++){
             
             var Element = Graphisme.VueFocus.AjouterElement({
             Icone: "petitcarrebleu", 

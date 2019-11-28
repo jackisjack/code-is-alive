@@ -35,7 +35,7 @@ var ElementClass = Class.extend({
         this.Container.ChildType = EnumChildType.Element;
   
         // L'image
-        this.bitmap =  new createjs.Bitmap(VariablesGlobales.ImagesArray.getResult(this.Icone));
+        this.bitmap =  new createjs.Bitmap(ImageManager.IconeElement.getResult(this.Icone));
         this.bitmap.ChildType = EnumChildType.Bitmap; // typage du child pour bien faire sa mesure
         this.bitmap.ReferenceToObjet = this; // nécessaire pour récupérer la référence du bitmap au clic
 
@@ -309,7 +309,7 @@ var ElementClass = Class.extend({
             } 
             else  // sinon on ajoute
             {
-                let bitmap =  new createjs.Bitmap(VariablesGlobales.ImagesArray.getResult(IconeEtat));
+                let bitmap =  new createjs.Bitmap(ImageManager.IconeEtat.getResult(IconeEtat));
                 bitmap.x -= (bitmap.image.width + 10)
                 bitmap.ChildType = EnumChildType.Lien;
 
