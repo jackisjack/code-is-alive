@@ -27,6 +27,9 @@ var ElementClass = Class.extend({
         this.P_innerRect = null;
         this.P_outerRect = null;
 
+        // Icone d'état
+        this.Etatbitmap = null;
+
         // Container principal de l'objet
         this.Container = new createjs.Container();
         this.Container.ChildType = EnumChildType.Element;
@@ -292,6 +295,51 @@ var ElementClass = Class.extend({
         }
 
         return this.P_Visible;
+
+    },
+
+    IconeEtat: function(IconeEtat){
+        
+        // Définir la valeur
+        if (IconeEtat!==undefined){
+
+            // Si c'est null, c'est qu'on supprime
+            if (IconeEtat === null){
+                this.Container.removeChild(this.Etatbitmap);
+            } 
+            else  // sinon on ajoute
+            {
+                let bitmap =  new createjs.Bitmap(VariablesGlobales.ImagesArray.getResult(IconeEtat));
+                bitmap.x -= (bitmap.image.width + 10)
+                bitmap.ChildType = EnumChildType.Lien;
+
+                let tween = createjs.Tween
+                    .get(bitmap, {loop:true})
+                    .to({
+                        y: bitmap.y - 10
+                    },
+                    500,
+                    createjs.Ease.backIn)
+                    .to({
+                        y: bitmap.y
+                    },
+                    150,
+                    createjs.Ease.linear)
+                    ;
+
+                this.Container.addChild(bitmap);
+
+                this.Etatbitmap = bitmap;
+                this.Etatbitmap.NomIcone = IconeEtat;
+
+            }
+            
+        } else {
+
+            return this.Etatbitmap.NomIcone;
+
+        }
+
 
     }
 

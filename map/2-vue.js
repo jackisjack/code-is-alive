@@ -399,6 +399,7 @@ var VueClass = Class.extend({
     SupprimerLien: function(IdLien){
         var that = this;
         this.mainContainer.removeChild(that.ListeLien[IdLien].Container);
+        that.ListeLien[IdLien] = null;
     },
 
     ClicObjet: function (Element) {
@@ -483,7 +484,7 @@ var VueClass = Class.extend({
         
     },
 
-    Focus: function (x, y) {
+    Focus: function (x, y, duree) {
 
         // Verrouilage des autres zoom pendant que celui ci fonctionne
 
@@ -504,7 +505,7 @@ var VueClass = Class.extend({
                 x: pos_x_final,
                 y: pos_y_final
             },
-            1000,
+            duree,
             createjs.Ease.cubicOut)
             .call(function () { that.ZoomInProgress = false; });
 

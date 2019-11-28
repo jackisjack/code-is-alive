@@ -13,7 +13,7 @@ function ctu_DrawLink(){
         // Element(s) de droite
         var TabElement=[];
         
-        for(var j=0;j < 4;j++){
+        for(var j=0;j < 30;j++){
             
             var Element = Graphisme.VueFocus.AjouterElement({
             Icone: "petitcarrebleu", 
@@ -26,6 +26,9 @@ function ctu_DrawLink(){
             TabElement.push(Element);
         
         }
+        
+        // Focus au bon endroit
+        Graphisme.VueFocus.Focus(800,222,0);
 
         return {Element1:Element1,TabElement:TabElement}
 
@@ -58,9 +61,8 @@ function tu_DrawLink5(){
     // Suppression de tous les liens
     for (let i = 0 ; i < TableauLien.length ; i++)
     {
-        setTimeout(() => Graphisme.VueFocus.SupprimerLien(TableauLien[i]), 3000)
+        setTimeout(() => Graphisme.VueFocus.SupprimerLien(TableauLien[i]), 30000)
     }
-
 
 }
 
@@ -152,8 +154,13 @@ function tu_DrawLink2(){
     // Suppression de tous les liens
     for (let i = 0 ; i < TableauLien.length ; i++)
     {
-        setTimeout(() => Graphisme.VueFocus.SupprimerLien(TableauLien[i]), 3000)
+        setTimeout(() => Graphisme.VueFocus.SupprimerLien(TableauLien[i]), 100000)
     }
+
+    Element1.IconeEtat("webservice");
+
+    // Disparition de l'état
+    setTimeout(() => Element1.IconeEtat(null), 300000)
 
 }
 

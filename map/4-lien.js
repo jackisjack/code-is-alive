@@ -192,9 +192,9 @@ var LienClass = Class.extend({
         this.Container.addChild(line2);
         
         // Création de i icones
-        for(var i = 0; i < nbIcone; i++){
+        for(let i = 0; i < nbIcone; i++){
           
-          var bitmap =  new createjs.Bitmap(VariablesGlobales.ImagesArray.getResult(Icone));
+          let bitmap =  new createjs.Bitmap(VariablesGlobales.ImagesArray.getResult(Icone));
           bitmap.x = x1 - (bitmap.image.height/2);
           bitmap.y = y1 - (bitmap.image.height/2);
           this.Container.addChild(bitmap); 
@@ -202,8 +202,8 @@ var LienClass = Class.extend({
           // Mise en mouvement des icones
           this.tween = createjs.Tween
           .get(bitmap, {loop:true})
-          .wait(100*i)
-          .to({x:x2, y:y2 -(bitmap.image.height/2)},1500, createjs.Ease.cubicOut);
+          .wait(100 + i*200) // attention, il faut aussi changer l'espacement à la ligne du dessous
+          .to({x:x2, y:y2 -(bitmap.image.height/2)},1500 - i*200, createjs.Ease.cubicOut);
       
         }
 
