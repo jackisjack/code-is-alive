@@ -13,7 +13,7 @@ function ctu_DrawLink(){
         // Element(s) de droite
         var TabElement=[];
         
-        for(var j=0;j < 4;j++){
+        for(var j=0;j < 40;j++){
             
             var Element = Graphisme.VueFocus.AjouterElement({
             Icone: "petitcarrebleu", 
@@ -34,6 +34,25 @@ function ctu_DrawLink(){
 
 }
 
+function tu_DrawLinkLeftLeft(){
+
+    // Contexte du test
+    var context = ctu_DrawLink();
+    var Element1 = context.Element1;
+    var TabElement = context.TabElement;
+
+
+    Graphisme.VueFocus.AjouterLien(
+                    {
+                        ElementDepart:TabElement[0],
+                        ElementArrivee:TabElement[30],
+                        Style: EnumStyleLien.Style5,
+                        Position: EnumPositionLien.GaucheGauche,
+                        ParamStyle: {nbIcone:3, Icone:"file"}
+                    });
+           
+}
+
 function tu_DrawLink5(){
 
     // Contexte du test
@@ -52,6 +71,7 @@ function tu_DrawLink5(){
                                             ElementDepart:Element1,
                                             ElementArrivee:TabElement[i],
                                             Style: EnumStyleLien.Style5,
+                                            Position: EnumPositionLien.DroiteGauche,
                                             ParamStyle: {nbIcone:3, Icone:"file"}
                                         })
                         );
@@ -83,7 +103,8 @@ function tu_DrawLink4(){
                                         {
                                             ElementDepart:Element1,
                                             ElementArrivee:TabElement[i],
-                                            Style: EnumStyleLien.Style4
+                                            Style: EnumStyleLien.Style4,
+                                            Position: EnumPositionLien.DroiteGauche
                                         })
                         );
             
@@ -114,7 +135,8 @@ function tu_DrawLink3(){
                                         {
                                             ElementDepart:Element1,
                                             ElementArrivee:TabElement[i],
-                                            Style: EnumStyleLien.Style3
+                                            Style: EnumStyleLien.Style3,
+                                            Position: EnumPositionLien.DroiteGauche
                                         })
                         );
             
@@ -145,7 +167,8 @@ function tu_DrawLink2(){
                                         {
                                             ElementDepart:Element1,
                                             ElementArrivee:TabElement[i],
-                                            Style: EnumStyleLien.Style2
+                                            Style: EnumStyleLien.Style2,
+                                            Position: EnumPositionLien.DroiteGauche
                                         })
                         );
             
@@ -181,7 +204,8 @@ function tu_DrawLink1(){
                                         {
                                             ElementDepart:Element1,
                                             ElementArrivee:TabElement[i],
-                                            Style: EnumStyleLien.Style1
+                                            Style: EnumStyleLien.Style1,
+                                            Position: EnumPositionLien.DroiteGauche
                                         })
                         );
             

@@ -7,6 +7,7 @@ var LienClass = Class.extend({
         if (ParametresLien.ElementDepart === null || ParametresLien.ElementDepart === undefined) { console.log('PostCompilation erreur : ParametresLien.ElementDepart'); };
         if (ParametresLien.ElementArrivee === null || ParametresLien.ElementArrivee === undefined) { console.log('PostCompilation erreur : ParametresLien.ElementArrivee'); };
         if (ParametresLien.Style === null || ParametresLien.Style === undefined) { console.log('PostCompilation erreur : ParametresLien.Style'); };
+        if (ParametresLien.Position === null || ParametresLien.Position === undefined) { console.log('PostCompilation erreur : ParametresLien.Position'); };
         if (ParametresLien.Visible === null || ParametresLien.Visible === undefined) { ParametresLien.Visible = true };
 
         // Privatisation du this
@@ -27,19 +28,19 @@ var LienClass = Class.extend({
         // Construction du lien
         switch (ParametresLien.Style) {
             case EnumStyleLien.Style1:
-                this.DessinerLienStyle1(ParametresLien.ElementDepart, ParametresLien.ElementArrivee);
+                this.DessinerLienStyle1(ParametresLien.ElementDepart, ParametresLien.ElementArrivee, ParametresLien.Position);
             break;
             case EnumStyleLien.Style2:
-                this.DessinerLienStyle2(ParametresLien.ElementDepart, ParametresLien.ElementArrivee);
+                this.DessinerLienStyle2(ParametresLien.ElementDepart, ParametresLien.ElementArrivee, ParametresLien.Position);
             break;
             case EnumStyleLien.Style3:
-                this.DessinerLienStyle3(ParametresLien.ElementDepart, ParametresLien.ElementArrivee);
+                this.DessinerLienStyle3(ParametresLien.ElementDepart, ParametresLien.ElementArrivee, ParametresLien.Position);
             break;
             case EnumStyleLien.Style4:
-                this.DessinerLienStyle4(ParametresLien.ElementDepart, ParametresLien.ElementArrivee);
+                this.DessinerLienStyle4(ParametresLien.ElementDepart, ParametresLien.ElementArrivee, ParametresLien.Position);
             break;
             case EnumStyleLien.Style5:
-                this.DessinerLienStyle5(ParametresLien.ElementDepart, ParametresLien.ElementArrivee, ParametresLien.ParamStyle.nbIcone, ParametresLien.ParamStyle.Icone);
+                this.DessinerLienStyle5(ParametresLien.ElementDepart, ParametresLien.ElementArrivee, ParametresLien.Position, ParametresLien.ParamStyle.nbIcone, ParametresLien.ParamStyle.Icone);
             break;
         }
         
@@ -49,7 +50,7 @@ var LienClass = Class.extend({
     },
 
     // rayon entre les deux éléments, longueur max dès le début
-    DessinerLienStyle1: function(ElementDepart, ElementArrivee){
+    DessinerLienStyle1: function(ElementDepart, ElementArrivee, Position){
 
         var el1 = ElementDepart.innerRect();
         var el2 = ElementArrivee.innerRect();
@@ -57,8 +58,20 @@ var LienClass = Class.extend({
         var line = new createjs.Shape();
         line.graphics.setStrokeStyle(1);
         line.graphics.beginStroke("#18ad2c");
-        line.graphics.moveTo(el1.x+el1.w+20, el1.y+el1.h/2);
-        line.graphics.lineTo(el2.x, el2.y+el2.h/2);
+
+        switch (Position) { // courbe ou ligne droite
+            case EnumPositionLien.GaucheGauche:
+                line.graphics.moveTo(el1.x, el1.y+el1.h/2);
+                line.graphics.lineTo(el1.x-100, el1.y+el1.h/2);
+                line.graphics.lineTo(el1.x-100, el2.y+el2.h/2);
+                line.graphics.lineTo(el2.x, el2.y+el2.h/2);
+                break;
+            case EnumPositionLien.DroiteGauche:
+                line.graphics.moveTo(el1.x+el1.w+20, el1.y+el1.h/2);
+                line.graphics.lineTo(el2.x, el2.y+el2.h/2);
+                break;
+        }   
+
         line.graphics.endStroke;
         line.alpha=0;
         line.shadow = new createjs.Shadow("#18ad2c", 0, 0, 10);
@@ -70,29 +83,46 @@ var LienClass = Class.extend({
             .to({
                 alpha: 1 // s'affiche progressivement
             },
-            500,
+            1500,
             createjs.Ease.linear)
             .to({
                 alpha: 0, // se masque progressivement
             },
-            500,
+            1000,
             createjs.Ease.linear);
 
     },
 
     // flux continu de pointillé qui bouge
-    DessinerLienStyle2: function(ElementDepart, ElementArrivee){
+    DessinerLienStyle2: function(ElementDepart, ElementArrivee, Position){
         
-        var el1 = ElementDepart.innerRect();
-        var el2 = ElementArrivee.innerRect();
+        let el1 = ElementDepart.innerRect();
+        let el2 = ElementArrivee.innerRect();
 
-        var line = new createjs.Shape();
+        let line = new createjs.Shape();
         line.graphics.setStrokeStyle(2);
-        var cmd = line.graphics.setStrokeDash([10,10],0).command;
+        let cmd = line.graphics.setStrokeDash([10,10],0).command;
         line.graphics.beginStroke("#18ad2c");
-        line.graphics.moveTo(el1.x+el1.w+20, el1.y+el1.h/2);
-        line.graphics.lineTo(el2.x, el2.y+el2.h/2);
+        
+        switch (Position) { 
+            case EnumPositionLien.GaucheGauche:
+
+                line.graphics.moveTo(el1.x, el1.y+el1.h/2);
+                line.graphics.lineTo(el1.x-100, el1.y+el1.h/2);
+                line.graphics.lineTo(el1.x-100, el2.y+el2.h/2);
+                line.graphics.lineTo(el2.x, el2.y+el2.h/2);
+
+                break;
+            case EnumPositionLien.DroiteGauche:
+
+                line.graphics.moveTo(el1.x+el1.w+20, el1.y+el1.h/2);
+                line.graphics.lineTo(el2.x, el2.y+el2.h/2);
+
+                break;
+        }   
+
         line.graphics.endStroke;
+
         this.Container.addChild(line);
 
         this.tween = createjs.Tween
@@ -102,7 +132,7 @@ var LienClass = Class.extend({
     },
 
     // Envoi d'un trait
-    DessinerLienStyle3: function(ElementDepart, ElementArrivee){
+    DessinerLienStyle3: function(ElementDepart, ElementArrivee, Position){
 
         var el1 = ElementDepart.innerRect();
         var el2 = ElementArrivee.innerRect();
@@ -112,15 +142,32 @@ var LienClass = Class.extend({
         var y1 = el1.y+el1.h/2;
         var y2 = el2.y+el2.h/2;
              
-        var d = Math.pow(Math.pow(x2-x1,2) + Math.pow(y2-y1,2),0.5);
+        let d1 = 100;
+        let d2 = y2-y1;
+        let d3 = 100;
+        let d = d1+d2+d3;
         var size = 0.2*d; // la taille du trait sera 20% de la distance qui sépare les deux points
       
         var line = new createjs.Shape();
         line.graphics.setStrokeStyle(5,"round");
         var cmd = line.graphics.setStrokeDash([size,d],size).command;
         line.graphics.beginStroke("#18ad2c");
-        line.graphics.moveTo(x1, y1);
-        line.graphics.lineTo(x2, y2);
+
+        switch (Position) { // courbe ou ligne droite
+            case EnumPositionLien.GaucheGauche:
+
+                line.graphics.moveTo(el1.x, el1.y+el1.h/2);
+                line.graphics.lineTo(el1.x-100, el1.y+el1.h/2);
+                line.graphics.lineTo(el1.x-100, el2.y+el2.h/2);
+                line.graphics.lineTo(el2.x, el2.y+el2.h/2);
+
+                break;
+            case EnumPositionLien.DroiteGauche:
+                line.graphics.moveTo(x1, y1);
+                line.graphics.lineTo(x2, y2);
+                break;
+        } 
+
         line.graphics.endStroke;
         line.shadow = new createjs.Shadow("#18ad2c", 0, 0, 10);
         this.Container.addChild(line);
@@ -132,7 +179,7 @@ var LienClass = Class.extend({
     },
 
     // Envoi d'un flux de point et dessin d'un trait
-    DessinerLienStyle4: function(ElementDepart, ElementArrivee){
+    DessinerLienStyle4: function(ElementDepart, ElementArrivee, Position){
 
         var el1 = ElementDepart.innerRect();
         var el2 = ElementArrivee.innerRect();
@@ -146,21 +193,48 @@ var LienClass = Class.extend({
         var line2 = new createjs.Shape();
         line2.graphics.setStrokeStyle(1);
         line2.graphics.beginStroke("#18ad2c");
-        line2.graphics.moveTo(x1, y1);
-        line2.graphics.lineTo(x2, y2);
+
+        switch (Position) { // courbe ou ligne droite
+            case EnumPositionLien.GaucheGauche:
+
+                line2.graphics.moveTo(el1.x, el1.y+el1.h/2);
+                line2.graphics.lineTo(el1.x-100, el1.y+el1.h/2);
+                line2.graphics.lineTo(el1.x-100, el2.y+el2.h/2);
+                line2.graphics.lineTo(el2.x, el2.y+el2.h/2);
+
+                break;
+            case EnumPositionLien.DroiteGauche:
+                line2.graphics.moveTo(x1, y1);
+                line2.graphics.lineTo(x2, y2);
+                break;
+        } 
+
         line2.graphics.endStroke;
         line2.alpha = 0.5;
         this.Container.addChild(line2);
         
         // Création du flux de point
-        var d = Math.pow(Math.pow(x2-x1,2) + Math.pow(y2-y1,2),0.5);
+        let d1 = 100;
+        let d2 = y2-y1;
+        let d3 = 100;
+        let d = d1+d2+d3;
       
         var line = new createjs.Shape();
         line.graphics.setStrokeStyle(5,"round");
         var cmd = line.graphics.setStrokeDash([2,10,2,10,2,10,2,10,2,10,2,d],56).command;
         line.graphics.beginStroke("#18ad2c");
-        line.graphics.moveTo(x1, y1);
-        line.graphics.lineTo(x2, y2);
+        switch (Position) { // courbe ou ligne droite
+            case EnumPositionLien.GaucheGauche:
+                    line.graphics.moveTo(el1.x, el1.y+el1.h/2);
+                    line.graphics.lineTo(el1.x-100, el1.y+el1.h/2);
+                    line.graphics.lineTo(el1.x-100, el2.y+el2.h/2);
+                    line.graphics.lineTo(el2.x, el2.y+el2.h/2);
+                break;
+            case EnumPositionLien.DroiteGauche:
+                line.graphics.moveTo(x1, y1);
+                line.graphics.lineTo(x2, y2);
+                break;
+        } 
         line.graphics.endStroke;
         line.shadow = new createjs.Shadow("#18ad2c", 0, 0, 10);
         this.Container.addChild(line);
@@ -172,39 +246,83 @@ var LienClass = Class.extend({
     },
 
     // Envoi d'un flux d'image
-    DessinerLienStyle5: function(ElementDepart, ElementArrivee, nbIcone, Icone){
+    DessinerLienStyle5: function(ElementDepart, ElementArrivee, Position, nbIcone, Icone){
 
-        var el1 = ElementDepart.innerRect();
-        var el2 = ElementArrivee.innerRect();
-        var x1 = el1.x+el1.w+20;
-        var y1 = el1.y+el1.h/2;
-        var x2 = el2.x-20;
-        var y2 = el2.y+el2.h/2;
-       
+        let el1 = ElementDepart.innerRect();
+        let el2 = ElementArrivee.innerRect();
+
+        let x1 = el1.x+el1.w+20;
+        let y1 = el1.y+el1.h/2;
+        let x2 = el2.x-20;
+        let y2 = el2.y+el2.h/2;
+        
         // Création d'une ligne
-        var line2 = new createjs.Shape();
-        line2.graphics.setStrokeStyle(1);
-        line2.graphics.beginStroke("black");
-        line2.graphics.moveTo(x1, y1);
-        line2.graphics.lineTo(x2, y2);
-        line2.graphics.endStroke;
-        line2.alpha = 0.3;
-        this.Container.addChild(line2);
+        var line = new createjs.Shape();
+        line.graphics.setStrokeStyle(1);
+        line.graphics.beginStroke("black");
+        switch (Position) { // courbe ou ligne droite
+            case EnumPositionLien.GaucheGauche:
+
+                line.graphics.moveTo(el1.x, el1.y+el1.h/2);
+                line.graphics.lineTo(el1.x-100, el1.y+el1.h/2);
+                line.graphics.lineTo(el1.x-100, el2.y+el2.h/2);
+                line.graphics.lineTo(el2.x, el2.y+el2.h/2);
+    
+                break;
+            case EnumPositionLien.DroiteGauche:
+
+                line.graphics.moveTo(x1, y1);
+                line.graphics.lineTo(x2, y2);
+
+                break;
+        } 
+        line.graphics.endStroke;
+        line.alpha = 0.3;
+        this.Container.addChild(line);
         
         // Création de i icones
         for(let i = 0; i < nbIcone; i++){
           
-          let bitmap =  new createjs.Bitmap(ImageManager.IconeLien.getResult(Icone));
-          bitmap.x = x1 - (bitmap.image.height/2);
-          bitmap.y = y1 - (bitmap.image.height/2);
-          this.Container.addChild(bitmap); 
-  
-          // Mise en mouvement des icones
-          this.tween = createjs.Tween
-          .get(bitmap, {loop:true})
-          .wait(100 + i*200) // attention, il faut aussi changer l'espacement à la ligne du dessous
-          .to({x:x2, y:y2 -(bitmap.image.height/2)},1500 - i*200, createjs.Ease.cubicOut);
-      
+            let bitmap =  new createjs.Bitmap(ImageManager.IconeLien.getResult(Icone));
+
+            switch (Position) { // courbe ou ligne droite
+            case EnumPositionLien.GaucheGauche:
+
+                let x1 = el1.x - bitmap.image.width/2;
+                let y1 = el1.y+el1.h/2 - bitmap.image.height/2;
+                let x2 = x1-100;
+                let y2 = y1;
+                let x3 = x2;
+                let y3 = el2.y+el2.h/2 - bitmap.image.height/2;;
+                let x4 = el2.x - bitmap.image.width/2;
+                let y4 = y3;
+
+                bitmap.x = x1;
+                bitmap.y = y1;
+                this.Container.addChild(bitmap); 
+
+                this.tween = createjs.Tween
+                .get(bitmap, {loop:true})
+                .wait(100 + i*200) // attention, il faut aussi changer l'espacement à la ligne du dessous
+                .to({guide:{ path:[x1,y1, x1,y1,x2,y2, x2,y2,x3,y3, x3,y3, x4,y4] }}, 3000 - i*200, createjs.Ease.quadInOut)
+
+
+                break
+            case EnumPositionLien.DroiteGauche:
+
+                bitmap.x = x1 - (bitmap.image.height/2);
+                bitmap.y = y1 - (bitmap.image.height/2);
+                this.Container.addChild(bitmap); 
+
+                // Mise en mouvement des icones
+                this.tween = createjs.Tween
+                .get(bitmap, {loop:true})
+                .wait(100 + i*200) // attention, il faut aussi changer l'espacement à la ligne du dessous
+                .to({x:x2, y:y2 -(bitmap.image.height/2)},1500 - i*200, createjs.Ease.cubicOut);
+
+                break
+            }
+
         }
 
     },

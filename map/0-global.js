@@ -37,3 +37,8 @@ var EnumStyleLien = {
     Style4: 4,
     Style5: 5
 };
+
+var EnumPositionLien = {
+    DroiteGauche: 0,
+    GaucheGauche: 1 
+};
