@@ -8,7 +8,7 @@
     
     <!-- external js lib -->
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
     <script src="libjs/jquery-ui.min.js"></script>
     <script src="libjs/tweenjs-0.6.2.min.js"></script>
     <script src="libjs/easeljs-0.8.2.min.js"></script>
@@ -18,10 +18,11 @@
     <script src="https://code.createjs.com/1.0.0/preloadjs.min.js"></script>
     
     <!-- external css lib -->
-    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" type="text/css" rel="stylesheet">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" type="text/css" rel="stylesheet">
     <link href="libcss/jquery-ui.theme.min.css" rel="stylesheet" />
     <link href="libcss/jquery-ui.structure.min.css" rel="stylesheet" />
     <link href="libcss/jquery-ui.css" rel="stylesheet" />
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
 
     <!-- technical home-made js -->
     <script src="technique/geometrie.js"></script>
@@ -31,6 +32,7 @@
 
     <!-- js -->
     <script src="unittest/tu_DrawLinks.js"></script>
+    <script src="unittest/tu_Table.js"></script>
     <script src="ui/menudataexplorer.js"></script>
     <script src="ui/menugauche.js"></script>
     <script src="map/0-global.js"></script>
@@ -42,6 +44,7 @@
     <script src="main.js"></script>
     
     <!-- css -->
+    <link href="ui/table.css" rel="stylesheet" />
     <link href="ui/loading.css" rel="stylesheet" />
     <link href="ui/menu.css" rel="stylesheet" />
     
@@ -67,17 +70,58 @@
 
      <!-- Fenêtre Data explorer -->
      <div id="DataExplorer" class="vertical-menu">
-          Data Explorer
+
+        <table class="table table-sm w-auto table-bordered">
+            <thead class="thead-dark">
+              <tr>
+                <th scope="col">First</th>
+                <th scope="col">Last</th>
+                <th scope="col">Handle</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Markaaaaaaaaaaaaaaaaaa</br>
+                    ceci est un test</td>
+                <td>Otto</td>
+                <td>@mdo</td>
+              </tr>
+              <tr>
+                <td>Jacobbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb</br>
+                et ça ?</td>
+                <td>Thornton</td>
+                <td>@fat</td>
+              </tr>
+              <tr>
+                <td>Larry the Bird</td>
+                <td></td>
+                <td>@twitter</td>
+              </tr>
+            </tbody>
+          </table>
+          
+          <table class="table table-sm w-auto table-bordered">
+            <tbody>
+              <tr>
+                <th scope="row">Username</th>
+                <td>JackIsJack</td>
+              </tr>
+              <tr>
+                <th scope="row">Password</th>
+                <td>1234</td>
+              </tr>
+            </tbody>
+          </table>
+
     </div> 
 
     <!-- Menu du bas -->
-    <nav id="MenuDuBas" class="navbar navbar-default navbar-fixed-bottom"
-    style="cursor:default;border-width:0px;border-top:solid;border-top-width:1px;border-top-color:gainsboro;">
-      
-      <a href="#" class="glyphicon glyphicon-chevron-left" title="Précédant" onclick=""></a>
-      <a href="#" class="glyphicon glyphicon-pause" title="Précédant" onclick=""></a>
-      <a href="#" class="glyphicon glyphicon-play" title="Précédant" onclick=""></a>
-      <a href="#" class="glyphicon glyphicon-chevron-right" title="Précédant" onclick=""></a>
+    <nav id="MenuDuBas" class="justify-content-center align-items-center navbar navbar-light fixed-bottom">
+
+      <a href="#" class="fa fa-chevron-left" title="Précédant" onclick=""></a>
+      <a href="#" class="fa fa-pause" title="Précédant" onclick=""></a>
+      <a href="#" class="fa fa-play" title="Précédant" onclick=""></a>
+      <a href="#" class="fa fa-chevron-right" title="Précédant" onclick=""></a>
       
     </nav> 
 

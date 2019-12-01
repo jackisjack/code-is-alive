@@ -27,7 +27,7 @@ var MainSiManager =
                 
                // Exécution des tests
                
-               tu_DrawLinkLeftLeft();
+               tu_Table();
                
               };      
           
