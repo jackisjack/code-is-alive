@@ -33,6 +33,7 @@
     <!-- js -->
     <script src="unittest/tu_DrawLinks.js"></script>
     <script src="unittest/tu_Table.js"></script>
+    <script src="unittest/tu_LoadData.js"></script>
     <script src="ui/menudataexplorer.js"></script>
     <script src="ui/menugauche.js"></script>
     <script src="map/0-global.js"></script>
@@ -50,7 +51,7 @@
     
   </head>  
   
-  <body onload="MainSiManager.Init();">
+  <body onload="Main.Init();">
 
    <!-- Loading message -->
     <div id="myModal" class="modal" style="font-family: Lato;color:gainsboro;font-size:40pt;">
@@ -71,8 +72,10 @@
      <!-- Fenêtre Data explorer -->
      <div id="DataExplorer" class="vertical-menu">
 
+        <div style="background-color:#ccc;"><p style="padding-left: 10px;">DATA EXPLORER<a href="#" style="float:right;color:white;font-size:14pt;padding-right: 3px;text-decoration: none;" class="fa fa-times"></a></p></div>
+        
         <table class="table table-sm w-auto table-bordered">
-            <thead class="thead-dark">
+            <thead>
               <tr>
                 <th scope="col">First</th>
                 <th scope="col">Last</th>
@@ -116,14 +119,16 @@
     </div> 
 
     <!-- Menu du bas -->
-    <nav id="MenuDuBas" class="justify-content-center align-items-center navbar navbar-light fixed-bottom">
+    <nav id="MenuDuBas" class="navbar navbar-light fixed-bottom justify-content-center align-items-center">
 
-      <a href="#" class="fa fa-chevron-left" title="Précédant" onclick=""></a>
-      <a href="#" class="fa fa-pause" title="Précédant" onclick=""></a>
-      <a href="#" class="fa fa-play" title="Précédant" onclick=""></a>
-      <a href="#" class="fa fa-chevron-right" title="Précédant" onclick=""></a>
-      
-    </nav> 
+        <a href="#" class="fa fa-chevron-left" title="Précédant" onclick=""></a>
+        <a href="#" class="fa fa-chevron-right" title="Précédant" onclick=""></a>
+        
+        <a href="#" class="fa fa-pause" title="Pause" onclick=""></a>
+        <a href="#" class="fa fa-play" title="Lancer" onclick=""></a>
+
+    </nav>
 
   </body>
+
 </html>

@@ -4,3 +4,8 @@ td, th {
     text-overflow: ellipsis;
     overflow: hidden;
   }
+
+  th {
+    background-color:#001f42;
+    color: white;
+} 

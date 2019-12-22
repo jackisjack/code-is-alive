@@ -1,4 +1,4 @@
-var MainSiManager =
+var Main =
 {
         Init: function () {
 
@@ -27,10 +27,23 @@ var MainSiManager =
                 
                // Exécution des tests
                
-               tu_Table();
+               tu_DrawLink2();
                
               };      
           
+    },
+
+    Processus:null,
+    Elements:null,
+
+    LoadData: function(jsonfile){
+
+        fetch(jsonfile).then(function(response){
+            return response.json();
+        }).then(function(data){
+            this.Processus = data.Processus;
+            this.Elements = data.Elements;
+        });
     }
 
 }

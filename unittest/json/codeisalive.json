@@ -1,0 +1,189 @@
+﻿{"Elements":
+ [
+["Element","Niveau","Icone"]
+,["Real Life","0",""]
+,["User","","life_user"]
+,["Front Web","0",""]
+,["Page_Login","","html_page"]
+,["Form_Auth","","html_dom"]
+,["txt_UserName","","html_dom"]
+,["txt_Password","","html_dom"]
+,["bt_Submit","","html_dom"]
+,["Page_Home","","html_page"]
+,["Back Office","0",""]
+,["Views","1",""]
+,["view_Login","","dotnetmvc_view"]
+,["view_Home","","dotnetmvc_view"]
+,["Controlers","1",""]
+,["Login_Controler","","dotnet_class"]
+,["Business Layer","1",""]
+,["UserManager","","dotnet_class"]
+,["Authentificate","","dotnet_method"]
+,["DataLayer","1",""]
+,["EntityFramework","",""]
+,["Data Layer","0",""]
+,["db_demo","","mssql_database"]
+,["Tables","1",""]
+,["t_user","","mssql_table"]
+ ]
+
+,
+"Processus":[
+{"Nom":"Successful authentification",
+"Etapes":[
+{"Element":"User","Element2":"","ProcessusDérivés":""
+,"Data":[
+		[
+		["","E-mail","toto@yahoo.fr"],
+		["","Password","1234"]
+		]
+]
+},
+{"Element":"User","Element2":"txt_UserName","ProcessusDérivés":""
+,"Data":[
+		[
+		["","E-mail","toto@yahoo.fr"]
+		]
+]
+},
+{"Element":"User","Element2":"txt_Password","ProcessusDérivés":""
+,"Data":[
+		[
+		["","Password","1234"]
+		]
+]
+},
+{"Element":"User","Element2":"bt_Submit","ProcessusDérivés":""
+,"Data":[
+		[
+		["bt_Submit","",""]
+		]
+]
+},
+{"Element":"bt_Submit","Element2":"LoginControler","ProcessusDérivés":""
+,"Data":[
+		[
+		["LoginControler","",""]
+		]
+]
+},
+{"Element":"LoginControler","Element2":"Authentificate","ProcessusDérivés":""
+,"Data":[
+		[
+		["","E-mail","toto@yahoo.fr"],
+		["","Password","1234"]
+		]
+]
+},
+{"Element":"Authentificate","Element2":"","ProcessusDérivés":""
+,"Data":[
+		[
+		["c","HashedPassword","1zz)°234"]
+		]
+]
+},
+{"Element":"Authentificate","Element2":"EntityFramework","ProcessusDérivés":""
+,"Data":[
+		[
+		["","Requête Linq","select  …"]
+		]
+]
+},
+{"Element":"EntityFramework","Element2":"db_demo","ProcessusDérivés":""
+,"Data":[
+		[
+		["","Requête Sql","SELECT …"]
+		]
+]
+},
+{"Element":"db_demo","Element2":"t_user","ProcessusDérivés":"Failing authentification"
+,"Data":[
+		[
+		["r","username","JackIsJack"],
+		["r","HashedPassword","1zz)°234"]
+		]
+,		[
+		[">","E-mail","HashedPassword","UserName"],
+		["","wou@tata.com","4#z567,,","Tata"],
+		["","vivi@titi.com","7z4#!7541","Titi"],
+		["r","toto@yahoo.fr","1zz)°234","JackIsJack"]
+		]
+]
+},
+{"Element":"db_demo","Element2":"EntityFramework","ProcessusDérivés":""
+,"Data":[
+		[
+		["c","username","JackIsJack"]
+		]
+]
+},
+{"Element":"EntityFramework","Element2":"Authentificate","ProcessusDérivés":""
+,"Data":[
+		[
+		["c","username","JackIsJack"]
+		]
+]
+},
+{"Element":"LoginControler","Element2":"Home_view","ProcessusDérivés":""
+,"Data":[
+		[
+		["","authenticated","true"]
+		]
+]
+},
+{"Element":"Home_view","Element2":"Page_Home","ProcessusDérivés":""
+,"Data":[
+		[
+		["","WelcomeMessage","Welcome JackIsJack"]
+		]
+]
+}]
+}
+,
+{"Nom":"Failing authentification",
+"Etapes":[
+{"Element":"db_demo","Element2":"t_user","ProcessusDérivés":""
+,"Data":[
+		[
+		["r","username","JackIsJack"],
+		["r","HashedPassword","1zz)°234"]
+		]
+,		[
+		[">","E-mail","HashedPassword"],
+		["","Titi","4#z567,,"],
+		["","Toto","7z4#!7541"],
+		["","toto@yahoo.fr","45aeaze"]
+		]
+]
+},
+{"Element":"db_demo","Element2":"EntityFramework","ProcessusDérivés":""
+,"Data":[
+		[
+		["c","username"]
+		]
+]
+},
+{"Element":"EntityFramework","Element2":"Authentificate","ProcessusDérivés":""
+,"Data":[
+		[
+		["c","username","JackIsJack"]
+		]
+]
+},
+{"Element":"LoginControler","Element2":"Home_view","ProcessusDérivés":""
+,"Data":[
+		[
+		["","authenticated","true"]
+		]
+]
+},
+{"Element":"Home_view","Element2":"Page_Home","ProcessusDérivés":""
+,"Data":[
+		[
+		["","WelcomeMessage","Welcome JackIsJack"]
+		]
+]
+}]
+}
+]
+}

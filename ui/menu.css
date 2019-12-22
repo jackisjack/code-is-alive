@@ -63,6 +63,6 @@ body {
 }
 
 #MenuDuBas a:hover {
-    background-color: #ccc; /* Dark grey background on mouse-over */
+    background-color: #808080; /* Dark grey background on mouse-over */
     color: white;
 }
