@@ -66,3 +66,7 @@ body {
     background-color: #808080; /* Dark grey background on mouse-over */
     color: white;
 }
+
+.divider-vertical {
+    border-left: 1px solid #a5a5a5;
+}

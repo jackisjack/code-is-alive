@@ -1,5 +1,6 @@
 var Main =
 {
+        Fenetres:null,
         Init: function () {
 
             // Fenêtre loading;
@@ -17,7 +18,7 @@ var Main =
             ImageManager.OnComplete(handleComplete);
             ImageManager.Load();
 
-            function handleComplete() {
+            async function handleComplete() {
                           
                 HideLoading();
   
@@ -25,9 +26,17 @@ var Main =
                
                 Graphisme.Init();
                 
+                // Chargement des datas 
+
+                await Main.LoadData("./unittest/json/codeisalive.json");
+
+                // Initialisation des ui
+
+                initializationUserInterface();
+
                // Exécution des tests
                
-               tu_DrawLink2();
+               //tu_DataUi_LoadData();
                
               };      
           
@@ -36,14 +45,14 @@ var Main =
     Processus:null,
     Elements:null,
 
-    LoadData: function(jsonfile){
+    LoadData: async function(jsonfile){
 
-        fetch(jsonfile).then(function(response){
-            return response.json();
-        }).then(function(data){
-            this.Processus = data.Processus;
-            this.Elements = data.Elements;
-        });
+        let response = await fetch(jsonfile);
+        let data = await response.json();
+
+        this.Processus = data.Processus;
+        this.Elements = data.Elements;
+
     }
 
 }

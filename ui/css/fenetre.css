@@ -1,0 +1,19 @@
+/* Surcharge de jquery ui */
+
+.ui-corner-all {
+    border-bottom-right-radius: 0px !important;
+    border-bottom-left-radius: 0px !important;
+    border-top-left-radius: 0px !important;
+    border-top-right-radius: 0px !important;
+  }
+  
+  .ui-dialog-titlebar {
+    padding: .0em 0.5em !important;
+    
+  }
+  
+  .ui-widget-header {
+    font-weight: normal !important;
+    background: #d4d4d4 !important;
+    color: black !important;
+  }

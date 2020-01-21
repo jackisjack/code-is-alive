@@ -1,0 +1,65 @@
+table {
+  margin:10px;
+}
+
+td, th {
+    max-width: 250px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+
+th {
+    background-color: #d4d4d4;
+    color: black;
+}
+
+.fa-eye{
+	color: black;
+  font-size: 20px;
+  margin: 2px;
+}
+
+.fa-plus{
+	color: black;
+  font-size: 20px;
+  margin: 2px;
+}
+
+.fa-times{
+	color: black;
+  font-size: 20px;
+  margin: 2px;
+}
+
+.fa-pencil{
+	color: black;
+  font-size: 20px;
+  margin: 2px;
+}
+
+.readcolor{
+  background-color: #faffbf;
+}
+
+.createcolor{
+  background-color: #bfe9ff;
+}
+
+.updatecolor{
+  background-color: #dff5dc;
+}
+
+.deletecolor{
+  background-color: #d9d9d9;
+}
+
+.thblank{
+border: none !important;
+background-color: white;
+width: 30px;
+}
+
+.tdblank{
+border: none !important;
+}
