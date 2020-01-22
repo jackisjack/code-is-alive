@@ -35,6 +35,10 @@ var ElementClass = Class.extend({
         this.Container.ChildType = EnumChildType.Element;
   
         // L'image
+        let icone = ImageManager.IconeElement.getResult(this.Icone);
+        if(icone===null){
+            throw('L\'icone '+ this.Icone + ' est introuvable');
+        }
         this.bitmap =  new createjs.Bitmap(ImageManager.IconeElement.getResult(this.Icone));
         this.bitmap.ChildType = EnumChildType.Bitmap; // typage du child pour bien faire sa mesure
         this.bitmap.ReferenceToObjet = this; // nécessaire pour récupérer la référence du bitmap au clic

@@ -16,7 +16,7 @@
     
     // Création de la fenêtre
     $( "#" + this.dom.id).dialog(
-       Object.assign(
+       Object.assign( // fusion de deux objets
                       {
                       resizable: true,
                       height: this.height,

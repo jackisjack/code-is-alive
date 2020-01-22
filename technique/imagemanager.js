@@ -14,7 +14,20 @@ var ImageManager = {
         this.IconeElement = new createjs.LoadQueue();
         this.IconeElement.on("complete", this.Load2, that);
         this.IconeElement.loadManifest([
-            {id: "petitcarrebleu", src:"https://cdn.glitch.com/1f9a81fa-715f-4b6a-abac-840468608b33%2Fhub.png?v=1574020275932"}
+            {id: "blackbox", src:"./images/blackbox.png"},
+            {id: "life_user", src:"./images/life_user.png"},
+            {id: "html_dom", src:"./images/html_dom.png"},
+            {id: "html_page", src:"./images/html_page.png"},
+            {id: "mssql_view", src:"./images/mssql_view.png"},
+            {id: "mssql_table", src:"./images/mssql_table.png"},
+            {id: "mssql_sp", src:"./images/mssql_sp.png"},
+            {id: "mssql_instance", src:"./images/mssql_instance.png"},
+            {id: "mssql_db", src:"./images/mssql_db.png"},
+            {id: "dotnetmvc_view", src:"./images/dotnetmvc_view.png"},
+            {id: "csharp_class", src:"./images/csharp_class.png"},
+            {id: "csharp_method", src:"./images/csharp_method.png"},
+            {id: "webservice", src:"./images/webservice.png"},
+            {id: "system_folder", src:"./images/system_folder.png"}
         ]);
 
     },
