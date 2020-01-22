@@ -85,6 +85,9 @@ var ElementClass = Class.extend({
         // Visible ou pas
         this.Visible(ParametresElement.Visible); 
 
+        // Ajout des propriétés custom
+        this.customProperties= ParametresElement.customProperties;
+        
     },
 
     x: function (_x, _EnumTypeCoord) {
@@ -280,6 +283,11 @@ var ElementClass = Class.extend({
 
     Selectionner: function () {
         this.Vue.Selectionner(this);
+    },
+
+    Focus: function(){
+        let innerRect = this.innerRect();
+        this.Vue.Focus(innerRect.x+innerRect.w/2, innerRect.y+innerRect.h/2, 1000);
     },
 
     Visible: function (_visible) {

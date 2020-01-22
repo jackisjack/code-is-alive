@@ -6,7 +6,7 @@ async function tu_DataUi_LoadData(){
         let f1 = Main.Fenetres.ajouter({title:"Exemple", width:'auto', height:'auto'});
         f1.afficher();
         
-        await Main.LoadData("./unittest/json/codeisalive.json");
+        await Main.LoadData("./data/codeisalive.json");
 
         generate_table(f1.dom, toto[0]);
 

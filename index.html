@@ -40,8 +40,8 @@
     <script src="unittest/tu_Table.js"></script>
     <script src="unittest/tu_LoadData.js"></script>
     <script src="unittest/tu_DataUi.js"></script>
+    <script src="process/ProcessusDessin.js"></script>
     <script src="ui/js/indexevent.js"></script>
-    <script src="ui/js/obj/ProcessusEnCours.js"></script>
     <script src="ui/js/obj/Fenetres.js"></script>
     <script src="ui/js/obj/Fenetre.js"></script>
     <script src="ui/js/dataui.js"></script>
@@ -55,6 +55,7 @@
     <script src="ui/js/loading.js"></script>
     
     <!-- css -->
+    
     <link href="ui/css/table.css" rel="stylesheet" />
     <link href="ui/css/loading.css" rel="stylesheet" />
     <link href="ui/css/menu.css" rel="stylesheet" />
@@ -99,8 +100,8 @@
             <i class="divider-vertical"></i> 
             
             <!-- Boutons d'action sur la scène -->
-            <a href="#" class="fa fa-chevron-left" title="Précédant" onclick=""></a>
-            <a href="#" class="fa fa-chevron-right" title="Précédant" onclick=""></a>
+            <a href="#" id="bt_IndexPrevious" class="fa fa-chevron-left" title="Précédant" onclick="fn_bt_IndexPrevious_Click()"></a>
+            <a href="#" id="bt_IndexNext" class="fa fa-chevron-right" title="Suivant" onclick="fn_bt_IndexNext_Click()"></a>
             <a href="#" class="fa fa-pause" title="Pause" onclick=""></a>
             <a href="#" class="fa fa-play" title="Lancer" onclick=""></a>
 

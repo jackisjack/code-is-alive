@@ -1,6 +1,8 @@
 var Main =
 {
         Fenetres:null,
+        ProcessusControlable:null,
+        
         Init: function () {
 
             // Fenêtre loading;
@@ -27,16 +29,19 @@ var Main =
                 
                 // Chargement des datas 
 
-                await Main.LoadData("./unittest/json/codeisalive.json");
+                await Main.LoadData("./data/codeisalive.json");
 
                 // Initialisation des ui
 
                 initializationUserInterface();
 
-                // Dessinner tous les éléments
+                // Dessiner tous les éléments
                
                 Main.DessinerTousLesElement();
                
+                // Dessin du premier processus
+                Main.ProcessusControlable = new ProcessusDessin(Graphisme.VueFocus, Main.Processus[0])
+
               };      
           
     },
@@ -65,15 +70,18 @@ var Main =
         let y_i = 300;
         let max_x = 500;
         let margin=100;
+        let layer_id=-1;
 
         // Lecture de tous les éléments
         for(var i = 1; i < this.Elements.length ; i++){
             
+            // Si le niveau 0, alors qu'il s'agit d'une couche = une nouvelle colonne d'éléments
             if(this.Elements[i][colNiveau]=='0'){
                 y=y_i;
                 x=max_x+margin;
                 deltax=0
-            }
+                layer_id+=1;
+            } // sinon on complète la colonne, en tenant compte de l'indentation
             else {
                 deltax=this.Elements[i][colNiveau]*20;
                 y+=40;
@@ -84,9 +92,10 @@ var Main =
                 Libelle: this.Elements[i][colElement],
                 IdObjet: 1, 
                 x: x+deltax,
-                y: y 
+                y: y,
+                customProperties:{layer_id:layer_id}
             });
-
+            
             let dimElement = Element.innerRect();
             max_x = Math.max(max_x, dimElement.w + dimElement.x);
 

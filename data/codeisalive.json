@@ -60,14 +60,14 @@
 		]
 ]
 },
-{"Element":"bt_Submit","Element2":"LoginControler","ProcessusDérivés":""
+{"Element":"bt_Submit","Element2":"Login_Controler","ProcessusDérivés":""
 ,"Data":[
 		[
-		["LoginControler","",""]
+		["Login_Controler","",""]
 		]
 ]
 },
-{"Element":"LoginControler","Element2":"Authentificate","ProcessusDérivés":""
+{"Element":"Login_Controler","Element2":"Authentificate","ProcessusDérivés":""
 ,"Data":[
 		[
 		["","E-mail","toto@yahoo.fr"],
@@ -124,14 +124,21 @@
 		]
 ]
 },
-{"Element":"LoginControler","Element2":"Home_view","ProcessusDérivés":""
+{"Element":"Authentificate","Element2":"Login_Controler","ProcessusDérivés":""
 ,"Data":[
 		[
 		["","authenticated","true"]
 		]
 ]
 },
-{"Element":"Home_view","Element2":"Page_Home","ProcessusDérivés":""
+{"Element":"Login_Controler","Element2":"view_Home","ProcessusDérivés":""
+,"Data":[
+		[
+		["","authenticated","true"]
+		]
+]
+},
+{"Element":"view_Home","Element2":"Page_Home","ProcessusDérivés":""
 ,"Data":[
 		[
 		["","WelcomeMessage","Welcome JackIsJack"]
@@ -170,14 +177,14 @@
 		]
 ]
 },
-{"Element":"LoginControler","Element2":"Home_view","ProcessusDérivés":""
+{"Element":"LoginControler","Element2":"view_Home","ProcessusDérivés":""
 ,"Data":[
 		[
 		["","authenticated","true"]
 		]
 ]
 },
-{"Element":"Home_view","Element2":"Page_Home","ProcessusDérivés":""
+{"Element":"view_Home","Element2":"Page_Home","ProcessusDérivés":""
 ,"Data":[
 		[
 		["","WelcomeMessage","Welcome JackIsJack"]

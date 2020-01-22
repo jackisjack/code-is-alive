@@ -104,20 +104,36 @@ var LienClass = Class.extend({
         let cmd = line.graphics.setStrokeDash([10,10],0).command;
         line.graphics.beginStroke("#18ad2c");
         
+
         switch (Position) { 
             case EnumPositionLien.GaucheGauche:
 
-                line.graphics.moveTo(el1.x, el1.y+el1.h/2);
-                line.graphics.lineTo(el1.x-100, el1.y+el1.h/2);
-                line.graphics.lineTo(el1.x-100, el2.y+el2.h/2);
-                line.graphics.lineTo(el2.x, el2.y+el2.h/2);
+                if (el1.x < el2.x) {
+                    line.graphics.moveTo(el1.x, el1.y+el1.h/2);
+                    line.graphics.lineTo(el1.x-50, el1.y+el1.h/2);
+                    line.graphics.lineTo(el1.x-50, el2.y+el2.h/2);
+                    line.graphics.lineTo(el2.x, el2.y+el2.h/2);
+                } 
+                else 
+                {
+                    line.graphics.moveTo(el1.x+el1.w, el1.y+el1.h/2);
+                    line.graphics.lineTo(el1.x+el1.w+50, el1.y+el1.h/2);
+                    line.graphics.lineTo(el1.x+el1.w+50, el2.y+el2.h/2);
+                    line.graphics.lineTo(el2.x+el2.w, el2.y+el2.h/2);
+                }
 
                 break;
             case EnumPositionLien.DroiteGauche:
-
-                line.graphics.moveTo(el1.x+el1.w+20, el1.y+el1.h/2);
-                line.graphics.lineTo(el2.x, el2.y+el2.h/2);
-
+                
+                if (el1.x < el2.x) {
+                    line.graphics.moveTo(el1.x+el1.w+20, el1.y+el1.h/2);
+                    line.graphics.lineTo(el2.x, el2.y+el2.h/2);
+                }
+                else
+                {
+                    line.graphics.moveTo(el1.x-20, el1.y+el1.h/2);
+                    line.graphics.lineTo(el2.x+el2.w+20, el2.y+el2.h/2);
+                }
                 break;
         }   
 

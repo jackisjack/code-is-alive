@@ -1,4 +1,0 @@
-let ProcessusEnCours = function({}){
-
-
-}

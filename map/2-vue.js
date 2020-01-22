@@ -359,11 +359,12 @@ var VueClass = Class.extend({
                                                 IdObjet: Args.IdObjet,
                                                 Libelle: Args.Libelle,
                                                 x: Args.x,
-                                                y: Args.y
+                                                y: Args.y,
+                                                customProperties: Args.customProperties
                                             }
                                         );                                 
 
-        this.ListeElement.push(nouvelElement);
+        this.ListeElement[nouvelElement.Libelle] = nouvelElement;
 
         return nouvelElement;
 
@@ -393,7 +394,7 @@ var VueClass = Class.extend({
 
         this.ListeLien.push(nouveauLien);
 
-        return IdLien;
+        return nouveauLien;
 
     },
 
@@ -501,7 +502,7 @@ var VueClass = Class.extend({
         var that = this;
 
         var tween = createjs.Tween
-            .get(this.mainContainer)
+            .get(this.mainContainer, {override:true})
             .to({
                 x: pos_x_final,
                 y: pos_y_final
