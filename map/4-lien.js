@@ -59,18 +59,8 @@ var LienClass = Class.extend({
         line.graphics.setStrokeStyle(1);
         line.graphics.beginStroke("#18ad2c");
 
-        switch (Position) { // courbe ou ligne droite
-            case EnumPositionLien.GaucheGauche:
-                line.graphics.moveTo(el1.x, el1.y+el1.h/2);
-                line.graphics.lineTo(el1.x-100, el1.y+el1.h/2);
-                line.graphics.lineTo(el1.x-100, el2.y+el2.h/2);
-                line.graphics.lineTo(el2.x, el2.y+el2.h/2);
-                break;
-            case EnumPositionLien.DroiteGauche:
-                line.graphics.moveTo(el1.x+el1.w+20, el1.y+el1.h/2);
-                line.graphics.lineTo(el2.x, el2.y+el2.h/2);
-                break;
-        }   
+        // Dessin du lien en fonction de la position
+        this.DessinerLien(line, el1, el2, Position);
 
         line.graphics.endStroke;
         line.alpha=0;
@@ -104,38 +94,8 @@ var LienClass = Class.extend({
         let cmd = line.graphics.setStrokeDash([10,10],0).command;
         line.graphics.beginStroke("#18ad2c");
         
-
-        switch (Position) { 
-            case EnumPositionLien.GaucheGauche:
-
-                if (el1.x < el2.x) {
-                    line.graphics.moveTo(el1.x, el1.y+el1.h/2);
-                    line.graphics.lineTo(el1.x-50, el1.y+el1.h/2);
-                    line.graphics.lineTo(el1.x-50, el2.y+el2.h/2);
-                    line.graphics.lineTo(el2.x, el2.y+el2.h/2);
-                } 
-                else 
-                {
-                    line.graphics.moveTo(el1.x+el1.w, el1.y+el1.h/2);
-                    line.graphics.lineTo(el1.x+el1.w+50, el1.y+el1.h/2);
-                    line.graphics.lineTo(el1.x+el1.w+50, el2.y+el2.h/2);
-                    line.graphics.lineTo(el2.x+el2.w, el2.y+el2.h/2);
-                }
-
-                break;
-            case EnumPositionLien.DroiteGauche:
-                
-                if (el1.x < el2.x) {
-                    line.graphics.moveTo(el1.x+el1.w+20, el1.y+el1.h/2);
-                    line.graphics.lineTo(el2.x, el2.y+el2.h/2);
-                }
-                else
-                {
-                    line.graphics.moveTo(el1.x-20, el1.y+el1.h/2);
-                    line.graphics.lineTo(el2.x+el2.w+20, el2.y+el2.h/2);
-                }
-                break;
-        }   
+        // Dessin du lien en fonction de la position
+        this.DessinerLien(line, el1, el2, Position);
 
         line.graphics.endStroke;
 
@@ -169,20 +129,8 @@ var LienClass = Class.extend({
         var cmd = line.graphics.setStrokeDash([size,d],size).command;
         line.graphics.beginStroke("#18ad2c");
 
-        switch (Position) { // courbe ou ligne droite
-            case EnumPositionLien.GaucheGauche:
-
-                line.graphics.moveTo(el1.x, el1.y+el1.h/2);
-                line.graphics.lineTo(el1.x-100, el1.y+el1.h/2);
-                line.graphics.lineTo(el1.x-100, el2.y+el2.h/2);
-                line.graphics.lineTo(el2.x, el2.y+el2.h/2);
-
-                break;
-            case EnumPositionLien.DroiteGauche:
-                line.graphics.moveTo(x1, y1);
-                line.graphics.lineTo(x2, y2);
-                break;
-        } 
+        // Dessin du lien en fonction de la position
+        this.DessinerLien(line, el1, el2, Position);
 
         line.graphics.endStroke;
         line.shadow = new createjs.Shadow("#18ad2c", 0, 0, 10);
@@ -210,20 +158,8 @@ var LienClass = Class.extend({
         line2.graphics.setStrokeStyle(1);
         line2.graphics.beginStroke("#18ad2c");
 
-        switch (Position) { // courbe ou ligne droite
-            case EnumPositionLien.GaucheGauche:
-
-                line2.graphics.moveTo(el1.x, el1.y+el1.h/2);
-                line2.graphics.lineTo(el1.x-100, el1.y+el1.h/2);
-                line2.graphics.lineTo(el1.x-100, el2.y+el2.h/2);
-                line2.graphics.lineTo(el2.x, el2.y+el2.h/2);
-
-                break;
-            case EnumPositionLien.DroiteGauche:
-                line2.graphics.moveTo(x1, y1);
-                line2.graphics.lineTo(x2, y2);
-                break;
-        } 
+        // Dessin du lien en fonction de la position
+        this.DessinerLien(line2, el1, el2, Position);
 
         line2.graphics.endStroke;
         line2.alpha = 0.5;
@@ -239,18 +175,10 @@ var LienClass = Class.extend({
         line.graphics.setStrokeStyle(5,"round");
         var cmd = line.graphics.setStrokeDash([2,10,2,10,2,10,2,10,2,10,2,d],56).command;
         line.graphics.beginStroke("#18ad2c");
-        switch (Position) { // courbe ou ligne droite
-            case EnumPositionLien.GaucheGauche:
-                    line.graphics.moveTo(el1.x, el1.y+el1.h/2);
-                    line.graphics.lineTo(el1.x-100, el1.y+el1.h/2);
-                    line.graphics.lineTo(el1.x-100, el2.y+el2.h/2);
-                    line.graphics.lineTo(el2.x, el2.y+el2.h/2);
-                break;
-            case EnumPositionLien.DroiteGauche:
-                line.graphics.moveTo(x1, y1);
-                line.graphics.lineTo(x2, y2);
-                break;
-        } 
+
+        // Dessin du lien en fonction de la position
+        this.DessinerLien(line, el1, el2, Position);
+        
         line.graphics.endStroke;
         line.shadow = new createjs.Shadow("#18ad2c", 0, 0, 10);
         this.Container.addChild(line);
@@ -340,6 +268,41 @@ var LienClass = Class.extend({
             }
 
         }
+
+    },
+
+    DessinerLien: function(line, el1, el2, Position){
+
+        switch (Position) { 
+            case EnumPositionLien.GaucheGauche:
+
+                if (el1.x < el2.x) {
+                    line.graphics.moveTo(el1.x, el1.y+el1.h/2);
+                    line.graphics.lineTo(el1.x-50, el1.y+el1.h/2);
+                    line.graphics.lineTo(el1.x-50, el2.y+el2.h/2);
+                    line.graphics.lineTo(el2.x, el2.y+el2.h/2);
+                } 
+                else 
+                {
+                    line.graphics.moveTo(el1.x+el1.w, el1.y+el1.h/2);
+                    line.graphics.lineTo(el1.x+el1.w+50, el1.y+el1.h/2);
+                    line.graphics.lineTo(el1.x+el1.w+50, el2.y+el2.h/2);
+                    line.graphics.lineTo(el2.x+el2.w, el2.y+el2.h/2);
+                }
+
+                break;
+            case EnumPositionLien.DroiteGauche:
+                if (el1.x < el2.x) {
+                    line.graphics.moveTo(el1.x+el1.w+20, el1.y+el1.h/2);
+                    line.graphics.lineTo(el2.x, el2.y+el2.h/2);
+                }
+                else
+                {
+                    line.graphics.moveTo(el1.x-20, el1.y+el1.h/2);
+                    line.graphics.lineTo(el2.x+el2.w+20, el2.y+el2.h/2);
+                }
+                break;
+        }   
 
     },
 
