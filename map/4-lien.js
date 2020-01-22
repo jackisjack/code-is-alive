@@ -284,10 +284,10 @@ var LienClass = Class.extend({
                 } 
                 else 
                 {
-                    line.graphics.moveTo(el1.x+el1.w, el1.y+el1.h/2);
+                    line.graphics.moveTo(el1.x+el1.w+20, el1.y+el1.h/2);
                     line.graphics.lineTo(el1.x+el1.w+50, el1.y+el1.h/2);
                     line.graphics.lineTo(el1.x+el1.w+50, el2.y+el2.h/2);
-                    line.graphics.lineTo(el2.x+el2.w, el2.y+el2.h/2);
+                    line.graphics.lineTo(el2.x+el2.w+20, el2.y+el2.h/2);
                 }
 
                 break;

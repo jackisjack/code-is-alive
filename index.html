@@ -71,8 +71,16 @@
       <p></p>
   </div>
 
+    
+  
+
     <!-- Zone de dessin -->
     <canvas id="MainCanvas" class="CalqueCanvas"></canvas>
+    
+    <!-- Titre du système -->
+    <div style="position:absolute;top:20px; left:30px;color:lightgray">
+        <h3>Une application web ASP.NET MVC</h3> </br>
+    </div>
 
     <!-- Les coordonnées de la souris -->
     <div class="menu-bas-droite">
@@ -99,9 +107,14 @@
             <!-- Séparateur -->
             <i class="divider-vertical"></i> 
             
-            <!-- Boutons d'action sur la scène -->
+            <!-- Boutons d'action de play manuel -->
             <a href="#" id="bt_IndexPrevious" class="fa fa-chevron-left" title="Précédant" onclick="fn_bt_IndexPrevious_Click()"></a>
             <a href="#" id="bt_IndexNext" class="fa fa-chevron-right" title="Suivant" onclick="fn_bt_IndexNext_Click()"></a>
+
+            <!-- Séparateur -->
+            <i class="divider-vertical"></i> 
+
+            <!-- Boutons d'action de play auto -->
             <a href="#" class="fa fa-pause" title="Pause" onclick=""></a>
             <a href="#" class="fa fa-play" title="Lancer" onclick=""></a>
 

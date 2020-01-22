@@ -29,7 +29,6 @@ let ProcessusDessin= function(vue, processusData){
             }
             
             // Masquage du précédant lien
-
             if (this.lien_actuel!==null){
                 this.lien_actuel.Visible(false);
             }
