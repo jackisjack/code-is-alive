@@ -1,4 +1,4 @@
-let ProcessusDessin= function(vue, processusData){
+let ProcessusDessin= function(vue, processusData, fAction){
 
     this.etape_id = -1;
     this.etape_id_max = processusData.Etapes.length - 1;
@@ -42,6 +42,18 @@ let ProcessusDessin= function(vue, processusData){
                     Position: Position
                 });
 
+        }
+
+        // Suppression du contenu de la fenêtre des actions
+        while (fAction.dom.firstChild) {
+            fAction.dom.removeChild(fAction.dom.firstChild);
+        }
+
+        // Affichage des datas s'il y en a
+        if (etape.Data!==undefined){
+            for(let i=0; i < etape.Data.length; i++){
+                generate_table(fAction.dom, etape.Data[i]);
+            }
         }
     }
 

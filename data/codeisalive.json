@@ -54,18 +54,8 @@
 ]
 },
 {"Element":"User","Element2":"bt_Submit","ProcessusDérivés":""
-,"Data":[
-		[
-		["bt_Submit","",""]
-		]
-]
 },
 {"Element":"bt_Submit","Element2":"Login_Controler","ProcessusDérivés":""
-,"Data":[
-		[
-		["Login_Controler","",""]
-		]
-]
 },
 {"Element":"Login_Controler","Element2":"Authentificate","ProcessusDérivés":""
 ,"Data":[

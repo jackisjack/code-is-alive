@@ -25,7 +25,7 @@
                       autoOpen: false,
                       position:{
                                 my: 'left top',
-                                at: 'left top'
+                                at: 'left+30 top+80'
                                 }
                       },
                       extraprops

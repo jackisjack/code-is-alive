@@ -1,48 +1,52 @@
 var Main =
 {
-        Fenetres:null,
-        ProcessusControlable:null,
-        
-        Init: function () {
+    Fenetres:null,
+    ProcessusControlable:null,
+    
+    Init: function () {
 
-            // Fenêtre loading;
+        // Fenêtre loading;
 
-            ShowLoading();
+        ShowLoading();
 
-            // Pour gérer les mouvements suivants une ligne (non utilisé pour le moment)
+        // Pour gérer les mouvements suivants une ligne (non utilisé pour le moment)
 
-            createjs.MotionGuidePlugin.install();
+        createjs.MotionGuidePlugin.install();
 
-            // Chargement en mémoire des îcones (pour leur ajout futur sur la scène)
+        // Chargement en mémoire des îcones (pour leur ajout futur sur la scène)
 
-            SetLoadingMessage("Chargement de la carte");
-            ImageManager.OnComplete(handleComplete);
-            ImageManager.Load();
+        SetLoadingMessage("Chargement de la carte");
+        ImageManager.OnComplete(handleComplete);
+        ImageManager.Load();
 
-            async function handleComplete() {
-                          
-                HideLoading();
-  
-                // Initialisation de la vue
-               
-                Graphisme.Init();
-                
-                // Chargement des datas 
+        async function handleComplete() {
+                        
+            HideLoading();
 
-                await Main.LoadData("./data/codeisalive.json");
+            // Initialisation de la vue
+            
+            Graphisme.Init();
+            
+            // Chargement des datas 
 
-                // Initialisation des ui
+            await Main.LoadData("./data/codeisalive.json");
 
-                initializationUserInterface();
+            // Initialisation des ui
 
-                // Dessiner tous les éléments
-               
-                Main.DessinerTousLesElement();
-               
-                // Dessin du premier processus
-                Main.ProcessusControlable = new ProcessusDessin(Graphisme.VueFocus, Main.Processus[0])
+            initializationUserInterface();
 
-              };      
+            // Dessiner tous les éléments
+            
+            Main.DessinerTousLesElement();
+            
+            // Affichage fenêtre data
+            let fAction = Main.Fenetres.ajouter({title:"Actions", width:'auto', height:'auto'});
+            fAction.afficher();
+            
+            // Dessin du premier processus
+            Main.ProcessusControlable = new ProcessusDessin(Graphisme.VueFocus, Main.Processus[0], fAction);
+            
+        };      
           
     },
 
