@@ -40,7 +40,7 @@ var Main =
             Main.DessinerTousLesElement();
             
             // Affichage fenêtre data
-            let fAction = Main.Fenetres.ajouter({title:"Actions", width:'auto', height:'auto'});
+            let fAction = Main.Fenetres.ajouter({title:'Actions', width:'auto', height:'auto'});
             fAction.afficher();
             
             // Dessin du premier processus

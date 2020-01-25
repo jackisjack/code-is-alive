@@ -6,6 +6,11 @@ let ProcessusDessin= function(vue, processusData, fAction){
 
     this.dessinerEtape=function(etape_id){
 
+        // Masquage du précédant lien (s'il y en avait un)
+        if (this.lien_actuel!==null){
+            this.lien_actuel.Visible(false);
+        }
+
         // Récupération des informations de l'étape
         let etape = processusData.Etapes[etape_id];
         // Récupération de l'élément graphique associé
@@ -28,11 +33,6 @@ let ProcessusDessin= function(vue, processusData, fAction){
                 Position = EnumPositionLien.DroiteGauche
             }
             
-            // Masquage du précédant lien
-            if (this.lien_actuel!==null){
-                this.lien_actuel.Visible(false);
-            }
-
             // Création d'un lien
             this.lien_actuel = Graphisme.VueFocus.AjouterLien(
                 {

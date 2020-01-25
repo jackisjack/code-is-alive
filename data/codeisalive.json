@@ -68,49 +68,45 @@
 {"Element":"Authentificate","Element2":"","ProcessusDérivés":""
 ,"Data":[
 		[
-		["c","HashedPassword","1zz)°234"]
+		["c","HashedPassword","1zz)°234"],
+		["c","Requête Linq","select  …"]
 		]
 ]
 },
 {"Element":"Authentificate","Element2":"EntityFramework","ProcessusDérivés":""
-,"Data":[
-		[
-		["","Requête Linq","select  …"]
-		]
-]
 },
 {"Element":"EntityFramework","Element2":"db_demo","ProcessusDérivés":""
 ,"Data":[
 		[
-		["","Requête Sql","SELECT …"]
+		["c","Requête Sql","SELECT …"]
 		]
 ]
 },
 {"Element":"db_demo","Element2":"t_user","ProcessusDérivés":"Failing authentification"
 ,"Data":[
 		[
-		["r","username","JackIsJack"],
-		["r","HashedPassword","1zz)°234"]
+		["","username","Toto"],
+		["","HashedPassword","1zz)°234"]
 		]
 ,		[
 		[">","E-mail","HashedPassword","UserName"],
 		["","wou@tata.com","4#z567,,","Tata"],
 		["","vivi@titi.com","7z4#!7541","Titi"],
-		["r","toto@yahoo.fr","1zz)°234","JackIsJack"]
+		["r","toto@yahoo.fr","1zz)°234","Toto"]
 		]
 ]
 },
 {"Element":"db_demo","Element2":"EntityFramework","ProcessusDérivés":""
 ,"Data":[
 		[
-		["c","username","JackIsJack"]
+		["","username","Toto"]
 		]
 ]
 },
 {"Element":"EntityFramework","Element2":"Authentificate","ProcessusDérivés":""
 ,"Data":[
 		[
-		["c","username","JackIsJack"]
+		["","username","Toto"]
 		]
 ]
 },
@@ -131,7 +127,7 @@
 {"Element":"view_Home","Element2":"Page_Home","ProcessusDérivés":""
 ,"Data":[
 		[
-		["","WelcomeMessage","Welcome JackIsJack"]
+		["","WelcomeMessage","Welcome Toto !"]
 		]
 ]
 }]
@@ -142,7 +138,7 @@
 {"Element":"db_demo","Element2":"t_user","ProcessusDérivés":""
 ,"Data":[
 		[
-		["r","username","JackIsJack"],
+		["r","username","toto"],
 		["r","HashedPassword","1zz)°234"]
 		]
 ,		[
@@ -163,7 +159,7 @@
 {"Element":"EntityFramework","Element2":"Authentificate","ProcessusDérivés":""
 ,"Data":[
 		[
-		["c","username","JackIsJack"]
+		["c","username","toto"]
 		]
 ]
 },
@@ -177,7 +173,7 @@
 {"Element":"view_Home","Element2":"Page_Home","ProcessusDérivés":""
 ,"Data":[
 		[
-		["","WelcomeMessage","Welcome JackIsJack"]
+		["","WelcomeMessage","Welcome Toto !"]
 		]
 ]
 }]

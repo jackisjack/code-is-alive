@@ -1,4 +1,4 @@
-function tu_DataUi(){
+function tu_generate_table(){
     
     // Création d'un conteneur à fenêtre
     let Fenetres = new FenetresCollection(document.getElementsByTagName('body')[0]);
