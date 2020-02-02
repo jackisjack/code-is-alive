@@ -10,10 +10,9 @@
       }
     	return null;
     };
-    this.ajouter = function({title, width, height, extraprops}){
+    this.ajouter = function({id, title, width, height, extraprops}){
     	let domParent = this.domParent;
-      let newid = 'window-' + this.items.length;
-      let tmpFenetre = new Fenetre({newid, domParent, title, width, height, extraprops});
+      let tmpFenetre = new Fenetre({id, domParent, title, width, height, extraprops});
       this.items.push(tmpFenetre);
       return tmpFenetre;
     };

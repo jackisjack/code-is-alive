@@ -4,7 +4,7 @@ function tu_generate_table(){
     let Fenetres = new FenetresCollection(document.getElementsByTagName('body')[0]);
 
     // Ajout d'une fenêtre
-    let f1 = Fenetres.ajouter({title:"Exemple", width:'auto', height:'auto'});
+    let f1 = Fenetres.ajouter({id:1, title:"Exemple", width:'auto', height:'auto'});
     f1.Afficher();
 
     let dataTableH = 

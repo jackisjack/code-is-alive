@@ -1,12 +1,56 @@
 
-const toto = async function(){
+function fn_DomToJS(node){
 
-    //userDetails = await fetch("https://api.github.com/users/toto");
-    console.log("c'était rapide einh ?");
+    for(let i = 0; i < node.children.length; i++){
 
+        let childNode = node.children[i]
+        console.log('balise : ' + childNode.nodeName);
+
+        console.log('texte : ' + childNode.innerText);
+
+        for(let j=0; j < childNode.attributes.length; j++){
+
+            let nodeAttribute = childNode.attributes[j];
+            console.log('attribut : ' + nodeAttribute.name)
+            console.log('valeur : ' + nodeAttribute.value)
+
+        }
+
+        fn_DomToJS(childNode);
+
+    }
 };
 
-const woup = await toto();
+
+function dom(parent, nodeName, attributes, text){
+    // Création du noeud
+    let node = document.createElement(nodeName);
+      // Définition des attributs
+    for (let [key, value] of Object.entries(attributes)) {
+      node.setAttribute(key, value);
+    }
+    // Ajout d'un éventuel texte
+    if (text!== undefined){
+      node.innerHTML = text;
+    }
+    // Ajout au parent
+    parent.appendChild(node);
+    return node;
+  }
+
+// TEST DE FETCH
+
+// const toto = async function(){
+
+//     //userDetails = await fetch("https://api.github.com/users/toto");
+//     console.log("c'était rapide einh ?");
+
+// };
+
+// const woup = await toto();
+
+// TEST DE CLASSE
+
 
 // var classE = Class.extend({
 //     prop1:1,

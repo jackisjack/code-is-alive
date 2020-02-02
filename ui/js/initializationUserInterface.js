@@ -6,6 +6,7 @@ function initializationUserInterface(){
     // Création de la fenêtre du choix des processus
     let f1 = Main.Fenetres.ajouter(
     {
+    id:"ui-process",
     title:"Choix du processus", 
     width:'400', 
     height:'250', 

@@ -1,5 +1,5 @@
  // Classe Fenêtre
- let Fenetre = function({newid, domParent, title, width, height, extraprops}){
+ let Fenetre = function({id, domParent, title, width, height, extraprops}){
 		
     // Sauvegarde des propriétés
   	this.domParent=domParent;
@@ -10,7 +10,7 @@
     // Création du DOM
     this.dom =  document.createElement('div');
     this.dom.setAttribute('title', title);
-    this.dom.id = newid;
+    this.dom.id = id;
     
     domParent.appendChild(this.dom);
     
@@ -23,7 +23,7 @@
                       width: this.width,
                       modal: false,
                       autoOpen: false,
-                      position:{
+                      position: {
                                 my: 'left top',
                                 at: 'left+30 top+80'
                                 }

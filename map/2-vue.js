@@ -434,28 +434,33 @@ var VueClass = Class.extend({
 
                 // Visuel de la sélection
                 
-                var InnectRect = Element.innerRect();
-                var AngleSize = 10;
-                var RightMargin = 10;
+                let InnectRect = Element.innerRect();
+                let CornerSize = 10;
+                let RightMargin = 15;
+                let LeftMargin = 15;
+                let TopMargin = 10;
+                let BottomMargin = 10;
 
                 // Encadrement
-                var line = new createjs.Shape();
+                let line = new createjs.Shape();
                 line.graphics.setStrokeStyle(1);
                 line.graphics.beginStroke("rgba(0,0,0, 0.5)");
 
-                line.graphics.moveTo(0,0);
-                line.graphics.lineTo(AngleSize, 0);
-                line.graphics.moveTo(InnectRect.w + RightMargin - AngleSize,0);
-                line.graphics.lineTo(InnectRect.w + RightMargin, 0);
-                line.graphics.lineTo(InnectRect.w + RightMargin, AngleSize);
-                line.graphics.moveTo(InnectRect.w + RightMargin, InnectRect.h  - AngleSize);
-                line.graphics.lineTo(InnectRect.w + RightMargin, InnectRect.h);
-                line.graphics.lineTo(InnectRect.w + RightMargin - AngleSize, InnectRect.h);
-                line.graphics.moveTo(AngleSize, InnectRect.h);
-                line.graphics.lineTo(0, InnectRect.h);
-                line.graphics.lineTo(0, InnectRect.h - AngleSize);
-                line.graphics.moveTo(0, AngleSize);
-                line.graphics.lineTo(0, 0);
+                line.graphics.moveTo(-LeftMargin, CornerSize - TopMargin);
+                line.graphics.lineTo(-LeftMargin, -TopMargin);
+                line.graphics.lineTo(-LeftMargin + CornerSize, -TopMargin);
+
+                line.graphics.moveTo(InnectRect.w + RightMargin - CornerSize, - TopMargin);
+                line.graphics.lineTo(InnectRect.w + RightMargin, -TopMargin);
+                line.graphics.lineTo(InnectRect.w + RightMargin, -TopMargin + CornerSize);
+
+                line.graphics.moveTo(InnectRect.w + RightMargin, InnectRect.h  - CornerSize + BottomMargin);
+                line.graphics.lineTo(InnectRect.w + RightMargin, InnectRect.h + BottomMargin);
+                line.graphics.lineTo(InnectRect.w + RightMargin - CornerSize, InnectRect.h + BottomMargin);
+
+                line.graphics.moveTo(-LeftMargin + CornerSize, InnectRect.h + + BottomMargin);
+                line.graphics.lineTo(-LeftMargin, InnectRect.h + BottomMargin);
+                line.graphics.lineTo(-LeftMargin, InnectRect.h - CornerSize + BottomMargin);
 
                 line.graphics.endStroke;
 
