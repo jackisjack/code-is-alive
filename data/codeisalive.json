@@ -31,7 +31,7 @@
 "Processus":[
 {"Nom":"Successful authentification",
 "Etapes":[
-{"Element":"User","Element2":"","Processus dérivé":""
+{"Element":"User","Element2":""
 ,"Data":[
 		[
 		["","E-mail","toto@yahoo.fr"],
@@ -40,35 +40,35 @@
 		]
 ]
 },
-{"Element":"User","Element2":"txt_UserName","Processus dérivé":""
+{"Element":"User","Element2":"txt_UserName"
 ,"Data":[
 		[
 		["","E-mail","toto@yahoo.fr"]
 		]
 ]
 },
-{"Element":"User","Element2":"txt_Password","Processus dérivé":""
+{"Element":"User","Element2":"txt_Password"
 ,"Data":[
 		[
 		["","Password","1234"]
 		]
 ]
 },
-{"Element":"User","Element2":"bt_Submit","Processus dérivé":""
+{"Element":"User","Element2":"bt_Submit"
 ,"Data":[
 		[
 		["","Action","appelle"]
 		]
 ]
 },
-{"Element":"bt_Submit","Element2":"Login_Controler","Processus dérivé":""
+{"Element":"bt_Submit","Element2":"Login_Controler"
 ,"Data":[
 		[
 		["","Action","appelle"]
 		]
 ]
 },
-{"Element":"Login_Controler","Element2":"Authentificate","Processus dérivé":""
+{"Element":"Login_Controler","Element2":"Authentificate"
 ,"Data":[
 		[
 		["","E-mail","toto@yahoo.fr"],
@@ -76,7 +76,7 @@
 		]
 ]
 },
-{"Element":"Authentificate","Element2":"","Processus dérivé":""
+{"Element":"Authentificate","Element2":""
 ,"Data":[
 		[
 		["c","HashedPassword","1zz)°234"],
@@ -84,21 +84,21 @@
 		]
 ]
 },
-{"Element":"Authentificate","Element2":"EntityFramework","Processus dérivé":""
+{"Element":"Authentificate","Element2":"EntityFramework"
 ,"Data":[
 		[
 		["","Action","appelle"]
 		]
 ]
 },
-{"Element":"EntityFramework","Element2":"db_demo","Processus dérivé":""
+{"Element":"EntityFramework","Element2":"db_demo"
 ,"Data":[
 		[
 		["c","Requête Sql","SELECT …"]
 		]
 ]
 },
-{"Element":"db_demo","Element2":"t_user","Processus dérivé":""
+{"Element":"db_demo","Element2":"t_user"
 ,"Data":[
 		[
 		["","username","Toto"],
@@ -112,35 +112,35 @@
 		]
 ]
 },
-{"Element":"db_demo","Element2":"EntityFramework","Processus dérivé":""
+{"Element":"db_demo","Element2":"EntityFramework"
 ,"Data":[
 		[
 		["","username","Toto"]
 		]
 ]
 },
-{"Element":"EntityFramework","Element2":"Authentificate","Processus dérivé":""
+{"Element":"EntityFramework","Element2":"Authentificate"
 ,"Data":[
 		[
 		["","username","Toto"]
 		]
 ]
 },
-{"Element":"Authentificate","Element2":"Login_Controler","Processus dérivé":""
+{"Element":"Authentificate","Element2":"Login_Controler"
 ,"Data":[
 		[
 		["","authenticated","true"]
 		]
 ]
 },
-{"Element":"Login_Controler","Element2":"view_Home","Processus dérivé":""
+{"Element":"Login_Controler","Element2":"view_Home"
 ,"Data":[
 		[
 		["","authenticated","true"]
 		]
 ]
 },
-{"Element":"view_Home","Element2":"Page_Home","Processus dérivé":""
+{"Element":"view_Home","Element2":"Page_Home"
 ,"Data":[
 		[
 		["","WelcomeMessage","Welcome Toto !"]
@@ -151,7 +151,7 @@
 ,
 {"Nom":"Failing authentification",
 "Etapes":[
-{"Element":"db_demo","Element2":"t_user","Processus dérivé":""
+{"Element":"db_demo","Element2":"t_user"
 ,"Data":[
 		[
 		["r","username","toto"],
@@ -165,28 +165,28 @@
 		]
 ]
 },
-{"Element":"db_demo","Element2":"EntityFramework","Processus dérivé":""
+{"Element":"db_demo","Element2":"EntityFramework"
 ,"Data":[
 		[
 		["c","username"]
 		]
 ]
 },
-{"Element":"EntityFramework","Element2":"Authentificate","Processus dérivé":""
+{"Element":"EntityFramework","Element2":"Authentificate"
 ,"Data":[
 		[
 		["c","username","toto"]
 		]
 ]
 },
-{"Element":"LoginControler","Element2":"view_Home","Processus dérivé":""
+{"Element":"Login_Controler","Element2":"view_Home"
 ,"Data":[
 		[
 		["","authenticated","true"]
 		]
 ]
 },
-{"Element":"view_Home","Element2":"Page_Home","Processus dérivé":""
+{"Element":"view_Home","Element2":"Page_Home"
 ,"Data":[
 		[
 		["","WelcomeMessage","Welcome Toto !"]

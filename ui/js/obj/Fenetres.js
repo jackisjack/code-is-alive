@@ -2,9 +2,9 @@
  let FenetresCollection = function(domParent){
     this.items=[];
   	this.domParent = domParent;
-    this.gerer = function(title){
+    this.gerer = function(id){
       for(let i =0; i < this.items.length; i++){
-        if (this.items[i].title==title){
+        if (this.items[i].dom.id==id){
           return this.items[i];
         }
       }

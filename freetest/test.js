@@ -22,22 +22,6 @@ function fn_DomToJS(node){
 };
 
 
-function dom(parent, nodeName, attributes, text){
-    // Création du noeud
-    let node = document.createElement(nodeName);
-      // Définition des attributs
-    for (let [key, value] of Object.entries(attributes)) {
-      node.setAttribute(key, value);
-    }
-    // Ajout d'un éventuel texte
-    if (text!== undefined){
-      node.innerHTML = text;
-    }
-    // Ajout au parent
-    parent.appendChild(node);
-    return node;
-  }
-
 // TEST DE FETCH
 
 // const toto = async function(){

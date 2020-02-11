@@ -93,14 +93,14 @@ function generate_table(parent, data){
               td.appendChild(tdtext);
               
               // Ajout de la cellule à la ligne
-                        tr.appendChild(td);
+              tr.appendChild(td);
               
             }
             
             // Ajout de la ligne au corps du tableau
             tbody.appendChild(tr);
             
-                }
+            }
          
           table.appendChild(thead);
           table.appendChild(tbody);

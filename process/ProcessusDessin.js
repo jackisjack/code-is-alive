@@ -1,10 +1,11 @@
-let ProcessusDessin= function(vue, processusData, fAction){
+// si fAction est non-null 
+let ProcessusDessin= function(vue, processusData, fAction = null){
 
     this.etape_id = -1;
     this.etape_id_max = processusData.Etapes.length - 1;
     this.lien_actuel = null;
 
-    this.dessinerEtape=function(etape_id){
+    this.dessinerEtape=function(etape_id, processusData, fAction){
 
         // Masquage du précédant lien (s'il y en avait un)
         if (this.lien_actuel!==null){
@@ -50,71 +51,75 @@ let ProcessusDessin= function(vue, processusData, fAction){
             fAction.dom.removeChild(fAction.dom.firstChild);
         }
 
-        //***************************************************
-        // Création de l'entête'
+        // Si une fenêtre doit être alimenté
+        if(fAction!==null){
 
-        // Element1
-        let ui_actions__element1 = dom(fAction.dom, "div", {class:"ui-actions--element"});
-        ui_actions__element1.appendChild(element.bitmap.image);
-        dom(ui_actions__element1, null, {}, element.Libelle)
+            //***************************************************
+            // Création de l'entête'
 
-        // Badge (type d'action) : calcul du type, puis affichage
-        let typeAction;
-        if (element2==undefined){
-            typeAction = "ETAT_DE_MEMOIRE";
-        } else {
-            typeAction = "COMMUNICATION";
-        }
-        if (etape.Data!==undefined){
-            if(etape.Data.length==1){
-                if (etape.Data[0][0][1].toUpperCase()=="ACTION"){ // 0 0 1 = 1er tableau de data, 1ère ligne, 2ème colonne (=l'intitulé de l'information)
-                    typeAction = "ACTION";
-                }
-            } 
-        }
+            // Element1
+            let ui_actions__element1 = dom(fAction.dom, {node:"div", class:"ui-actions--element"});
+            ui_actions__element1.appendChild(element.bitmap.image);
+            dom(ui_actions__element1, {}, element.Libelle)
 
-        // Affichage du badge correspondant au type
-        switch(typeAction){
-            case 'COMMUNICATION':
-                dom(fAction.dom, "span", {class:"badge badge-primary"}, "communique avec");
-            break;
-            case 'ETAT_DE_MEMOIRE':
-                dom(fAction.dom, "span", {class:"badge badge-secondary"}, "Etat de mémoire");
-            break;
-            case 'ACTION':
-                dom(fAction.dom, "span", {class:"badge badge-success"}, etape.Data[0][0][2]); // on écrit le nom de l'action
-            break;
-        }
-        
-        // éventuel Element2
-        if(element2!==undefined){
-            let ui_actions__element2 = dom(fAction.dom, "div", {class:"ui-actions--element"});
-            ui_actions__element2.appendChild(element2.bitmap.image);
-            dom(ui_actions__element2, null, {}, element2.Libelle)
-        }
-
-        //***************************************************
-        // Affichage des informations tabulaires s'il y en a
-
-        if (typeAction!=='ACTION') { // on n'affiche pas l'action, elle est déjà présente dans le badge.
+            // Badge (type d'action) : calcul du type, puis affichage
+            let typeAction;
+            if (element2==undefined){
+                typeAction = "ETAT_DE_MEMOIRE";
+            } else {
+                typeAction = "COMMUNICATION";
+            }
             if (etape.Data!==undefined){
-                for(let i=0; i < etape.Data.length; i++){
-                    generate_table(fAction.dom, etape.Data[i]);
+                if(etape.Data.length==1){
+                    if (etape.Data[0][0][1].toUpperCase()=="ACTION"){ // 0 0 1 = 1er tableau de data, 1ère ligne, 2ème colonne (=l'intitulé de l'information)
+                        typeAction = "ACTION";
+                    }
+                } 
+            }
+
+            // Affichage du badge correspondant au type
+            switch(typeAction){
+                case 'COMMUNICATION':
+                    dom(fAction.dom, {node:"span", class:"badge badge-primary"}, "communique avec");
+                break;
+                case 'ETAT_DE_MEMOIRE':
+                    dom(fAction.dom, {node:"span", class:"badge badge-secondary"}, "Etat de mémoire");
+                break;
+                case 'ACTION':
+                    dom(fAction.dom, {node:"span", class:"badge badge-success"}, etape.Data[0][0][2]); // on écrit le nom de l'action
+                break;
+            }
+            
+            // éventuel Element2
+            if(element2!==undefined){
+                let ui_actions__element2 = dom(fAction.dom, {node:"div",class:"ui-actions--element"});
+                ui_actions__element2.appendChild(element2.bitmap.image);
+                dom(ui_actions__element2, {}, element2.Libelle)
+            }
+
+            //***************************************************
+            // Affichage des informations tabulaires s'il y en a
+
+            if (typeAction!=='ACTION') { // on n'affiche pas l'action, elle est déjà présente dans le badge.
+                if (etape.Data!==undefined){
+                    for(let i=0; i < etape.Data.length; i++){
+                        generate_table(fAction.dom, etape.Data[i]);
+                    }
                 }
             }
-        }
 
-        //***************************************************
-        // Affichage de l'éventuelle illustration
-        
-        if (etape.Data!==undefined){
-            let last1 = etape.Data.length-1;
-            let last2 = etape.Data[last1].length-1;
-            if (etape.Data[last1][last2][1] == 'Illustration'){
-                
-                let imageName = etape.Data[last1][last2][2];
-                dom(fAction.dom, "img", {src:"./data/pict/" + imageName});
+            //***************************************************
+            // Affichage de l'éventuelle illustration
+            
+            if (etape.Data!==undefined){
+                let last1 = etape.Data.length-1;
+                let last2 = etape.Data[last1].length-1;
+                if (etape.Data[last1][last2][1] == 'Illustration'){
+                    
+                    let imageName = etape.Data[last1][last2][2];
+                    dom(fAction.dom, {node:"img", src:"./data/pict/" + imageName});
 
+                }
             }
         }
 
@@ -122,13 +127,19 @@ let ProcessusDessin= function(vue, processusData, fAction){
 
     this.dessinerEtapeSuivante=function(){
         this.etape_id=Math.min(this.etape_id_max, this.etape_id+1);
-        this.dessinerEtape(this.etape_id);
+        let that = this;
+        this.dessinerEtape(this.etape_id, processusData, that.fAction);
     }
 
     this.dessinerEtapePrecedante=function(){
         this.etape_id=Math.max(0, this.etape_id-1);
-        this.dessinerEtape(this.etape_id);
+        let that = this;
+        this.dessinerEtape(this.etape_id, processusData, that.fAction);
     }
+
+    // Affichage d'une fenêtre d'actions
+    this.fAction = Main.Fenetres.ajouter({id:"ui-actions", title:'Actions', width:'auto', height:'auto'});
+    this.fAction.afficher();
 
     // Instructions à construction :
     this.dessinerEtapeSuivante();

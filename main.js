@@ -39,13 +39,10 @@ var Main =
             
             Main.DessinerTousLesElement();
             
-            // Affichage fenêtre data
-            let fAction = Main.Fenetres.ajouter({id:"ui-actions", title:'Actions', width:'auto', height:'auto'});
-            fAction.afficher();
-            
-            // Dessin du premier processus
-            Main.ProcessusControlable = new ProcessusDessin(Graphisme.VueFocus, Main.Processus[0], fAction);
-            
+            // Affichage de la fenêtre de sélection de processus
+
+            Main.Fenetres.gerer("ui-process").afficher();
+                        
         };      
           
     },
