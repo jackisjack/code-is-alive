@@ -17,7 +17,7 @@
 ,["Controlers","1","system_folder"]
 ,["Login_Controler","2","csharp_class"]
 ,["Business Layer","1","system_folder"]
-,["UserManager","2","csharp_class"]
+,["UserManager","2","csharp_staticclass"]
 ,["Authentificate","4","csharp_method"]
 ,["DataLayer","1","system_folder"]
 ,["EntityFramework","2","blackbox"]
@@ -36,7 +36,7 @@
 		[
 		["","E-mail","toto@yahoo.fr"],
 		["","Password","1234"],
-		["","Illustration","life_user.png"]
+		["","Illustration","life_user.jpg"]
 		]
 ]
 },

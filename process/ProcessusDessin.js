@@ -1,15 +1,18 @@
 // si fAction est non-null 
-let ProcessusDessin= function(vue, processusData, fAction = null){
+let ProcessusDessin= function(vue, processusData, autoRun, color){
 
     this.etape_id = -1;
     this.etape_id_max = processusData.Etapes.length - 1;
-    this.lien_actuel = null;
+    this.liensVisible = [];
+    this.autoRun = autoRun;
+    this.color = color;
 
     this.dessinerEtape=function(etape_id, processusData, fAction){
 
         // Masquage du précédant lien (s'il y en avait un)
-        if (this.lien_actuel!==null){
-            this.lien_actuel.Visible(false);
+        if (this.liensVisible.length > 2){
+            let lien = this.liensVisible.shift();
+            lien.Visible(false);
         }
 
         // Récupération des informations de l'étape
@@ -18,9 +21,11 @@ let ProcessusDessin= function(vue, processusData, fAction = null){
         let element = vue.ListeElement[etape.Element];
 
         // Sélection et focus sur l'élément
-        element.Selectionner();
-        element.Focus();
-        
+        if(this.autoRun==false){
+            element.Selectionner();
+            element.Focus();
+        }
+
         let element2;
         // S'il y a un élément2, c'est qu'il y a un lien à afficher
         if(etape.Element2!==''){
@@ -36,23 +41,26 @@ let ProcessusDessin= function(vue, processusData, fAction = null){
             }
             
             // Création d'un lien
-            this.lien_actuel = Graphisme.VueFocus.AjouterLien(
+            let lien = Graphisme.VueFocus.AjouterLien(
                 {
                     ElementDepart:element,
                     ElementArrivee:element2,
                     Style: EnumStyleLien.Style2,
-                    Position: Position
+                    Position: Position,
+                    Color:this.color
                 });
 
-        }
+            this.liensVisible.push(lien);
 
-        // Suppression du contenu de la fenêtre des actions
-        while (fAction.dom.firstChild) {
-            fAction.dom.removeChild(fAction.dom.firstChild);
         }
 
         // Si une fenêtre doit être alimenté
-        if(fAction!==null){
+        if(this.autoRun==false){
+            
+            // Suppression du contenu de la fenêtre des actions
+            while (fAction.dom.firstChild) {
+                fAction.dom.removeChild(fAction.dom.firstChild);
+            }
 
             //***************************************************
             // Création de l'entête'
@@ -126,7 +134,11 @@ let ProcessusDessin= function(vue, processusData, fAction = null){
     }
 
     this.dessinerEtapeSuivante=function(){
-        this.etape_id=Math.min(this.etape_id_max, this.etape_id+1);
+        if(this.autoRun==true && this.etape_id+1 > this.etape_id_max){ // si mode auto, alors retour au début automatique si on dépasse la fin
+            this.etape_id = 0; 
+        } else { // si mode manuel, on reste sur la dernière étape, c'est la borne max
+            this.etape_id=Math.min(this.etape_id_max, this.etape_id+1);
+        }
         let that = this;
         this.dessinerEtape(this.etape_id, processusData, that.fAction);
     }
@@ -136,12 +148,33 @@ let ProcessusDessin= function(vue, processusData, fAction = null){
         let that = this;
         this.dessinerEtape(this.etape_id, processusData, that.fAction);
     }
+    //*************************************************
+    // Instructions / Constructeurs
 
-    // Affichage d'une fenêtre d'actions
-    this.fAction = Main.Fenetres.ajouter({id:"ui-actions", title:'Actions', width:'auto', height:'auto'});
-    this.fAction.afficher();
+    let that = this;
 
-    // Instructions à construction :
-    this.dessinerEtapeSuivante();
+    // Si le mode n'est pas automatique
+    if (autoRun!==true){
+        // Affichage de la fenêtre d'actions
+        this.fAction = Main.Fenetres.ajouter({id:"ui-actions", title:'Actions', width:'auto', height:'auto'});
+        this.fAction.afficher();
+    } else {
+        // Sinon pas de fenêtre d'action
+        this.fAction = null;
+    }
+
+    if (autoRun!==true){
+        this.dessinerEtapeSuivante();
+    } else {
+        // Lancement d'un timer qui boucle, avec 200ms entre chaque action
+        let delayBetweenAction = 100;
+        let timer = new repeatFunction(
+            this.dessinerEtapeSuivante.bind(this), 
+            {count: this.etape_id_max+1, durationsFunction:function(i){return delayBetweenAction*(i+1)}, loop:true}
+        );
+
+        timer.start();
+
+    }
 
 }

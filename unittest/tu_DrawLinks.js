@@ -48,7 +48,8 @@ function tu_DrawLinkLeftLeft(){
                         ElementArrivee:TabElement[30],
                         Style: EnumStyleLien.Style5,
                         Position: EnumPositionLien.GaucheGauche,
-                        ParamStyle: {nbIcone:3, Icone:"file"}
+                        ParamStyle: {nbIcone:3, Icone:"file"},
+                        Color:"#18ad2c"
                     });
            
 }
@@ -104,7 +105,8 @@ function tu_DrawLink4(){
                                             ElementDepart:Element1,
                                             ElementArrivee:TabElement[i],
                                             Style: EnumStyleLien.Style4,
-                                            Position: EnumPositionLien.DroiteGauche
+                                            Position: EnumPositionLien.DroiteGauche,
+                                            Color:"#18ad2c"
                                         })
                         );
             
@@ -136,7 +138,8 @@ function tu_DrawLink3(){
                                             ElementDepart:Element1,
                                             ElementArrivee:TabElement[i],
                                             Style: EnumStyleLien.Style3,
-                                            Position: EnumPositionLien.DroiteGauche
+                                            Position: EnumPositionLien.DroiteGauche,
+                                            Color:"#18ad2c"
                                         })
                         );
             
@@ -168,7 +171,8 @@ function tu_DrawLink2(){
                                             ElementDepart:Element1,
                                             ElementArrivee:TabElement[i],
                                             Style: EnumStyleLien.Style2,
-                                            Position: EnumPositionLien.DroiteGauche
+                                            Position: EnumPositionLien.DroiteGauche,
+                                            Color:"#18ad2c"
                                         })
                         );
             
@@ -205,7 +209,8 @@ function tu_DrawLink1(){
                                             ElementDepart:Element1,
                                             ElementArrivee:TabElement[i],
                                             Style: EnumStyleLien.Style1,
-                                            Position: EnumPositionLien.DroiteGauche
+                                            Position: EnumPositionLien.DroiteGauche,
+                                            Color:"#18ad2c"
                                         })
                         );
             

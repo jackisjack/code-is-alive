@@ -388,7 +388,8 @@ var VueClass = Class.extend({
                                                 ElementArrivee:Args.ElementArrivee,
                                                 Style: Args.Style,
                                                 Position: Args.Position,
-                                                ParamStyle: Args.ParamStyle
+                                                ParamStyle: Args.ParamStyle,
+                                                Color:Args.Color
                                             }
                                         );                                 
 

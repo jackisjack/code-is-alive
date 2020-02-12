@@ -25,6 +25,7 @@ var ImageManager = {
             {id: "mssql_db", src:"./images/mssql_db.png"},
             {id: "dotnetmvc_view", src:"./images/dotnetmvc_view.png"},
             {id: "csharp_class", src:"./images/csharp_class.png"},
+            {id: "csharp_staticclass", src:"./images/csharp_staticclass.png"},
             {id: "csharp_method", src:"./images/csharp_method.png"},
             {id: "webservice", src:"./images/webservice.png"},
             {id: "system_folder", src:"./images/system_folder.png"}

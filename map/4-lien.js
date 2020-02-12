@@ -8,6 +8,7 @@ var LienClass = Class.extend({
         if (ParametresLien.ElementArrivee === null || ParametresLien.ElementArrivee === undefined) { console.log('PostCompilation erreur : ParametresLien.ElementArrivee'); };
         if (ParametresLien.Style === null || ParametresLien.Style === undefined) { console.log('PostCompilation erreur : ParametresLien.Style'); };
         if (ParametresLien.Position === null || ParametresLien.Position === undefined) { console.log('PostCompilation erreur : ParametresLien.Position'); };
+        if (ParametresLien.Color === null || ParametresLien.Color === undefined) { console.log('PostCompilation erreur : ParametresLien.Color'); };
         if (ParametresLien.Visible === null || ParametresLien.Visible === undefined) { ParametresLien.Visible = true };
 
         // Privatisation du this
@@ -28,16 +29,16 @@ var LienClass = Class.extend({
         // Construction du lien
         switch (ParametresLien.Style) {
             case EnumStyleLien.Style1:
-                this.DessinerLienStyle1(ParametresLien.ElementDepart, ParametresLien.ElementArrivee, ParametresLien.Position);
+                this.DessinerLienStyle1(ParametresLien.ElementDepart, ParametresLien.ElementArrivee, ParametresLien.Position, ParametresLien.Color);
             break;
             case EnumStyleLien.Style2:
-                this.DessinerLienStyle2(ParametresLien.ElementDepart, ParametresLien.ElementArrivee, ParametresLien.Position);
+                this.DessinerLienStyle2(ParametresLien.ElementDepart, ParametresLien.ElementArrivee, ParametresLien.Position, ParametresLien.Color);
             break;
             case EnumStyleLien.Style3:
-                this.DessinerLienStyle3(ParametresLien.ElementDepart, ParametresLien.ElementArrivee, ParametresLien.Position);
+                this.DessinerLienStyle3(ParametresLien.ElementDepart, ParametresLien.ElementArrivee, ParametresLien.Position, ParametresLien.Color);
             break;
             case EnumStyleLien.Style4:
-                this.DessinerLienStyle4(ParametresLien.ElementDepart, ParametresLien.ElementArrivee, ParametresLien.Position);
+                this.DessinerLienStyle4(ParametresLien.ElementDepart, ParametresLien.ElementArrivee, ParametresLien.Position, ParametresLien.Color);
             break;
             case EnumStyleLien.Style5:
                 this.DessinerLienStyle5(ParametresLien.ElementDepart, ParametresLien.ElementArrivee, ParametresLien.Position, ParametresLien.ParamStyle.nbIcone, ParametresLien.ParamStyle.Icone);
@@ -50,21 +51,21 @@ var LienClass = Class.extend({
     },
 
     // rayon entre les deux éléments, longueur max dès le début
-    DessinerLienStyle1: function(ElementDepart, ElementArrivee, Position){
+    DessinerLienStyle1: function(ElementDepart, ElementArrivee, Position, Color){
 
         var el1 = ElementDepart.innerRect();
         var el2 = ElementArrivee.innerRect();
       
         var line = new createjs.Shape();
         line.graphics.setStrokeStyle(1);
-        line.graphics.beginStroke("#18ad2c");
+        line.graphics.beginStroke(Color);
 
         // Dessin du lien en fonction de la position
         this.DessinerLien(line, el1, el2, Position);
 
         line.graphics.endStroke;
         line.alpha=0;
-        line.shadow = new createjs.Shadow("#18ad2c", 0, 0, 10);
+        line.shadow = new createjs.Shadow(Color, 0, 0, 10);
 
         this.Container.addChild(line);
 
@@ -84,7 +85,7 @@ var LienClass = Class.extend({
     },
 
     // flux continu de pointillé qui bouge
-    DessinerLienStyle2: function(ElementDepart, ElementArrivee, Position){
+    DessinerLienStyle2: function(ElementDepart, ElementArrivee, Position, Color){
         
         let el1 = ElementDepart.innerRect();
         let el2 = ElementArrivee.innerRect();
@@ -92,7 +93,7 @@ var LienClass = Class.extend({
         let line = new createjs.Shape();
         line.graphics.setStrokeStyle(2);
         let cmd = line.graphics.setStrokeDash([10,10],0).command;
-        line.graphics.beginStroke("#18ad2c");
+        line.graphics.beginStroke(Color);
         
         // Dessin du lien en fonction de la position
         this.DessinerLien(line, el1, el2, Position);
@@ -108,7 +109,7 @@ var LienClass = Class.extend({
     },
 
     // Envoi d'un trait
-    DessinerLienStyle3: function(ElementDepart, ElementArrivee, Position){
+    DessinerLienStyle3: function(ElementDepart, ElementArrivee, Position, Color){
 
         var el1 = ElementDepart.innerRect();
         var el2 = ElementArrivee.innerRect();
@@ -127,13 +128,13 @@ var LienClass = Class.extend({
         var line = new createjs.Shape();
         line.graphics.setStrokeStyle(5,"round");
         var cmd = line.graphics.setStrokeDash([size,d],size).command;
-        line.graphics.beginStroke("#18ad2c");
+        line.graphics.beginStroke(Color);
 
         // Dessin du lien en fonction de la position
         this.DessinerLien(line, el1, el2, Position);
 
         line.graphics.endStroke;
-        line.shadow = new createjs.Shadow("#18ad2c", 0, 0, 10);
+        line.shadow = new createjs.Shadow(Color, 0, 0, 10);
         this.Container.addChild(line);
 
         this.tween = createjs.Tween
@@ -143,7 +144,7 @@ var LienClass = Class.extend({
     },
 
     // Envoi d'un flux de point et dessin d'un trait
-    DessinerLienStyle4: function(ElementDepart, ElementArrivee, Position){
+    DessinerLienStyle4: function(ElementDepart, ElementArrivee, Position, Color){
 
         var el1 = ElementDepart.innerRect();
         var el2 = ElementArrivee.innerRect();
@@ -156,7 +157,7 @@ var LienClass = Class.extend({
         // Création de la ligne continue
         var line2 = new createjs.Shape();
         line2.graphics.setStrokeStyle(1);
-        line2.graphics.beginStroke("#18ad2c");
+        line2.graphics.beginStroke(Color);
 
         // Dessin du lien en fonction de la position
         this.DessinerLien(line2, el1, el2, Position);
@@ -174,13 +175,13 @@ var LienClass = Class.extend({
         var line = new createjs.Shape();
         line.graphics.setStrokeStyle(5,"round");
         var cmd = line.graphics.setStrokeDash([2,10,2,10,2,10,2,10,2,10,2,d],56).command;
-        line.graphics.beginStroke("#18ad2c");
+        line.graphics.beginStroke(Color);
 
         // Dessin du lien en fonction de la position
         this.DessinerLien(line, el1, el2, Position);
         
         line.graphics.endStroke;
-        line.shadow = new createjs.Shadow("#18ad2c", 0, 0, 10);
+        line.shadow = new createjs.Shadow(Color, 0, 0, 10);
         this.Container.addChild(line);
         
         this.tween = createjs.Tween
@@ -323,7 +324,13 @@ var LienClass = Class.extend({
 
             if (_visible === false) {
 
-                this.Vue.mainContainer.removeChild(this.Container);
+                // masquage progressif
+                createjs.Tween
+                .get(this.Container)
+                .to({alpha:0},1000, createjs.Ease.cubicOut)
+                .call(function(){
+                    this.Vue.mainContainer.removeChild(this.Container)}.bind(this)
+                 );
 
                 this.P_Visible = false;
             }

@@ -1,3 +1,10 @@
+// Tween functions
+// t : actual time / b : start / c : end / d : duration
+
+function easeLinear(t, b, c, d) {
+	return b+(c-b)*t/d;
+}
+
 function easeInQuad(t, b, c, d) {
 	return c*(t/=d)*t + b;
 }
