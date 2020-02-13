@@ -135,14 +135,6 @@ let ProcessusDessin= function(vue, processusData, autoRun, color){
     }
 
     this.dessinerEtapeSuivante=function(){
-        // if(this.autoRun==true && this.etape_id+1 > this.etape_id_max){ // si mode auto, alors retour au début automatique si on dépasse la fin
-        //     this.etape_id = 0; 
-        // } else { // si mode manuel, on reste sur la dernière étape, c'est la borne max
-        //     this.etape_id=Math.min(this.etape_id_max, this.etape_id+1);
-        // }
-        // let that = this;
-        // this.dessinerEtape(this.etape_id, processusData, that.fAction);
-
         if(this.etape_id+1 > this.etape_id_max){ // si mode auto, alors retour au début automatique si on dépasse la fin
             if(this.autoRun==true){
                 this.etape_id = 0;
@@ -152,7 +144,6 @@ let ProcessusDessin= function(vue, processusData, autoRun, color){
             this.etape_id+=1;
             this.dessinerEtape(this.etape_id, processusData, that.fAction); 
         }
-        
     }
 
     this.dessinerEtapePrecedante=function(){
