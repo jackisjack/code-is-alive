@@ -2,7 +2,8 @@ var Main =
 {
     Fenetres:null,
     ProcessusControlable:null,
-    
+    ProcessusAuto:[],
+
     Init: function () {
 
         // Fenêtre loading;

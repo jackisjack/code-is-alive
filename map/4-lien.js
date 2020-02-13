@@ -327,7 +327,7 @@ var LienClass = Class.extend({
                 // masquage progressif
                 createjs.Tween
                 .get(this.Container)
-                .to({alpha:0},1000, createjs.Ease.cubicOut)
+                .to({alpha:0},500, createjs.Ease.cubicOut)
                 .call(function(){
                     this.Vue.mainContainer.removeChild(this.Container)}.bind(this)
                  );

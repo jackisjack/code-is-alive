@@ -56,11 +56,16 @@ function ui_process_Valider_Click(that){
         let arrColor = ["#18ad2c","#e752d3"]
         // Affichage des processus
         for(let i = 0; i < Main.Processus.length; i++){
-        new ProcessusDessin(Graphisme.VueFocus, Main.Processus[i], true, arrColor[i]);
+            Main.ProcessusAuto.push(new ProcessusDessin(Graphisme.VueFocus, Main.Processus[i], true, arrColor[i]));
         }
 
     } else { // Si l'utilisateur a sélectionné un processus
 
+        // Arrêt de tous les éventuels processus auto 
+        for(let i = 0; i < Main.ProcessusAuto.length; i ++){
+            Main.ProcessusAuto[i].stopAuto();
+        }
+        // Récupération du processus sélectionnée
         let selectedProcessus =  Main.Processus.filter(x => x.Nom==selectedValue)[0];
         // Définition d'un nouveau processus controlable
         Main.ProcessusControlable = new ProcessusDessin(Graphisme.VueFocus, selectedProcessus, false, "#18ad2c");

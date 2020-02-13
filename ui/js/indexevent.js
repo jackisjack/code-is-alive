@@ -2,7 +2,7 @@
 
 function fn_bt_IndexOpen_Click(){
 
-    Main.Fenetres.gerer("Choix du processus").afficher();
+    Main.Fenetres.gerer("ui-process").afficher();
 
 }
 

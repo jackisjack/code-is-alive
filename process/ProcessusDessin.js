@@ -6,6 +6,7 @@ let ProcessusDessin= function(vue, processusData, autoRun, color){
     this.liensVisible = [];
     this.autoRun = autoRun;
     this.color = color;
+    this.timerAuto = null;
 
     this.dessinerEtape=function(etape_id, processusData, fAction){
 
@@ -134,13 +135,24 @@ let ProcessusDessin= function(vue, processusData, autoRun, color){
     }
 
     this.dessinerEtapeSuivante=function(){
-        if(this.autoRun==true && this.etape_id+1 > this.etape_id_max){ // si mode auto, alors retour au début automatique si on dépasse la fin
-            this.etape_id = 0; 
-        } else { // si mode manuel, on reste sur la dernière étape, c'est la borne max
-            this.etape_id=Math.min(this.etape_id_max, this.etape_id+1);
+        // if(this.autoRun==true && this.etape_id+1 > this.etape_id_max){ // si mode auto, alors retour au début automatique si on dépasse la fin
+        //     this.etape_id = 0; 
+        // } else { // si mode manuel, on reste sur la dernière étape, c'est la borne max
+        //     this.etape_id=Math.min(this.etape_id_max, this.etape_id+1);
+        // }
+        // let that = this;
+        // this.dessinerEtape(this.etape_id, processusData, that.fAction);
+
+        if(this.etape_id+1 > this.etape_id_max){ // si mode auto, alors retour au début automatique si on dépasse la fin
+            if(this.autoRun==true){
+                this.etape_id = 0;
+                this.dessinerEtape(this.etape_id, processusData, that.fAction); 
+            }
+        } else {
+            this.etape_id+=1;
+            this.dessinerEtape(this.etape_id, processusData, that.fAction); 
         }
-        let that = this;
-        this.dessinerEtape(this.etape_id, processusData, that.fAction);
+        
     }
 
     this.dessinerEtapePrecedante=function(){
@@ -148,6 +160,25 @@ let ProcessusDessin= function(vue, processusData, autoRun, color){
         let that = this;
         this.dessinerEtape(this.etape_id, processusData, that.fAction);
     }
+
+    this.startAuto=function(){
+        // Lancement d'un timer qui boucle, avec 200ms entre chaque action
+        let delayBetweenAction = 100;
+        this.timerAuto = new repeatFunction(
+            this.dessinerEtapeSuivante.bind(this), 
+            {count: this.etape_id_max+1, durationsFunction:function(i){return delayBetweenAction*(i+1)}, loop:true}
+        );
+        this.timerAuto.start();
+    }
+
+    this.stopAuto=function(){
+        this.timerAuto.stop();
+        for(let i = 0; i < this.liensVisible.length; i ++){
+            let lien = this.liensVisible[i];
+            lien.Visible(false);
+        }
+    }
+
     //*************************************************
     // Instructions / Constructeurs
 
@@ -158,23 +189,11 @@ let ProcessusDessin= function(vue, processusData, autoRun, color){
         // Affichage de la fenêtre d'actions
         this.fAction = Main.Fenetres.ajouter({id:"ui-actions", title:'Actions', width:'auto', height:'auto'});
         this.fAction.afficher();
+        this.dessinerEtapeSuivante();
     } else {
         // Sinon pas de fenêtre d'action
         this.fAction = null;
-    }
-
-    if (autoRun!==true){
-        this.dessinerEtapeSuivante();
-    } else {
-        // Lancement d'un timer qui boucle, avec 200ms entre chaque action
-        let delayBetweenAction = 100;
-        let timer = new repeatFunction(
-            this.dessinerEtapeSuivante.bind(this), 
-            {count: this.etape_id_max+1, durationsFunction:function(i){return delayBetweenAction*(i+1)}, loop:true}
-        );
-
-        timer.start();
-
+        this.startAuto();
     }
 
 }
