@@ -25,9 +25,6 @@ let ProcessusDessin= function({...vue}, {...processusData}, autoRun=false, color
             }
         }
 
-
-
-
         // Récupération des informations de l'étape
         let etape = processusData.Etapes[etape_id];
         // Récupération de l'élément graphique associé
