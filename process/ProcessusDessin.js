@@ -1,5 +1,5 @@
 // si fAction est non-null 
-let ProcessusDessin= function(vue, processusData, autoRun, color){
+let ProcessusDessin= function({...vue}, {...processusData}, autoRun=false, color='#03991E'){
 
     this.etape_id = -1;
     this.etape_id_max = processusData.Etapes.length - 1;
@@ -10,11 +10,23 @@ let ProcessusDessin= function(vue, processusData, autoRun, color){
 
     this.dessinerEtape=function(etape_id, processusData, fAction){
 
-        // Masquage du précédant lien (s'il y en avait un)
-        if (this.liensVisible.length > 2){
-            let lien = this.liensVisible.shift();
-            lien.Visible(false);
+        // Masquage du/des précédant lien 
+        if(this.autoRun==false){
+            // en mode manuel, on efface le précédant lien (s'il y en avait un)
+            if (this.liensVisible.length > 0){
+                let lien = this.liensVisible.shift();
+                lien.Visible(false);
+            }
+        } else {
+            // en mode auto, on garde plusieurs liens affichés
+            if (this.liensVisible.length > 2){
+                let lien = this.liensVisible.shift();
+                lien.Visible(false);
+            }
         }
+
+
+
 
         // Récupération des informations de l'étape
         let etape = processusData.Etapes[etape_id];
@@ -188,3 +200,4 @@ let ProcessusDessin= function(vue, processusData, autoRun, color){
     }
 
 }
+

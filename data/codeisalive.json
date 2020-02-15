@@ -19,7 +19,7 @@
 ,["Business Layer","1","system_folder"]
 ,["UserManager","2","csharp_staticclass"]
 ,["Authentificate","4","csharp_method"]
-,["DataLayer","1","system_folder"]
+,["ORM","1","system_folder"]
 ,["EntityFramework","2","blackbox"]
 ,["Data Layer","0","system_folder"]
 ,["db_demo","1","mssql_db"]
@@ -30,13 +30,13 @@
 ,
 "Processus":[
 {"Nom":"Successful authentification",
+"Niveau":0,
 "Etapes":[
 {"Element":"User","Element2":""
 ,"Data":[
 		[
 		["","E-mail","toto@yahoo.fr"],
-		["","Password","1234"],
-		["","Illustration","life_user.jpg"]
+		["","Password","1234"]
 		]
 ]
 },
@@ -104,7 +104,11 @@
 		["","username","Toto"],
 		["","HashedPassword","1zz)°234"]
 		]
-,		[
+]
+},
+{"Element":"t_user","Element2":""
+,"Data":[
+		[
 		[">","E-mail","HashedPassword","UserName"],
 		["","wou@tata.com","4#z567,,","Tata"],
 		["","vivi@titi.com","7z4#!7541","Titi"],
@@ -134,11 +138,6 @@
 ]
 },
 {"Element":"Login_Controler","Element2":"view_Home"
-,"Data":[
-		[
-		["","authenticated","true"]
-		]
-]
 },
 {"Element":"view_Home","Element2":"Page_Home"
 ,"Data":[
@@ -150,6 +149,7 @@
 }
 ,
 {"Nom":"Failing authentification",
+"Niveau":0,
 "Etapes":[
 {"Element":"db_demo","Element2":"t_user"
 ,"Data":[
