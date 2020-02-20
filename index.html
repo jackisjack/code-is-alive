@@ -13,9 +13,6 @@
     <script src="libjs/jquery-ui.min.js"></script>
     <script src="libjs/tweenjs-0.6.2.min.js"></script>
     <script src="libjs/easeljs-0.8.2.min.js"></script>
-    <script src="libjs/handlebars-v4.0.5.js"></script>
-    <script src="libjs/handlebars_Conditions.js"></script>
-    <script src="libjs/w3data.js"></script>
     <script src="https://code.createjs.com/1.0.0/preloadjs.min.js"></script>
 
     <!-- external css lib -->
@@ -26,77 +23,79 @@
     <link href="libcss/jquery-ui.css" rel="stylesheet" />
     <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
 
-    <!-- technical home-made js -->
+      <!-- unit test -->
 
-    <script src="technique/domjs.js"></script>
-    <script src="technique/geometrie.js"></script>
-    <script src="technique/easefunctions.js"></script>
-    <script src="technique/class_helper.js"></script>
-    <script src="technique/imagemanager.js"></script>
-    <script src="technique/repeatfunction.js"></script>
+    <script src="unit.test/tu_DataUi_LoadData.js"></script>
+    <script src="unit.test/tu_DrawLinks.js"></script>
+    <script src="unit.test/tu_Table.js"></script>
+    <script src="unit.test/tu_LoadData.js"></script>
+    <script src="unit.test/tu_generateTable.js"></script>
 
-    <!-- js -->
+    <!-- js tools -->
 
-    <script src="unittest/tu_DataUi_LoadData.js"></script>
-    <script src="unittest/tu_DrawLinks.js"></script>
-    <script src="unittest/tu_Table.js"></script>
-    <script src="unittest/tu_LoadData.js"></script>
-    <script src="unittest/tu_generate_table.js"></script>
-    <script src="process/ProcessusDessin.js"></script>
-    <script src="ui/js/indexevent.js"></script>
-    <script src="ui/js/obj/Fenetres.js"></script>
-    <script src="ui/js/obj/Fenetre.js"></script>
-    <script src="ui/js/generate_table.js"></script>
-    <script src="ui/js/menugauche.js"></script>
-    <script src="ui/js/initializationUserInterface.js"></script>
-    <script src="map/0-global.js"></script>
-    <script src="map/1-graphisme.js"></script>
-    <script src="map/2-vue.js"></script>
-    <script src="map/3-element.js"></script>
-    <script src="map/4-lien.js"></script>
-    <script src="ui/js/loading.js"></script>
+    <script src="tools/domjs.js"></script>
+    <script src="tools/geometry.js"></script>
+    <script src="tools/easefunctions.js"></script>
+    <script src="tools/class_helper.js"></script>
+    <script src="tools/repeatfunction.js"></script>
+    <script src="tools/WindowsUICollection.js"></script>
+    <script src="tools/WindowUi.js"></script>
+
+    <!-- js ui -->
+    
+    <script src="dynamic.dom/js/components/ui-process.js"></script>
+    <script src="dynamic.dom/js/components/menu-bottom.js"></script>
+    <script src="dynamic.dom/js/components/loading-modal.js"></script>
+    <script src="dynamic.dom/js/components/menu-left.js"></script>
+    <script src="dynamic.dom/js/generateTable.js"></script>
+    <script src="dynamic.dom/js/initializationUserInterface.js"></script>
+
+
+    <!-- js map -->
+    
+    <script src="map.drawing/architectureDrawer.js"></script>
+    <script src="map.drawing/ImageManager.js"></script>
+    <script src="map.drawing/ProcessDrawer.js"></script>
+    <script src="map.drawing/ViewCollection.js"></script>
+    <script src="map.drawing/View.js"></script>
+    <script src="map.drawing/Element.js"></script>
+    <script src="map.drawing/Link.js"></script>
     
     <!-- css -->
     
-    <link href="ui/css/table.css" rel="stylesheet" />
-    <link href="ui/css/loading.css" rel="stylesheet" />
-    <link href="ui/css/menu.css" rel="stylesheet" />
-    <link href="ui/css/fenetre.css" rel="stylesheet" />
+    <link href="dynamic.dom/css/ui-actions.css" rel="stylesheet" />
+    <link href="dynamic.dom/css/table.css" rel="stylesheet" />
+    <link href="dynamic.dom/css/loading.css" rel="stylesheet" />
+    <link href="dynamic.dom/css/menu.css" rel="stylesheet" />
+    <link href="dynamic.dom/css/fenetre.css" rel="stylesheet" />
 
   </head>  
   
   <body onload="Main.Init();">
 
    <!-- Loading message -->
-    <div id="myModal" class="modal" style="font-family: Lato;color:gainsboro;font-size:40pt;">
+    <div id="loading-modal" class="modal" style="font-family: Lato;color:gainsboro;font-size:40pt;">
       <img src="images/loading.gif" />
       <p></p>
   </div>
 
     <!-- Zone de dessin -->
-    <canvas id="MainCanvas" class="CalqueCanvas"></canvas>
+    <canvas id="canvas-main" class="CalqueCanvas"></canvas>
     
     <!-- Titre du système -->
     <div style="position:absolute;top:20px; left:30px;color:lightgray">
-        <h3>Une application web ASP.NET MVC</h3> </br>
+        <h3>Code Is Alive</h3> </br>
     </div>
 
     <!-- Les coordonnées de la souris -->
-    <div class="menu-bas-droite">
+    <div class="menu-bottom-right">
         <span id="x_mouse">x:100,</span>
         <span id="y_mouse">y:200,</span>
         <span id="zoomratio">zoom: 1</span>
     </div>
 
-     <!-- Fenêtre Data explorer -->
-     <div id="DataUi" class="vertical-menu" style="visibility:hidden;">
-
-        <div style="background-color:#ccc;"><p style="padding-left: 10px;">DATA EXPLORER<a href="#" style="float:right;color:white;font-size:14pt;padding-right: 3px;text-decoration: none;" class="fa fa-times"></a></p></div>
-       
-    </div> 
-
     <!-- Menu du bas -->
-    <nav id="MenuDuBas" class="navbar navbar-light fixed-bottom">
+    <nav id="menu-bottom" class="navbar navbar-light fixed-bottom">
 
           <div style="text-align:left;">
             

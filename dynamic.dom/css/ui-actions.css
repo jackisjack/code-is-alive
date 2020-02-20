@@ -1,0 +1,15 @@
+/* Fenêtre action */
+
+.ui-actions--element {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+  
+.ui-actions--element > img {
+margin-right:0.5em;
+}
+
+#ui-actions > img {
+margin-bottom:1em;
+}

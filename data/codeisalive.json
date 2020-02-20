@@ -1,190 +1,78 @@
 ﻿{"Elements":
  [
 ["Element","Niveau","Icone"]
-,["Real Life","0","system_folder"]
+,["Real Life","0","abstract_folder"]
 ,["User","1","life_user"]
-,["Front Web","0","system_folder"]
-,["Page_Login","1","html_page"]
-,["Form_Auth","2","html_dom"]
-,["txt_UserName","3","html_dom"]
-,["txt_Password","3","html_dom"]
-,["bt_Submit","3","html_dom"]
-,["Page_Home","1","html_page"]
-,["Back Office","0","system_folder"]
-,["Views","1","system_folder"]
-,["view_Login","2","dotnetmvc_view"]
-,["view_Home","2","dotnetmvc_view"]
-,["Controlers","1","system_folder"]
-,["Login_Controler","2","csharp_class"]
-,["Business Layer","1","system_folder"]
-,["UserManager","2","csharp_staticclass"]
-,["Authentificate","4","csharp_method"]
-,["ORM","1","system_folder"]
-,["EntityFramework","2","blackbox"]
-,["Data Layer","0","system_folder"]
-,["db_demo","1","mssql_db"]
-,["Tables","2","system_folder"]
-,["t_user","3","mssql_table"]
+,["Presentation layer","0","abstract_folder"]
+,["Excel","1","abstract_folder"]
+,["code-is-alive.xlsm","2","excel_file"]
+,["dataSheet","3","excel_sheet"]
+,["table_Elements","4","excel_table"]
+,["table_Processus","4","excel_table"]
+,["Web browser","1","application_browser"]
+,["index.html","2","html_page"]
+,["loading-modal","3","html_dom"]
+,["canvas-main","3","html_dom"]
+,["menu-bottom-right","3","html_dom"]
+,["menu-bottom","3","html_dom"]
+,["ui-action","3","html_dom"]
+,["ui-process","3","html_dom"]
+,["Application layer Excel","0","abstract_folder"]
+,["VBA Project","1","abstract_folder"]
+,["MOD_ToJson","2","vba_module"]
+,["JsonifyElementsAndProcess_vba","3","vba_function"]
+,["JsonifyElements_vba","3","vba_function"]
+,["JsonifyProcess_vba","3","vba_function"]
+,["Thisworkbook","2","vba_sheet"]
+,["File system","1","abstract_folder"]
+,["data","2","system_folder"]
+,["CodeIsAlive.json","3","json_file"]
+,["Application layer JS","0","abstract_folder"]
+,["main.js","1","js_file"]
+,["map.drawing","1","system_folder"]
+,["Viewcollection_js","2","js_object"]
+,["View_js","2","js_object"]
+,["Element_js","2","js_object"]
+,["Link_js","2","js_object"]
+,["ProcessDrawer_js","2","js_object"]
+,["ImageManager.js","2","js_file"]
+,["dynamic.dom","1","system_folder"]
+,["generateTable","2","js_function"]
+,["components","2","system_folder"]
+,["loading-modal.js","3","js_file"]
+,["menu-bottom.js","3","js_file"]
+,["ui-process.js","3","js_file"]
+,["menu-left.js","3","js_file"]
+,["initializationUserInterface.js","2","js_function"]
+,["tools","1","system_folder"]
+,["domjs.js","2","js_file"]
+,["WindowUI.js","2","js_object"]
+,["WindowsUI.js","2","js_object"]
+,["repeatFunction.js","2","js_object"]
+,["easeFunctions.js","2","js_file"]
+,["geometry.js","2","js_file"]
+,["lib.js","1","system_folder"]
+,["lib.css","1","system_folder"]
+,["unit.test","1","system_folder"]
  ]
 
 ,
 "Processus":[
-{"Nom":"Successful authentification",
+{"Nom":"Processus commun",
 "Niveau":0,
 "Etapes":[
 {"Element":"User","Element2":""
-,"Data":[
-		[
-		["","E-mail","toto@yahoo.fr"],
-		["","Password","1234"]
-		]
-]
-},
-{"Element":"User","Element2":"txt_UserName"
 ,"Data":[
 		[
 		["","E-mail","toto@yahoo.fr"]
 		]
 ]
 },
-{"Element":"User","Element2":"txt_Password"
-,"Data":[
-		[
-		["","Password","1234"]
-		]
-]
+{"Element":"User","Element2":""
 },
-{"Element":"User","Element2":"bt_Submit"
-,"Data":[
-		[
-		["","Action","appelle"]
-		]
-]
+{"Element":"User","Element2":""
 },
-{"Element":"bt_Submit","Element2":"Login_Controler"
-,"Data":[
-		[
-		["","Action","appelle"]
-		]
-]
-},
-{"Element":"Login_Controler","Element2":"Authentificate"
-,"Data":[
-		[
-		["","E-mail","toto@yahoo.fr"],
-		["","Password","1234"]
-		]
-]
-},
-{"Element":"Authentificate","Element2":""
-,"Data":[
-		[
-		["c","HashedPassword","1zz)°234"],
-		["c","Requête Linq","select  …"]
-		]
-]
-},
-{"Element":"Authentificate","Element2":"EntityFramework"
-,"Data":[
-		[
-		["","Action","appelle"]
-		]
-]
-},
-{"Element":"EntityFramework","Element2":"db_demo"
-,"Data":[
-		[
-		["c","Requête Sql","SELECT …"]
-		]
-]
-},
-{"Element":"db_demo","Element2":"t_user"
-,"Data":[
-		[
-		["","username","Toto"],
-		["","HashedPassword","1zz)°234"]
-		]
-]
-},
-{"Element":"t_user","Element2":""
-,"Data":[
-		[
-		[">","E-mail","HashedPassword","UserName"],
-		["","wou@tata.com","4#z567,,","Tata"],
-		["","vivi@titi.com","7z4#!7541","Titi"],
-		["r","toto@yahoo.fr","1zz)°234","Toto"]
-		]
-]
-},
-{"Element":"db_demo","Element2":"EntityFramework"
-,"Data":[
-		[
-		["","username","Toto"]
-		]
-]
-},
-{"Element":"EntityFramework","Element2":"Authentificate"
-,"Data":[
-		[
-		["","username","Toto"]
-		]
-]
-},
-{"Element":"Authentificate","Element2":"Login_Controler"
-,"Data":[
-		[
-		["","authenticated","true"]
-		]
-]
-},
-{"Element":"Login_Controler","Element2":"view_Home"
-},
-{"Element":"view_Home","Element2":"Page_Home"
-,"Data":[
-		[
-		["","WelcomeMessage","Welcome Toto !"]
-		]
-]
-}]
-}
-,
-{"Nom":"Failing authentification",
-"Niveau":0,
-"Etapes":[
-{"Element":"db_demo","Element2":"t_user"
-,"Data":[
-		[
-		["r","username","toto"],
-		["r","HashedPassword","1zz)°234"]
-		]
-,		[
-		[">","E-mail","HashedPassword"],
-		["","Titi","4#z567,,"],
-		["","Toto","7z4#!7541"],
-		["","toto@yahoo.fr","45aeaze"]
-		]
-]
-},
-{"Element":"db_demo","Element2":"EntityFramework"
-,"Data":[
-		[
-		["c","username"]
-		]
-]
-},
-{"Element":"EntityFramework","Element2":"Authentificate"
-,"Data":[
-		[
-		["c","username","toto"]
-		]
-]
-},
-{"Element":"Login_Controler","Element2":"view_Home"
-,"Data":[
-		[
-		["","authenticated","false"]
-		]
-]
+{"Element":"User","Element2":""
 }]
 }
 ]
